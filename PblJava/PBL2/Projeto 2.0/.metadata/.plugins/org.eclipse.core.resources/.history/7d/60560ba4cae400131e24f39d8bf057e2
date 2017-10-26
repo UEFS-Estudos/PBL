@@ -1,0 +1,179 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Washington Pagotto Batista>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.model;
+
+import br.uefs.ecomp.samu.util.ListaEncadeada;
+
+/**
+*
+* @author Washington Pagotto Batista
+*/
+public class Ocorrencia 
+{
+
+	//Atributos da classe.
+	private int id;
+	private String status;
+	private int qtdAmbulancias;
+	private Cidadao cidadao;
+	private Atendente atendente;
+	private ListaEncadeada ambulanciasSolicitadas;
+
+	//metodo estaAtiva retorna true se o status for Aberta ou Em Atendimento
+	//criar uma lista de ambulancias, metodo para inserir ambulancia e metodo para remover ambulancia
+	//criar Atributo atendente e cidadao que armazenam o atendente e o cidadao que sao da ocorrencia,gets e sets dele tb
+	
+	//construtor da classe.
+	public Ocorrencia(int id, int qtdAmbulancias)
+	{
+
+		this.id=id;
+		this.qtdAmbulancias=qtdAmbulancias;
+		status=("Aberta");
+		ambulanciasSolicitadas= new ListaEncadeada();
+
+	}
+	
+    /**
+     * Esse metodo é usado para fazer a verificação do atributo id da classe Ocorrencia.
+     * @return verifica e retorna o mesmo.
+     */
+	
+	public int getId()
+	{
+		return id;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a verificação do atributo Status da classe Ocorrencia.
+	 * @return verifica e retorna o mesmo
+	 */
+	public String getStatus()
+	{
+		return status;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a verificação do atributo QtdAmbulancias da classe Ocorrencia.
+	 * @return verifica e retorna o mesmo
+	 */
+	public int getQtdAmbulancias()
+	{
+		return qtdAmbulancias;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a modificação do atributo id da classe Ocorrencia
+	 * @param recebe um inteiro e altera o seu valor
+	 */
+	public void setId(int id)
+	{
+		this.id=id;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a modificação do atributo Status da classe Ocorrencia
+	 * @param recebe uma String e altera ela.
+	 */
+	public void setStatus(String status)
+	{
+		this.status=status;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a modificação do atributo qtdAmbulancias da classe Ocorrencia
+	 * @param recebe um inteiro e altera ela.
+	 */
+	public void setQtdAmbulancias(int qtdAmbulancias)
+	{
+		this.qtdAmbulancias=qtdAmbulancias;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a verificação do atributo cidadao da classe Ocorrencia.
+	 * @return o que está contido no atributo.
+	 */
+	public Cidadao getCidadao()
+	{
+		return cidadao;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a verificação do atributo Atendente da classe Ocorrencia.
+	 * @return o que está contido no atributo.
+	 */
+	public Atendente getAtendente()
+	{
+		return atendente;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a modificação do atributo cidadao da classe Ocorrencia
+	 * @param recebe um objeto do tipo cidadao e altera o mesmo.
+	 */
+	public void setCidadao(Cidadao cidadao)
+	{
+		this.cidadao=cidadao;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a modificação do atributo placa da classe Ocorrencia.
+	 * @param recebe um um objeto do tipo object e altera ele.
+	 */
+	public void setAtendente(Object atendente)
+	{
+		this.atendente=(Atendente) atendente;
+	}
+
+	public boolean equals(Object obj) 
+	{ 
+
+		if(obj instanceof Ocorrencia)
+		{
+
+			Ocorrencia o =(Ocorrencia) obj;
+
+			if(o.getId() == getId() && o.getStatus().equals(getStatus())&&
+					o.getQtdAmbulancias()== getQtdAmbulancias())
+			{ 
+				return true; 
+			} 
+		}
+
+		return false;
+	}
+
+	public boolean estaAtiva()
+	{
+		if(status.equals("Aberta") || status.equals("Em Atendimento"))
+			return true;
+		return false;
+	}
+
+	public void insereAmbulancia(Ambulancia a)
+	{
+		ambulanciasSolicitadas.insereFinal(a);
+	}
+
+	public Object removeAmbulancia()
+	{
+		return ambulanciasSolicitadas.removeInicio();
+	}
+}

@@ -1,0 +1,46 @@
+package br.uefs.ecomp.samu.model;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class TestOcorrencia {
+
+	private Ocorrencia o;
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		o =new Ocorrencia(1,1);
+	
+	}
+
+	@Test
+	public void testBasic() {
+		
+		assertEquals(1, o.getId());
+		assertSame("Aberto",o.getStatus());
+		assertEquals(1, o.getQtdAmbulancias());
+		
+		o.setId(2);
+		o.setStatus("Finalizada");
+		o.setQtdAmbulancias(2);
+		
+		assertEquals(2,o.getId());
+		assertSame("Finalizada", o.getStatus());
+		assertEquals(2, o.getQtdAmbulancias());
+		
+		Ocorrencia nova= new Ocorrencia(3,4);
+		
+		assertFalse(nova.equals(o));
+		
+		o.setId(3);
+		o.setStatus("Em Atendimento");
+		o.setQtdAmbulancias(4);
+		
+		assertTrue(nova.equals(o));
+	}
+
+}

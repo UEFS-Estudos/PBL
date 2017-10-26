@@ -1,0 +1,1027 @@
+Classic Timing Analyzer report for PBL4
+Tue Dec 09 01:00:49 2014
+Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Parallel Compilation
+  6. Clock Setup: 'D7'
+  7. Clock Setup: 'D6'
+  8. Clock Setup: 'D5'
+  9. Clock Setup: 'CLK'
+ 10. Clock Hold: 'D7'
+ 11. Clock Hold: 'D6'
+ 12. Clock Hold: 'CLK'
+ 13. tsu
+ 14. tco
+ 15. tpd
+ 16. th
+ 17. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2009 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                                                                                                                        ;
++------------------------------+------------------------------------------+---------------+----------------------------------+-----------------------------------------------------+------------------------------------------------------+------------+----------+--------------+
+; Type                         ; Slack                                    ; Required Time ; Actual Time                      ; From                                                ; To                                                   ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+------------------------------------------+---------------+----------------------------------+-----------------------------------------------------+------------------------------------------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A                                      ; None          ; 4.900 ns                         ; D0                                                  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst ; --         ; D5       ; 0            ;
+; Worst-case tco               ; N/A                                      ; None          ; 57.000 ns                        ; Maquina:inst8|Contador3bits:inst|inst1              ; Z1                                                   ; D6         ; --       ; 0            ;
+; Worst-case tpd               ; N/A                                      ; None          ; 30.400 ns                        ; D2                                                  ; SaidaC                                               ; --         ; --       ; 0            ;
+; Worst-case th                ; N/A                                      ; None          ; 3.800 ns                         ; D6                                                  ; Registrador4bits:inst2|inst2                         ; --         ; D7       ; 0            ;
+; Clock Setup: 'D6'            ; N/A                                      ; None          ; 63.69 MHz ( period = 15.700 ns ) ; Maquina:inst8|Contador3bits:inst1|inst2             ; Maquina:inst8|Contador3bits:inst1|inst               ; D6         ; D6       ; 0            ;
+; Clock Setup: 'D7'            ; N/A                                      ; None          ; 63.69 MHz ( period = 15.700 ns ) ; Maquina:inst8|Contador3bits:inst1|inst2             ; Maquina:inst8|Contador3bits:inst1|inst               ; D7         ; D7       ; 0            ;
+; Clock Setup: 'CLK'           ; N/A                                      ; None          ; 66.23 MHz ( period = 15.100 ns ) ; Maquina:inst8|Contador3bits:inst1|inst2             ; Maquina:inst8|Contador3bits:inst1|inst               ; CLK        ; CLK      ; 0            ;
+; Clock Setup: 'D5'            ; N/A                                      ; None          ; 119.05 MHz ( period = 8.400 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst ; D5         ; D5       ; 0            ;
+; Clock Hold: 'D7'             ; Not operational: Clock Skew > Data Delay ; None          ; N/A                              ; Maquina:inst8|Contador3bits:inst1|inst2             ; Maquina:inst8|Contador3bits:inst1|inst1              ; D7         ; D7       ; 8            ;
+; Clock Hold: 'D6'             ; Not operational: Clock Skew > Data Delay ; None          ; N/A                              ; Maquina:inst8|Contador3bits:inst1|inst2             ; Maquina:inst8|Contador3bits:inst1|inst1              ; D6         ; D6       ; 8            ;
+; Clock Hold: 'CLK'            ; Not operational: Clock Skew > Data Delay ; None          ; N/A                              ; Maquina:inst8|Contador3bits:inst1|inst2             ; Maquina:inst8|Contador3bits:inst1|inst1              ; CLK        ; CLK      ; 8            ;
+; Total number of failed paths ;                                          ;               ;                                  ;                                                     ;                                                      ;            ;          ; 24           ;
++------------------------------+------------------------------------------+---------------+----------------------------------+-----------------------------------------------------+------------------------------------------------------+------------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                           ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                              ; Setting            ; From ; To ; Entity Name ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                         ; EP1K100QC208-3     ;      ;    ;             ;
+; Timing Models                                                       ; Final              ;      ;    ;             ;
+; Default hold multicycle                                             ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                           ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                              ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                      ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                    ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                               ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                             ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                    ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                       ; Off                ;      ;    ;             ;
+; Minimum Core Junction Temperature                                   ; 0                  ;      ;    ;             ;
+; Maximum Core Junction Temperature                                   ; 85                 ;      ;    ;             ;
+; Number of source nodes to report per destination node               ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                               ; 10                 ;      ;    ;             ;
+; Number of paths to report                                           ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                        ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                              ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                          ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                        ; Off                ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis      ; Off                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation ; Off                ;      ;    ;             ;
+; Output I/O Timing Endpoint                                          ; Near End           ;      ;    ;             ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; D7              ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
+; D6              ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
+; D5              ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
+; CLK             ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
+; D3              ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 2      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'D7'                                                                                                                                                                                                                                          ;
++-------+------------------------------------------------+-----------------------------------------+---------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack ; Actual fmax (period)                           ; From                                    ; To                                          ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-------+------------------------------------------------+-----------------------------------------+---------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A   ; 63.69 MHz ( period = 15.700 ns )               ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst2     ; D7         ; D7       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; 63.69 MHz ( period = 15.700 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst      ; D7         ; D7       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; 64.10 MHz ( period = 15.600 ns )               ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst1     ; D7         ; D7       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 64.10 MHz ( period = 15.600 ns )               ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst2     ; D7         ; D7       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 64.10 MHz ( period = 15.600 ns )               ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst      ; D7         ; D7       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 64.94 MHz ( period = 15.400 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst1     ; D7         ; D7       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 64.94 MHz ( period = 15.400 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst2     ; D7         ; D7       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 64.94 MHz ( period = 15.400 ns )               ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst      ; D7         ; D7       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 144.93 MHz ( period = 6.900 ns )               ; Registrador4bits:inst2|inst             ; Maquina:inst8|Registrador3bits:inst20|inst1 ; D7         ; D7       ; None                        ; None                      ; 4.200 ns                ;
+; N/A   ; 144.93 MHz ( period = 6.900 ns )               ; Registrador4bits:inst2|inst             ; Maquina:inst8|Registrador3bits:inst20|inst  ; D7         ; D7       ; None                        ; None                      ; 4.200 ns                ;
+; N/A   ; 151.52 MHz ( period = 6.600 ns )               ; Registrador4bits:inst2|inst1            ; Maquina:inst8|Registrador3bits:inst20|inst1 ; D7         ; D7       ; None                        ; None                      ; 3.900 ns                ;
+; N/A   ; 151.52 MHz ( period = 6.600 ns )               ; Registrador4bits:inst2|inst1            ; Maquina:inst8|Registrador3bits:inst20|inst  ; D7         ; D7       ; None                        ; None                      ; 3.900 ns                ;
+; N/A   ; 200.00 MHz ( period = 5.000 ns )               ; Registrador4bits:inst2|inst             ; Maquina:inst8|Registrador3bits:inst20|inst2 ; D7         ; D7       ; None                        ; None                      ; 2.300 ns                ;
+; N/A   ; 200.00 MHz ( period = 5.000 ns )               ; Registrador4bits:inst2|inst1            ; Maquina:inst8|Registrador3bits:inst20|inst2 ; D7         ; D7       ; None                        ; None                      ; 2.300 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst1  ; Maquina:inst8|Contador3bits:inst|inst2      ; D7         ; D7       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2  ; Maquina:inst8|Contador3bits:inst|inst       ; D7         ; D7       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst   ; Maquina:inst8|Contador3bits:inst|inst1      ; D7         ; D7       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst   ; Maquina:inst8|Contador3bits:inst|inst2      ; D7         ; D7       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst1  ; Maquina:inst8|Contador3bits:inst|inst       ; D7         ; D7       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2  ; Maquina:inst8|Contador3bits:inst|inst1      ; D7         ; D7       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2  ; Maquina:inst8|Contador3bits:inst|inst2      ; D7         ; D7       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst   ; Maquina:inst8|Contador3bits:inst|inst       ; D7         ; D7       ; None                        ; None                      ; 1.200 ns                ;
++-------+------------------------------------------------+-----------------------------------------+---------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'D6'                                                                                                                                                                                                                                                                  ;
++-------+------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack ; Actual fmax (period)                           ; From                                                  ; To                                                    ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-------+------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A   ; 63.69 MHz ( period = 15.700 ns )               ; Maquina:inst8|Contador3bits:inst1|inst1               ; Maquina:inst8|Contador3bits:inst1|inst2               ; D6         ; D6       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; 63.69 MHz ( period = 15.700 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2               ; Maquina:inst8|Contador3bits:inst1|inst                ; D6         ; D6       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; 64.10 MHz ( period = 15.600 ns )               ; Maquina:inst8|Contador3bits:inst1|inst                ; Maquina:inst8|Contador3bits:inst1|inst1               ; D6         ; D6       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 64.10 MHz ( period = 15.600 ns )               ; Maquina:inst8|Contador3bits:inst1|inst                ; Maquina:inst8|Contador3bits:inst1|inst2               ; D6         ; D6       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 64.10 MHz ( period = 15.600 ns )               ; Maquina:inst8|Contador3bits:inst1|inst1               ; Maquina:inst8|Contador3bits:inst1|inst                ; D6         ; D6       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 64.94 MHz ( period = 15.400 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2               ; Maquina:inst8|Contador3bits:inst1|inst1               ; D6         ; D6       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 64.94 MHz ( period = 15.400 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2               ; Maquina:inst8|Contador3bits:inst1|inst2               ; D6         ; D6       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 64.94 MHz ( period = 15.400 ns )               ; Maquina:inst8|Contador3bits:inst1|inst                ; Maquina:inst8|Contador3bits:inst1|inst                ; D6         ; D6       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 104.17 MHz ( period = 9.600 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; Maquina:inst8|Registrador3bits:inst20|inst            ; D6         ; D6       ; None                        ; None                      ; 5.400 ns                ;
+; N/A   ; 108.70 MHz ( period = 9.200 ns )               ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; Maquina:inst8|Registrador3bits:inst20|inst2           ; D6         ; D6       ; None                        ; None                      ; 5.000 ns                ;
+; N/A   ; 109.89 MHz ( period = 9.100 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; D6         ; D6       ; None                        ; None                      ; 4.900 ns                ;
+; N/A   ; 114.94 MHz ( period = 8.700 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; Maquina:inst8|Registrador3bits:inst20|inst2           ; D6         ; D6       ; None                        ; None                      ; 4.500 ns                ;
+; N/A   ; 114.94 MHz ( period = 8.700 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; Maquina:inst8|Registrador3bits:inst20|inst            ; D6         ; D6       ; None                        ; None                      ; 4.500 ns                ;
+; N/A   ; 116.28 MHz ( period = 8.600 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; Maquina:inst8|Registrador3bits:inst20|inst1           ; D6         ; D6       ; None                        ; None                      ; 4.400 ns                ;
+; N/A   ; 117.65 MHz ( period = 8.500 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; Maquina:inst8|Registrador3bits:inst20|inst            ; D6         ; D6       ; None                        ; None                      ; 4.300 ns                ;
+; N/A   ; 119.05 MHz ( period = 8.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; D6         ; D6       ; None                        ; None                      ; 4.200 ns                ;
+; N/A   ; 119.05 MHz ( period = 8.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6         ; D6       ; None                        ; None                      ; 6.600 ns                ;
+; N/A   ; 120.48 MHz ( period = 8.300 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6         ; D6       ; None                        ; None                      ; 6.500 ns                ;
+; N/A   ; 121.95 MHz ( period = 8.200 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; D6         ; D6       ; None                        ; None                      ; 4.000 ns                ;
+; N/A   ; 133.33 MHz ( period = 7.500 ns )               ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; Maquina:inst8|Registrador3bits:inst20|inst1           ; D6         ; D6       ; None                        ; None                      ; 3.300 ns                ;
+; N/A   ; 136.99 MHz ( period = 7.300 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; D6         ; D6       ; None                        ; None                      ; 3.100 ns                ;
+; N/A   ; 136.99 MHz ( period = 7.300 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6         ; D6       ; None                        ; None                      ; 5.500 ns                ;
+; N/A   ; 138.89 MHz ( period = 7.200 ns )               ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; Maquina:inst8|Registrador3bits:inst20|inst            ; D6         ; D6       ; None                        ; None                      ; 3.000 ns                ;
+; N/A   ; 138.89 MHz ( period = 7.200 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6         ; D6       ; None                        ; None                      ; 5.400 ns                ;
+; N/A   ; 142.86 MHz ( period = 7.000 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6         ; D6       ; None                        ; None                      ; 5.200 ns                ;
+; N/A   ; 151.52 MHz ( period = 6.600 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6         ; D6       ; None                        ; None                      ; 4.800 ns                ;
+; N/A   ; 153.85 MHz ( period = 6.500 ns )               ; Registrador4bits:inst2|inst                           ; Maquina:inst8|Registrador3bits:inst20|inst1           ; D6         ; D6       ; None                        ; None                      ; 4.200 ns                ;
+; N/A   ; 153.85 MHz ( period = 6.500 ns )               ; Registrador4bits:inst2|inst                           ; Maquina:inst8|Registrador3bits:inst20|inst            ; D6         ; D6       ; None                        ; None                      ; 4.200 ns                ;
+; N/A   ; 161.29 MHz ( period = 6.200 ns )               ; Registrador4bits:inst2|inst1                          ; Maquina:inst8|Registrador3bits:inst20|inst1           ; D6         ; D6       ; None                        ; None                      ; 3.900 ns                ;
+; N/A   ; 161.29 MHz ( period = 6.200 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6         ; D6       ; None                        ; None                      ; 4.400 ns                ;
+; N/A   ; 161.29 MHz ( period = 6.200 ns )               ; Registrador4bits:inst2|inst1                          ; Maquina:inst8|Registrador3bits:inst20|inst            ; D6         ; D6       ; None                        ; None                      ; 3.900 ns                ;
+; N/A   ; 166.67 MHz ( period = 6.000 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6         ; D6       ; None                        ; None                      ; 4.200 ns                ;
+; N/A   ; 166.67 MHz ( period = 6.000 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|inst5                                      ; D6         ; D6       ; None                        ; None                      ; 2.600 ns                ;
+; N/A   ; 172.41 MHz ( period = 5.800 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6         ; D6       ; None                        ; None                      ; 4.000 ns                ;
+; N/A   ; 172.41 MHz ( period = 5.800 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|inst5                                      ; D6         ; D6       ; None                        ; None                      ; 2.400 ns                ;
+; N/A   ; 181.82 MHz ( period = 5.500 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|inst5                                      ; D6         ; D6       ; None                        ; None                      ; 2.100 ns                ;
+; N/A   ; 185.19 MHz ( period = 5.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6         ; D6       ; None                        ; None                      ; 3.600 ns                ;
+; N/A   ; 185.19 MHz ( period = 5.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6         ; D6       ; None                        ; None                      ; 3.600 ns                ;
+; N/A   ; 185.19 MHz ( period = 5.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6         ; D6       ; None                        ; None                      ; 3.600 ns                ;
+; N/A   ; 192.31 MHz ( period = 5.200 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6         ; D6       ; None                        ; None                      ; 3.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|inst5                                      ; D6         ; D6       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Registrador4bits:inst2|inst                           ; Maquina:inst8|Registrador3bits:inst20|inst2           ; D6         ; D6       ; None                        ; None                      ; 2.300 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Registrador4bits:inst2|inst1                          ; Maquina:inst8|Registrador3bits:inst20|inst2           ; D6         ; D6       ; None                        ; None                      ; 2.300 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6         ; D6       ; None                        ; None                      ; 2.600 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6         ; D6       ; None                        ; None                      ; 2.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6         ; D6       ; None                        ; None                      ; 2.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst1                ; Maquina:inst8|Contador3bits:inst|inst2                ; D6         ; D6       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2                ; Maquina:inst8|Contador3bits:inst|inst                 ; D6         ; D6       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6         ; D6       ; None                        ; None                      ; 1.700 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6         ; D6       ; None                        ; None                      ; 1.700 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst                 ; Maquina:inst8|Contador3bits:inst|inst1                ; D6         ; D6       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst                 ; Maquina:inst8|Contador3bits:inst|inst2                ; D6         ; D6       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst1                ; Maquina:inst8|Contador3bits:inst|inst                 ; D6         ; D6       ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6         ; D6       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6         ; D6       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2                ; Maquina:inst8|Contador3bits:inst|inst1                ; D6         ; D6       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2                ; Maquina:inst8|Contador3bits:inst|inst2                ; D6         ; D6       ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst                 ; Maquina:inst8|Contador3bits:inst|inst                 ; D6         ; D6       ; None                        ; None                      ; 1.200 ns                ;
++-------+------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'D5'                                                                                                                                                                                                                                                                  ;
++-------+------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack ; Actual fmax (period)                           ; From                                                  ; To                                                    ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-------+------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A   ; 119.05 MHz ( period = 8.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5         ; D5       ; None                        ; None                      ; 6.600 ns                ;
+; N/A   ; 120.48 MHz ( period = 8.300 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5         ; D5       ; None                        ; None                      ; 6.500 ns                ;
+; N/A   ; 136.99 MHz ( period = 7.300 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5         ; D5       ; None                        ; None                      ; 5.500 ns                ;
+; N/A   ; 138.89 MHz ( period = 7.200 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5         ; D5       ; None                        ; None                      ; 5.400 ns                ;
+; N/A   ; 142.86 MHz ( period = 7.000 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5         ; D5       ; None                        ; None                      ; 5.200 ns                ;
+; N/A   ; 151.52 MHz ( period = 6.600 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5         ; D5       ; None                        ; None                      ; 4.800 ns                ;
+; N/A   ; 161.29 MHz ( period = 6.200 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5         ; D5       ; None                        ; None                      ; 4.400 ns                ;
+; N/A   ; 166.67 MHz ( period = 6.000 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5         ; D5       ; None                        ; None                      ; 4.200 ns                ;
+; N/A   ; 172.41 MHz ( period = 5.800 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5         ; D5       ; None                        ; None                      ; 4.000 ns                ;
+; N/A   ; 185.19 MHz ( period = 5.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5         ; D5       ; None                        ; None                      ; 3.600 ns                ;
+; N/A   ; 185.19 MHz ( period = 5.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5         ; D5       ; None                        ; None                      ; 3.600 ns                ;
+; N/A   ; 185.19 MHz ( period = 5.400 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5         ; D5       ; None                        ; None                      ; 3.600 ns                ;
+; N/A   ; 192.31 MHz ( period = 5.200 ns )               ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5         ; D5       ; None                        ; None                      ; 3.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5         ; D5       ; None                        ; None                      ; 2.600 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5         ; D5       ; None                        ; None                      ; 2.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5         ; D5       ; None                        ; None                      ; 2.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5         ; D5       ; None                        ; None                      ; 1.700 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5         ; D5       ; None                        ; None                      ; 1.700 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5         ; D5       ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5         ; D5       ; None                        ; None                      ; 1.500 ns                ;
++-------+------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'CLK'                                                                                                                                                                                                                                     ;
++-------+------------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack ; Actual fmax (period)                           ; From                                    ; To                                      ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-------+------------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A   ; 66.23 MHz ( period = 15.100 ns )               ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst2 ; CLK        ; CLK      ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; 66.23 MHz ( period = 15.100 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst  ; CLK        ; CLK      ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; 66.67 MHz ( period = 15.000 ns )               ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst1 ; CLK        ; CLK      ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 66.67 MHz ( period = 15.000 ns )               ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst2 ; CLK        ; CLK      ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 66.67 MHz ( period = 15.000 ns )               ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst  ; CLK        ; CLK      ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; 67.57 MHz ( period = 14.800 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst1 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 67.57 MHz ( period = 14.800 ns )               ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst2 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; 67.57 MHz ( period = 14.800 ns )               ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst  ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst1  ; Maquina:inst8|Contador3bits:inst|inst2  ; CLK        ; CLK      ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2  ; Maquina:inst8|Contador3bits:inst|inst   ; CLK        ; CLK      ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst   ; Maquina:inst8|Contador3bits:inst|inst1  ; CLK        ; CLK      ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst   ; Maquina:inst8|Contador3bits:inst|inst2  ; CLK        ; CLK      ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst1  ; Maquina:inst8|Contador3bits:inst|inst   ; CLK        ; CLK      ; None                        ; None                      ; 1.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2  ; Maquina:inst8|Contador3bits:inst|inst1  ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst2  ; Maquina:inst8|Contador3bits:inst|inst2  ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Maquina:inst8|Contador3bits:inst|inst   ; Maquina:inst8|Contador3bits:inst|inst   ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|Contador:inst13|inst8        ; pbl03:inst|Contador:inst13|inst8        ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|Contador:inst13|inst9        ; pbl03:inst|Contador:inst13|inst9        ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; pbl03:inst|Contador:inst13|inst9        ; pbl03:inst|Contador:inst13|inst8        ; CLK        ; CLK      ; None                        ; None                      ; 0.500 ns                ;
++-------+------------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Hold: 'D7'                                                                                                                                                                                                                          ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Minimum Slack                            ; From                                    ; To                                      ; From Clock ; To Clock ; Required Hold Relationship ; Required Shortest P2P Time ; Actual Shortest P2P Time ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst1 ; D7         ; D7       ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst2 ; D7         ; D7       ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst  ; D7         ; D7       ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst1 ; D7         ; D7       ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst2 ; D7         ; D7       ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst  ; D7         ; D7       ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst2 ; D7         ; D7       ; None                       ; None                       ; 1.500 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst  ; D7         ; D7       ; None                       ; None                       ; 1.500 ns                 ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Hold: 'D6'                                                                                                                                                                                                                          ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Minimum Slack                            ; From                                    ; To                                      ; From Clock ; To Clock ; Required Hold Relationship ; Required Shortest P2P Time ; Actual Shortest P2P Time ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst1 ; D6         ; D6       ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst2 ; D6         ; D6       ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst  ; D6         ; D6       ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst1 ; D6         ; D6       ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst2 ; D6         ; D6       ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst  ; D6         ; D6       ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst2 ; D6         ; D6       ; None                       ; None                       ; 1.500 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst  ; D6         ; D6       ; None                       ; None                       ; 1.500 ns                 ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Hold: 'CLK'                                                                                                                                                                                                                         ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Minimum Slack                            ; From                                    ; To                                      ; From Clock ; To Clock ; Required Hold Relationship ; Required Shortest P2P Time ; Actual Shortest P2P Time ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst1 ; CLK        ; CLK      ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst2 ; CLK        ; CLK      ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst  ; CLK        ; CLK      ; None                       ; None                       ; 1.200 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst1 ; CLK        ; CLK      ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst  ; Maquina:inst8|Contador3bits:inst1|inst2 ; CLK        ; CLK      ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst  ; CLK        ; CLK      ; None                       ; None                       ; 1.400 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst1 ; Maquina:inst8|Contador3bits:inst1|inst2 ; CLK        ; CLK      ; None                       ; None                       ; 1.500 ns                 ;
+; Not operational: Clock Skew > Data Delay ; Maquina:inst8|Contador3bits:inst1|inst2 ; Maquina:inst8|Contador3bits:inst1|inst  ; CLK        ; CLK      ; None                       ; None                       ; 1.500 ns                 ;
++------------------------------------------+-----------------------------------------+-----------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; tsu                                                                                                         ;
++-------+--------------+------------+------+-------------------------------------------------------+----------+
+; Slack ; Required tsu ; Actual tsu ; From ; To                                                    ; To Clock ;
++-------+--------------+------------+------+-------------------------------------------------------+----------+
+; N/A   ; None         ; 4.900 ns   ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A   ; None         ; 4.600 ns   ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A   ; None         ; 4.000 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A   ; None         ; 3.800 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A   ; None         ; 3.700 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A   ; None         ; 3.700 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A   ; None         ; 3.500 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A   ; None         ; 3.400 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A   ; None         ; 3.200 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
+; N/A   ; None         ; 3.200 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
+; N/A   ; None         ; 3.000 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
+; N/A   ; None         ; 3.000 ns   ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A   ; None         ; 2.900 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A   ; None         ; 2.900 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A   ; None         ; 2.700 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A   ; None         ; 2.700 ns   ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A   ; None         ; 2.500 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A   ; None         ; 2.500 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A   ; None         ; 2.400 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A   ; None         ; 2.400 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A   ; None         ; 2.400 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A   ; None         ; 2.200 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A   ; None         ; 2.200 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A   ; None         ; 2.200 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A   ; None         ; 2.100 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A   ; None         ; 2.100 ns   ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A   ; None         ; 2.100 ns   ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A   ; None         ; 2.100 ns   ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A   ; None         ; 1.900 ns   ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A   ; None         ; 1.800 ns   ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A   ; None         ; 0.600 ns   ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A   ; None         ; 0.600 ns   ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A   ; None         ; 0.300 ns   ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A   ; None         ; 0.300 ns   ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A   ; None         ; 0.100 ns   ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A   ; None         ; 0.100 ns   ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A   ; None         ; 0.100 ns   ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A   ; None         ; 0.100 ns   ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A   ; None         ; 0.000 ns   ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A   ; None         ; 0.000 ns   ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A   ; None         ; -0.100 ns  ; D3   ; Registrador4bits:inst2|inst3                          ; D6       ;
+; N/A   ; None         ; -0.100 ns  ; D3   ; Registrador4bits:inst2|inst3                          ; D7       ;
+; N/A   ; None         ; -0.200 ns  ; D6   ; Registrador4bits:inst2|inst3                          ; D6       ;
+; N/A   ; None         ; -0.200 ns  ; D6   ; Registrador4bits:inst2|inst3                          ; D7       ;
+; N/A   ; None         ; -0.200 ns  ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A   ; None         ; -0.200 ns  ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A   ; None         ; -0.200 ns  ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A   ; None         ; -0.200 ns  ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A   ; None         ; -0.300 ns  ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A   ; None         ; -0.300 ns  ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A   ; None         ; -0.800 ns  ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
+; N/A   ; None         ; -1.100 ns  ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A   ; None         ; -1.300 ns  ; D0   ; Registrador4bits:inst2|inst                           ; D6       ;
+; N/A   ; None         ; -1.300 ns  ; D0   ; Registrador4bits:inst2|inst                           ; D7       ;
+; N/A   ; None         ; -2.000 ns  ; D1   ; Registrador4bits:inst2|inst1                          ; D6       ;
+; N/A   ; None         ; -2.000 ns  ; D1   ; Registrador4bits:inst2|inst1                          ; D7       ;
+; N/A   ; None         ; -2.100 ns  ; D2   ; Registrador4bits:inst2|inst2                          ; D6       ;
+; N/A   ; None         ; -2.100 ns  ; D2   ; Registrador4bits:inst2|inst2                          ; D7       ;
+; N/A   ; None         ; -2.200 ns  ; D6   ; Registrador4bits:inst2|inst                           ; D6       ;
+; N/A   ; None         ; -2.200 ns  ; D6   ; Registrador4bits:inst2|inst                           ; D7       ;
+; N/A   ; None         ; -2.200 ns  ; D6   ; Registrador4bits:inst2|inst1                          ; D6       ;
+; N/A   ; None         ; -2.200 ns  ; D6   ; Registrador4bits:inst2|inst1                          ; D7       ;
+; N/A   ; None         ; -2.200 ns  ; D6   ; Registrador4bits:inst2|inst2                          ; D6       ;
+; N/A   ; None         ; -2.200 ns  ; D6   ; Registrador4bits:inst2|inst2                          ; D7       ;
++-------+--------------+------------+------+-------------------------------------------------------+----------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; tco                                                                                                                                                                                          ;
++-----------------------------------------+-----------------------------------------------------+------------+-------------------------------------------------------+------------+------------+
+; Slack                                   ; Required tco                                        ; Actual tco ; From                                                  ; To         ; From Clock ;
++-----------------------------------------+-----------------------------------------------------+------------+-------------------------------------------------------+------------+------------+
+; N/A                                     ; None                                                ; 57.000 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 56.600 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 56.600 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 56.500 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 56.300 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 56.200 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 56.100 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 55.900 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 55.600 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 55.400 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 55.200 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 55.000 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 54.400 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 54.400 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 54.000 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 54.000 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 54.000 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 54.000 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 53.900 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 53.900 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 53.700 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 53.700 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 53.600 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 53.600 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 53.500 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 53.500 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 53.300 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 53.300 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 53.000 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 53.000 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 52.800 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 52.800 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 52.600 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 52.600 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 52.400 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 52.400 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 49.000 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 48.900 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 48.700 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 48.600 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 48.500 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 48.500 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 48.400 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 48.300 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 48.100 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 48.000 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 47.300 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 47.000 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 46.900 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 46.600 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 45.900 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 45.900 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 45.900 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 45.800 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 45.800 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 45.700 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 45.500 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 45.500 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 45.500 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 45.400 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 45.400 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 45.300 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 44.400 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 44.400 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 44.000 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 44.000 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 39.100 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z1         ; CLK        ;
+; N/A                                     ; None                                                ; 38.800 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 38.700 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 38.700 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z1         ; CLK        ;
+; N/A                                     ; None                                                ; 38.600 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z1         ; CLK        ;
+; N/A                                     ; None                                                ; 38.400 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaD     ; D6         ;
+; N/A                                     ; None                                                ; 38.400 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaC     ; D6         ;
+; N/A                                     ; None                                                ; 38.400 ns  ; Maquina:inst8|Registrador3bits:inst20|inst2           ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 38.400 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z1         ; CLK        ;
+; N/A                                     ; None                                                ; 38.300 ns  ; Maquina:inst8|Registrador3bits:inst20|inst            ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 38.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaD     ; D6         ;
+; N/A                                     ; None                                                ; 38.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaF     ; D6         ;
+; N/A                                     ; None                                                ; 38.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaC     ; D6         ;
+; N/A                                     ; None                                                ; 38.100 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaD     ; D5         ;
+; N/A                                     ; None                                                ; 38.100 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaE     ; D6         ;
+; N/A                                     ; None                                                ; 38.100 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaC     ; D5         ;
+; N/A                                     ; None                                                ; 38.000 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaF     ; D6         ;
+; N/A                                     ; None                                                ; 38.000 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaA     ; D6         ;
+; N/A                                     ; None                                                ; 37.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaD     ; D5         ;
+; N/A                                     ; None                                                ; 37.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaD     ; D6         ;
+; N/A                                     ; None                                                ; 37.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaF     ; D5         ;
+; N/A                                     ; None                                                ; 37.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaE     ; D6         ;
+; N/A                                     ; None                                                ; 37.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaE     ; D6         ;
+; N/A                                     ; None                                                ; 37.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaC     ; D5         ;
+; N/A                                     ; None                                                ; 37.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaC     ; D6         ;
+; N/A                                     ; None                                                ; 37.800 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaA     ; D6         ;
+; N/A                                     ; None                                                ; 37.800 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaE     ; D5         ;
+; N/A                                     ; None                                                ; 37.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaF     ; D5         ;
+; N/A                                     ; None                                                ; 37.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaF     ; D6         ;
+; N/A                                     ; None                                                ; 37.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaA     ; D5         ;
+; N/A                                     ; None                                                ; 37.700 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z1         ; CLK        ;
+; N/A                                     ; None                                                ; 37.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaD     ; D5         ;
+; N/A                                     ; None                                                ; 37.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaE     ; D5         ;
+; N/A                                     ; None                                                ; 37.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaE     ; D5         ;
+; N/A                                     ; None                                                ; 37.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaC     ; D5         ;
+; N/A                                     ; None                                                ; 37.500 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaA     ; D5         ;
+; N/A                                     ; None                                                ; 37.500 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaA     ; D6         ;
+; N/A                                     ; None                                                ; 37.500 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z1         ; CLK        ;
+; N/A                                     ; None                                                ; 37.400 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaF     ; D5         ;
+; N/A                                     ; None                                                ; 37.300 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaG     ; D6         ;
+; N/A                                     ; None                                                ; 37.300 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 37.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaD     ; D6         ;
+; N/A                                     ; None                                                ; 37.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaG     ; D6         ;
+; N/A                                     ; None                                                ; 37.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaA     ; D5         ;
+; N/A                                     ; None                                                ; 37.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaC     ; D6         ;
+; N/A                                     ; None                                                ; 37.000 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaF     ; D6         ;
+; N/A                                     ; None                                                ; 37.000 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaG     ; D5         ;
+; N/A                                     ; None                                                ; 37.000 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaG     ; D6         ;
+; N/A                                     ; None                                                ; 36.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaD     ; D5         ;
+; N/A                                     ; None                                                ; 36.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaG     ; D5         ;
+; N/A                                     ; None                                                ; 36.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaE     ; D6         ;
+; N/A                                     ; None                                                ; 36.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaC     ; D5         ;
+; N/A                                     ; None                                                ; 36.900 ns  ; Maquina:inst8|Registrador3bits:inst20|inst1           ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 36.800 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaA     ; D6         ;
+; N/A                                     ; None                                                ; 36.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaF     ; D5         ;
+; N/A                                     ; None                                                ; 36.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaG     ; D5         ;
+; N/A                                     ; None                                                ; 36.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaE     ; D5         ;
+; N/A                                     ; None                                                ; 36.500 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaA     ; D5         ;
+; N/A                                     ; None                                                ; 36.500 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z3         ; CLK        ;
+; N/A                                     ; None                                                ; 36.500 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z2         ; CLK        ;
+; N/A                                     ; None                                                ; 36.100 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z3         ; CLK        ;
+; N/A                                     ; None                                                ; 36.100 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z2         ; CLK        ;
+; N/A                                     ; None                                                ; 36.000 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z3         ; CLK        ;
+; N/A                                     ; None                                                ; 36.000 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z2         ; CLK        ;
+; N/A                                     ; None                                                ; 35.800 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z3         ; CLK        ;
+; N/A                                     ; None                                                ; 35.800 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z2         ; CLK        ;
+; N/A                                     ; None                                                ; 35.400 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaG     ; D6         ;
+; N/A                                     ; None                                                ; 35.100 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaG     ; D5         ;
+; N/A                                     ; None                                                ; 35.100 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z3         ; CLK        ;
+; N/A                                     ; None                                                ; 35.100 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z2         ; CLK        ;
+; N/A                                     ; None                                                ; 34.900 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z3         ; CLK        ;
+; N/A                                     ; None                                                ; 34.900 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z2         ; CLK        ;
+; N/A                                     ; None                                                ; 31.600 ns  ; Registrador4bits:inst2|inst                           ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 31.600 ns  ; Registrador4bits:inst2|inst                           ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 31.600 ns  ; Registrador4bits:inst2|inst                           ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 31.600 ns  ; Registrador4bits:inst2|inst                           ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 31.500 ns  ; Registrador4bits:inst2|inst1                          ; Z3         ; D6         ;
+; N/A                                     ; None                                                ; 31.500 ns  ; Registrador4bits:inst2|inst1                          ; Z3         ; D7         ;
+; N/A                                     ; None                                                ; 31.500 ns  ; Registrador4bits:inst2|inst1                          ; Z2         ; D6         ;
+; N/A                                     ; None                                                ; 31.500 ns  ; Registrador4bits:inst2|inst1                          ; Z2         ; D7         ;
+; N/A                                     ; None                                                ; 31.100 ns  ; Maquina:inst8|Contador3bits:inst1|inst1               ; Z0         ; CLK        ;
+; N/A                                     ; None                                                ; 31.000 ns  ; Maquina:inst8|Contador3bits:inst1|inst                ; Z0         ; CLK        ;
+; N/A                                     ; None                                                ; 30.800 ns  ; Maquina:inst8|Contador3bits:inst1|inst2               ; Z0         ; CLK        ;
+; N/A                                     ; None                                                ; 30.700 ns  ; Registrador4bits:inst2|inst                           ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 30.700 ns  ; Registrador4bits:inst2|inst                           ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 30.400 ns  ; Registrador4bits:inst2|inst1                          ; Z0         ; D6         ;
+; N/A                                     ; None                                                ; 30.400 ns  ; Registrador4bits:inst2|inst1                          ; Z0         ; D7         ;
+; N/A                                     ; None                                                ; 29.400 ns  ; Maquina:inst8|Contador3bits:inst|inst1                ; Z0         ; CLK        ;
+; N/A                                     ; None                                                ; 28.300 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; C1         ; D6         ;
+; N/A                                     ; None                                                ; 28.200 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; C0         ; D6         ;
+; N/A                                     ; None                                                ; 28.100 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; C2         ; D6         ;
+; N/A                                     ; None                                                ; 28.100 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; C0         ; D6         ;
+; N/A                                     ; None                                                ; 28.000 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; C1         ; D5         ;
+; N/A                                     ; None                                                ; 28.000 ns  ; Maquina:inst8|Contador3bits:inst|inst                 ; Z0         ; CLK        ;
+; N/A                                     ; None                                                ; 27.900 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; C0         ; D5         ;
+; N/A                                     ; None                                                ; 27.800 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; C2         ; D5         ;
+; N/A                                     ; None                                                ; 27.800 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; C1         ; D6         ;
+; N/A                                     ; None                                                ; 27.800 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; C0         ; D5         ;
+; N/A                                     ; None                                                ; 27.800 ns  ; Maquina:inst8|Contador3bits:inst|inst2                ; Z0         ; CLK        ;
+; N/A                                     ; None                                                ; 27.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; C2         ; D6         ;
+; N/A                                     ; None                                                ; 27.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; C0         ; D6         ;
+; N/A                                     ; None                                                ; 27.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; C2         ; D6         ;
+; N/A                                     ; None                                                ; 27.500 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; C1         ; D5         ;
+; N/A                                     ; None                                                ; 27.400 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; C2         ; D5         ;
+; N/A                                     ; None                                                ; 27.400 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; C0         ; D5         ;
+; N/A                                     ; None                                                ; 27.300 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; C2         ; D5         ;
+; N/A                                     ; None                                                ; 27.300 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; C1         ; D6         ;
+; N/A                                     ; None                                                ; 27.200 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; C0         ; D6         ;
+; N/A                                     ; None                                                ; 27.000 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; C2         ; D6         ;
+; N/A                                     ; None                                                ; 27.000 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; C1         ; D5         ;
+; N/A                                     ; None                                                ; 26.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; C0         ; D5         ;
+; N/A                                     ; None                                                ; 26.700 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; C2         ; D5         ;
+; N/A                                     ; None                                                ; 26.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; C1         ; D6         ;
+; N/A                                     ; None                                                ; 26.300 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; C1         ; D5         ;
+; N/A                                     ; None                                                ; 25.900 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; LEDSecagem ; D6         ;
+; N/A                                     ; None                                                ; 25.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; QD         ; D6         ;
+; N/A                                     ; None                                                ; 25.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; QC         ; D6         ;
+; N/A                                     ; None                                                ; 25.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; QA         ; D6         ;
+; N/A                                     ; None                                                ; 25.900 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; QB         ; D6         ;
+; N/A                                     ; None                                                ; 25.800 ns  ; Registrador4bits:inst2|inst                           ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 25.800 ns  ; Registrador4bits:inst2|inst                           ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 25.600 ns  ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; LEDSecagem ; D5         ;
+; N/A                                     ; None                                                ; 25.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; QD         ; D5         ;
+; N/A                                     ; None                                                ; 25.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; QC         ; D5         ;
+; N/A                                     ; None                                                ; 25.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; QA         ; D5         ;
+; N/A                                     ; None                                                ; 25.600 ns  ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; QB         ; D5         ;
+; N/A                                     ; None                                                ; 25.600 ns  ; Registrador4bits:inst2|inst1                          ; Z1         ; D6         ;
+; N/A                                     ; None                                                ; 25.600 ns  ; Registrador4bits:inst2|inst1                          ; Z1         ; D7         ;
+; N/A                                     ; None                                                ; 24.400 ns  ; pbl03:inst|Contador:inst13|inst8                      ; SaidaF     ; CLK        ;
+; N/A                                     ; None                                                ; 24.400 ns  ; pbl03:inst|Contador:inst13|inst8                      ; SaidaA     ; CLK        ;
+; N/A                                     ; None                                                ; 24.300 ns  ; pbl03:inst|Contador:inst13|inst9                      ; SaidaD     ; CLK        ;
+; N/A                                     ; None                                                ; 24.300 ns  ; pbl03:inst|Contador:inst13|inst8                      ; SaidaE     ; CLK        ;
+; N/A                                     ; None                                                ; 24.300 ns  ; pbl03:inst|Contador:inst13|inst9                      ; SaidaC     ; CLK        ;
+; N/A                                     ; None                                                ; 24.200 ns  ; pbl03:inst|Contador:inst13|inst9                      ; SaidaF     ; CLK        ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;            ;                                                       ;            ;            ;
++-----------------------------------------+-----------------------------------------------------+------------+-------------------------------------------------------+------------+------------+
+
+
++-------------------------------------------------------------+
+; tpd                                                         ;
++-------+-------------------+-----------------+------+--------+
+; Slack ; Required P2P Time ; Actual P2P Time ; From ; To     ;
++-------+-------------------+-----------------+------+--------+
+; N/A   ; None              ; 30.400 ns       ; D1   ; SaidaD ;
+; N/A   ; None              ; 30.400 ns       ; D2   ; SaidaD ;
+; N/A   ; None              ; 30.400 ns       ; D1   ; SaidaC ;
+; N/A   ; None              ; 30.400 ns       ; D2   ; SaidaC ;
+; N/A   ; None              ; 30.200 ns       ; D6   ; SaidaD ;
+; N/A   ; None              ; 30.200 ns       ; D1   ; SaidaF ;
+; N/A   ; None              ; 30.200 ns       ; D2   ; SaidaF ;
+; N/A   ; None              ; 30.200 ns       ; D6   ; SaidaC ;
+; N/A   ; None              ; 30.100 ns       ; D1   ; SaidaE ;
+; N/A   ; None              ; 30.100 ns       ; D2   ; SaidaE ;
+; N/A   ; None              ; 30.000 ns       ; D6   ; SaidaF ;
+; N/A   ; None              ; 30.000 ns       ; D1   ; SaidaA ;
+; N/A   ; None              ; 30.000 ns       ; D2   ; SaidaA ;
+; N/A   ; None              ; 29.900 ns       ; D6   ; SaidaE ;
+; N/A   ; None              ; 29.800 ns       ; D6   ; SaidaA ;
+; N/A   ; None              ; 29.700 ns       ; D0   ; SaidaD ;
+; N/A   ; None              ; 29.700 ns       ; D0   ; SaidaE ;
+; N/A   ; None              ; 29.700 ns       ; D0   ; SaidaC ;
+; N/A   ; None              ; 29.500 ns       ; D0   ; SaidaF ;
+; N/A   ; None              ; 29.500 ns       ; D0   ; SaidaA ;
+; N/A   ; None              ; 29.000 ns       ; D0   ; SaidaG ;
+; N/A   ; None              ; 28.600 ns       ; D1   ; SaidaG ;
+; N/A   ; None              ; 28.600 ns       ; D2   ; SaidaG ;
+; N/A   ; None              ; 28.400 ns       ; D6   ; SaidaG ;
+; N/A   ; None              ; 25.000 ns       ; D0   ; SaidaB ;
+; N/A   ; None              ; 24.600 ns       ; D6   ; Clock  ;
+; N/A   ; None              ; 24.400 ns       ; D6   ; SaidaB ;
+; N/A   ; None              ; 24.300 ns       ; D5   ; Clock  ;
+; N/A   ; None              ; 24.000 ns       ; D2   ; SaidaB ;
+; N/A   ; None              ; 20.500 ns       ; D1   ; SaidaB ;
++-------+-------------------+-----------------+------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; th                                                                                                                ;
++---------------+-------------+-----------+------+-------------------------------------------------------+----------+
+; Minimum Slack ; Required th ; Actual th ; From ; To                                                    ; To Clock ;
++---------------+-------------+-----------+------+-------------------------------------------------------+----------+
+; N/A           ; None        ; 3.800 ns  ; D6   ; Registrador4bits:inst2|inst                           ; D6       ;
+; N/A           ; None        ; 3.800 ns  ; D6   ; Registrador4bits:inst2|inst                           ; D7       ;
+; N/A           ; None        ; 3.800 ns  ; D6   ; Registrador4bits:inst2|inst1                          ; D6       ;
+; N/A           ; None        ; 3.800 ns  ; D6   ; Registrador4bits:inst2|inst1                          ; D7       ;
+; N/A           ; None        ; 3.800 ns  ; D6   ; Registrador4bits:inst2|inst2                          ; D6       ;
+; N/A           ; None        ; 3.800 ns  ; D6   ; Registrador4bits:inst2|inst2                          ; D7       ;
+; N/A           ; None        ; 3.700 ns  ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A           ; None        ; 3.700 ns  ; D2   ; Registrador4bits:inst2|inst2                          ; D6       ;
+; N/A           ; None        ; 3.700 ns  ; D2   ; Registrador4bits:inst2|inst2                          ; D7       ;
+; N/A           ; None        ; 3.600 ns  ; D1   ; Registrador4bits:inst2|inst1                          ; D6       ;
+; N/A           ; None        ; 3.600 ns  ; D1   ; Registrador4bits:inst2|inst1                          ; D7       ;
+; N/A           ; None        ; 3.400 ns  ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
+; N/A           ; None        ; 3.100 ns  ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A           ; None        ; 2.900 ns  ; D0   ; Registrador4bits:inst2|inst                           ; D6       ;
+; N/A           ; None        ; 2.900 ns  ; D0   ; Registrador4bits:inst2|inst                           ; D7       ;
+; N/A           ; None        ; 2.800 ns  ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
+; N/A           ; None        ; 2.700 ns  ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A           ; None        ; 2.400 ns  ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
+; N/A           ; None        ; 2.300 ns  ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A           ; None        ; 2.300 ns  ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A           ; None        ; 2.200 ns  ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A           ; None        ; 2.100 ns  ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A           ; None        ; 2.000 ns  ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A           ; None        ; 2.000 ns  ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A           ; None        ; 2.000 ns  ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A           ; None        ; 2.000 ns  ; D2   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A           ; None        ; 1.900 ns  ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A           ; None        ; 1.900 ns  ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A           ; None        ; 1.800 ns  ; D6   ; Registrador4bits:inst2|inst3                          ; D6       ;
+; N/A           ; None        ; 1.800 ns  ; D6   ; Registrador4bits:inst2|inst3                          ; D7       ;
+; N/A           ; None        ; 1.800 ns  ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A           ; None        ; 1.800 ns  ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A           ; None        ; 1.800 ns  ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A           ; None        ; 1.700 ns  ; D3   ; Registrador4bits:inst2|inst3                          ; D6       ;
+; N/A           ; None        ; 1.700 ns  ; D3   ; Registrador4bits:inst2|inst3                          ; D7       ;
+; N/A           ; None        ; 1.700 ns  ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A           ; None        ; 1.700 ns  ; D6   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A           ; None        ; 1.600 ns  ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A           ; None        ; 1.500 ns  ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A           ; None        ; 1.500 ns  ; D1   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A           ; None        ; 1.300 ns  ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D6       ;
+; N/A           ; None        ; 1.300 ns  ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D6       ;
+; N/A           ; None        ; 1.000 ns  ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D6       ;
+; N/A           ; None        ; 1.000 ns  ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst                 ; D5       ;
+; N/A           ; None        ; 1.000 ns  ; D0   ; pbl03:inst|MaquinaSecagem:inst15|inst1                ; D5       ;
+; N/A           ; None        ; 0.700 ns  ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; D5       ;
+; N/A           ; None        ; 0.300 ns  ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A           ; None        ; 0.200 ns  ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A           ; None        ; 0.200 ns  ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A           ; None        ; 0.100 ns  ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A           ; None        ; 0.000 ns  ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A           ; None        ; -0.100 ns ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A           ; None        ; -0.100 ns ; D2   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A           ; None        ; -0.200 ns ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A           ; None        ; -0.200 ns ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A           ; None        ; -0.500 ns ; D6   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A           ; None        ; -0.600 ns ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A           ; None        ; -0.800 ns ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D6       ;
+; N/A           ; None        ; -0.800 ns ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D6       ;
+; N/A           ; None        ; -0.900 ns ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A           ; None        ; -1.100 ns ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; D5       ;
+; N/A           ; None        ; -1.100 ns ; D0   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; D5       ;
+; N/A           ; None        ; -1.300 ns ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D6       ;
+; N/A           ; None        ; -1.600 ns ; D1   ; pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; D5       ;
++---------------+-------------+-----------+------+-------------------------------------------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
+    Info: Processing started: Tue Dec 09 01:00:48 2014
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off PBL4 -c PBL4
+Info: Started post-fitting delay annotation
+Info: Delay annotation completed successfully
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "D7" is an undefined clock
+    Info: Assuming node "D6" is an undefined clock
+    Info: Assuming node "D5" is an undefined clock
+    Info: Assuming node "CLK" is an undefined clock
+    Info: Assuming node "D3" is an undefined clock
+Warning: Found 22 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected gated clock "Demux8x16:inst14|inst41" as buffer
+    Info: Detected gated clock "Maquina:inst8|Contador3bits:inst|inst10~0" as buffer
+    Info: Detected gated clock "Maquina:inst8|inst12~1" as buffer
+    Info: Detected gated clock "Maquina:inst8|IndicadoresFimDeLavagem:inst4|inst19~0" as buffer
+    Info: Detected gated clock "Maquina:inst8|inst12~0" as buffer
+    Info: Detected gated clock "Maquina:inst8|Contador3bits:inst|inst10~1" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Contador3bits:inst|inst" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Contador3bits:inst|inst2" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Contador3bits:inst|inst1" as buffer
+    Info: Detected gated clock "Maquina:inst8|inst12~2" as buffer
+    Info: Detected gated clock "Maquina:inst8|DecodControle:inst3|inst5~0" as buffer
+    Info: Detected gated clock "Maquina:inst8|inst13" as buffer
+    Info: Detected gated clock "Maquina:inst8|Contador3bits:inst1|inst10" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Contador3bits:inst1|inst" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Contador3bits:inst1|inst2" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Contador3bits:inst1|inst1" as buffer
+    Info: Detected gated clock "Demux8x16:inst14|inst44" as buffer
+    Info: Detected gated clock "inst3" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Registrador3bits:inst20|inst" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Registrador3bits:inst20|inst2" as buffer
+    Info: Detected gated clock "Demux2x4:inst1|inst3" as buffer
+    Info: Detected ripple clock "Maquina:inst8|Registrador3bits:inst20|inst1" as buffer
+Info: Clock "D7" has Internal fmax of 63.69 MHz between source register "Maquina:inst8|Contador3bits:inst1|inst1" and destination register "Maquina:inst8|Contador3bits:inst1|inst2" (period= 15.7 ns)
+    Info: + Longest register to register delay is 1.500 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+        Info: 2: + IC(0.200 ns) + CELL(1.300 ns) = 1.500 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+        Info: Total cell delay = 1.300 ns ( 86.67 % )
+        Info: Total interconnect delay = 0.200 ns ( 13.33 % )
+    Info: - Smallest clock skew is -12.400 ns
+        Info: + Shortest clock path from clock "D7" to destination register is 21.200 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_202; Fanout = 2; CLK Node = 'D7'
+            Info: 2: + IC(4.500 ns) + CELL(1.700 ns) = 9.300 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 11.700 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(1.700 ns) = 17.300 ns; Loc. = LC1_A37; Fanout = 1; COMB Node = 'Maquina:inst8|DecodControle:inst3|inst5~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.000 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 6: + IC(0.200 ns) + CELL(0.000 ns) = 21.200 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+            Info: Total cell delay = 9.500 ns ( 44.81 % )
+            Info: Total interconnect delay = 11.700 ns ( 55.19 % )
+        Info: - Longest clock path from clock "D7" to source register is 33.600 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_202; Fanout = 2; CLK Node = 'D7'
+            Info: 2: + IC(4.500 ns) + CELL(1.700 ns) = 9.300 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 11.700 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(2.000 ns) = 17.600 ns; Loc. = LC3_A37; Fanout = 1; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.300 ns; Loc. = LC1_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~1'
+            Info: 6: + IC(1.800 ns) + CELL(1.100 ns) = 24.200 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+            Info: 7: + IC(0.200 ns) + CELL(1.700 ns) = 26.100 ns; Loc. = LC3_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~0'
+            Info: 8: + IC(0.200 ns) + CELL(1.700 ns) = 28.000 ns; Loc. = LC6_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~1'
+            Info: 9: + IC(0.200 ns) + CELL(1.700 ns) = 29.900 ns; Loc. = LC1_A39; Fanout = 3; COMB Node = 'Maquina:inst8|inst12~2'
+            Info: 10: + IC(1.800 ns) + CELL(1.700 ns) = 33.400 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 11: + IC(0.200 ns) + CELL(0.000 ns) = 33.600 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+            Info: Total cell delay = 17.700 ns ( 52.68 % )
+            Info: Total interconnect delay = 15.900 ns ( 47.32 % )
+    Info: + Micro clock to output delay of source is 1.100 ns
+    Info: + Micro setup delay of destination is 0.700 ns
+Info: Clock "D6" has Internal fmax of 63.69 MHz between source register "Maquina:inst8|Contador3bits:inst1|inst1" and destination register "Maquina:inst8|Contador3bits:inst1|inst2" (period= 15.7 ns)
+    Info: + Longest register to register delay is 1.500 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+        Info: 2: + IC(0.200 ns) + CELL(1.300 ns) = 1.500 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+        Info: Total cell delay = 1.300 ns ( 86.67 % )
+        Info: Total interconnect delay = 0.200 ns ( 13.33 % )
+    Info: - Smallest clock skew is -12.400 ns
+        Info: + Shortest clock path from clock "D6" to destination register is 21.600 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_203; Fanout = 14; CLK Node = 'D6'
+            Info: 2: + IC(4.700 ns) + CELL(1.900 ns) = 9.700 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 12.100 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(1.700 ns) = 17.700 ns; Loc. = LC1_A37; Fanout = 1; COMB Node = 'Maquina:inst8|DecodControle:inst3|inst5~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.400 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 6: + IC(0.200 ns) + CELL(0.000 ns) = 21.600 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+            Info: Total cell delay = 9.700 ns ( 44.91 % )
+            Info: Total interconnect delay = 11.900 ns ( 55.09 % )
+        Info: - Longest clock path from clock "D6" to source register is 34.000 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_203; Fanout = 14; CLK Node = 'D6'
+            Info: 2: + IC(4.700 ns) + CELL(1.900 ns) = 9.700 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 12.100 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(2.000 ns) = 18.000 ns; Loc. = LC3_A37; Fanout = 1; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.700 ns; Loc. = LC1_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~1'
+            Info: 6: + IC(1.800 ns) + CELL(1.100 ns) = 24.600 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+            Info: 7: + IC(0.200 ns) + CELL(1.700 ns) = 26.500 ns; Loc. = LC3_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~0'
+            Info: 8: + IC(0.200 ns) + CELL(1.700 ns) = 28.400 ns; Loc. = LC6_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~1'
+            Info: 9: + IC(0.200 ns) + CELL(1.700 ns) = 30.300 ns; Loc. = LC1_A39; Fanout = 3; COMB Node = 'Maquina:inst8|inst12~2'
+            Info: 10: + IC(1.800 ns) + CELL(1.700 ns) = 33.800 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 11: + IC(0.200 ns) + CELL(0.000 ns) = 34.000 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+            Info: Total cell delay = 17.900 ns ( 52.65 % )
+            Info: Total interconnect delay = 16.100 ns ( 47.35 % )
+    Info: + Micro clock to output delay of source is 1.100 ns
+    Info: + Micro setup delay of destination is 0.700 ns
+Info: Clock "D5" has Internal fmax of 119.05 MHz between source register "pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst" and destination register "pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst" (period= 8.4 ns)
+    Info: + Longest register to register delay is 6.600 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC4_G42; Fanout = 9; REG Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst'
+        Info: 2: + IC(1.100 ns) + CELL(2.200 ns) = 3.300 ns; Loc. = LC5_G43; Fanout = 1; COMB Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst16~0'
+        Info: 3: + IC(0.200 ns) + CELL(1.900 ns) = 5.400 ns; Loc. = LC6_G43; Fanout = 1; COMB Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst16~1'
+        Info: 4: + IC(0.200 ns) + CELL(1.000 ns) = 6.600 ns; Loc. = LC3_G43; Fanout = 15; REG Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+        Info: Total cell delay = 5.100 ns ( 77.27 % )
+        Info: Total interconnect delay = 1.500 ns ( 22.73 % )
+    Info: - Smallest clock skew is 0.000 ns
+        Info: + Shortest clock path from clock "D5" to destination register is 13.100 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_204; Fanout = 1; CLK Node = 'D5'
+            Info: 2: + IC(4.600 ns) + CELL(1.700 ns) = 9.400 ns; Loc. = LC1_G29; Fanout = 7; COMB Node = 'Demux8x16:inst14|inst44'
+            Info: 3: + IC(3.700 ns) + CELL(0.000 ns) = 13.100 ns; Loc. = LC3_G43; Fanout = 15; REG Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+            Info: Total cell delay = 4.800 ns ( 36.64 % )
+            Info: Total interconnect delay = 8.300 ns ( 63.36 % )
+        Info: - Longest clock path from clock "D5" to source register is 13.100 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_204; Fanout = 1; CLK Node = 'D5'
+            Info: 2: + IC(4.600 ns) + CELL(1.700 ns) = 9.400 ns; Loc. = LC1_G29; Fanout = 7; COMB Node = 'Demux8x16:inst14|inst44'
+            Info: 3: + IC(3.700 ns) + CELL(0.000 ns) = 13.100 ns; Loc. = LC4_G42; Fanout = 9; REG Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst'
+            Info: Total cell delay = 4.800 ns ( 36.64 % )
+            Info: Total interconnect delay = 8.300 ns ( 63.36 % )
+    Info: + Micro clock to output delay of source is 1.100 ns
+    Info: + Micro setup delay of destination is 0.700 ns
+Info: Clock "CLK" has Internal fmax of 66.23 MHz between source register "Maquina:inst8|Contador3bits:inst1|inst1" and destination register "Maquina:inst8|Contador3bits:inst1|inst2" (period= 15.1 ns)
+    Info: + Longest register to register delay is 1.500 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+        Info: 2: + IC(0.200 ns) + CELL(1.300 ns) = 1.500 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+        Info: Total cell delay = 1.300 ns ( 86.67 % )
+        Info: Total interconnect delay = 0.200 ns ( 13.33 % )
+    Info: - Smallest clock skew is -11.800 ns
+        Info: + Shortest clock path from clock "CLK" to destination register is 4.300 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 4; CLK Node = 'CLK'
+            Info: 2: + IC(1.600 ns) + CELL(2.000 ns) = 4.100 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 3: + IC(0.200 ns) + CELL(0.000 ns) = 4.300 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+            Info: Total cell delay = 2.500 ns ( 58.14 % )
+            Info: Total interconnect delay = 1.800 ns ( 41.86 % )
+        Info: - Longest clock path from clock "CLK" to source register is 16.100 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 4; CLK Node = 'CLK'
+            Info: 2: + IC(1.600 ns) + CELL(1.700 ns) = 3.800 ns; Loc. = LC1_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~1'
+            Info: 3: + IC(1.800 ns) + CELL(1.100 ns) = 6.700 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+            Info: 4: + IC(0.200 ns) + CELL(1.700 ns) = 8.600 ns; Loc. = LC3_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~0'
+            Info: 5: + IC(0.200 ns) + CELL(1.700 ns) = 10.500 ns; Loc. = LC6_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~1'
+            Info: 6: + IC(0.200 ns) + CELL(1.700 ns) = 12.400 ns; Loc. = LC1_A39; Fanout = 3; COMB Node = 'Maquina:inst8|inst12~2'
+            Info: 7: + IC(1.800 ns) + CELL(1.700 ns) = 15.900 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 8: + IC(0.200 ns) + CELL(0.000 ns) = 16.100 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+            Info: Total cell delay = 10.100 ns ( 62.73 % )
+            Info: Total interconnect delay = 6.000 ns ( 37.27 % )
+    Info: + Micro clock to output delay of source is 1.100 ns
+    Info: + Micro setup delay of destination is 0.700 ns
+Info: No valid register-to-register data paths exist for clock "D3"
+Warning: Circuit may not operate. Detected 8 non-operational path(s) clocked by clock "D7" with clock skew larger than data delay. See Compilation Report for details.
+Info: Found hold time violation between source  pin or register "Maquina:inst8|Contador3bits:inst1|inst2" and destination pin or register "Maquina:inst8|Contador3bits:inst1|inst1" for clock "D7" (Hold time is 11.0 ns)
+    Info: + Largest clock skew is 12.400 ns
+        Info: + Longest clock path from clock "D7" to destination register is 33.600 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_202; Fanout = 2; CLK Node = 'D7'
+            Info: 2: + IC(4.500 ns) + CELL(1.700 ns) = 9.300 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 11.700 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(2.000 ns) = 17.600 ns; Loc. = LC3_A37; Fanout = 1; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.300 ns; Loc. = LC1_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~1'
+            Info: 6: + IC(1.800 ns) + CELL(1.100 ns) = 24.200 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+            Info: 7: + IC(0.200 ns) + CELL(1.700 ns) = 26.100 ns; Loc. = LC3_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~0'
+            Info: 8: + IC(0.200 ns) + CELL(1.700 ns) = 28.000 ns; Loc. = LC6_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~1'
+            Info: 9: + IC(0.200 ns) + CELL(1.700 ns) = 29.900 ns; Loc. = LC1_A39; Fanout = 3; COMB Node = 'Maquina:inst8|inst12~2'
+            Info: 10: + IC(1.800 ns) + CELL(1.700 ns) = 33.400 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 11: + IC(0.200 ns) + CELL(0.000 ns) = 33.600 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+            Info: Total cell delay = 17.700 ns ( 52.68 % )
+            Info: Total interconnect delay = 15.900 ns ( 47.32 % )
+        Info: - Shortest clock path from clock "D7" to source register is 21.200 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_202; Fanout = 2; CLK Node = 'D7'
+            Info: 2: + IC(4.500 ns) + CELL(1.700 ns) = 9.300 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 11.700 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(1.700 ns) = 17.300 ns; Loc. = LC1_A37; Fanout = 1; COMB Node = 'Maquina:inst8|DecodControle:inst3|inst5~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.000 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 6: + IC(0.200 ns) + CELL(0.000 ns) = 21.200 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+            Info: Total cell delay = 9.500 ns ( 44.81 % )
+            Info: Total interconnect delay = 11.700 ns ( 55.19 % )
+    Info: - Micro clock to output delay of source is 1.100 ns
+    Info: - Shortest register to register delay is 1.200 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+        Info: 2: + IC(0.200 ns) + CELL(1.000 ns) = 1.200 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+        Info: Total cell delay = 1.000 ns ( 83.33 % )
+        Info: Total interconnect delay = 0.200 ns ( 16.67 % )
+    Info: + Micro hold delay of destination is 0.900 ns
+Warning: Circuit may not operate. Detected 8 non-operational path(s) clocked by clock "D6" with clock skew larger than data delay. See Compilation Report for details.
+Info: Found hold time violation between source  pin or register "Maquina:inst8|Contador3bits:inst1|inst2" and destination pin or register "Maquina:inst8|Contador3bits:inst1|inst1" for clock "D6" (Hold time is 11.0 ns)
+    Info: + Largest clock skew is 12.400 ns
+        Info: + Longest clock path from clock "D6" to destination register is 34.000 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_203; Fanout = 14; CLK Node = 'D6'
+            Info: 2: + IC(4.700 ns) + CELL(1.900 ns) = 9.700 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 12.100 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(2.000 ns) = 18.000 ns; Loc. = LC3_A37; Fanout = 1; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.700 ns; Loc. = LC1_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~1'
+            Info: 6: + IC(1.800 ns) + CELL(1.100 ns) = 24.600 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+            Info: 7: + IC(0.200 ns) + CELL(1.700 ns) = 26.500 ns; Loc. = LC3_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~0'
+            Info: 8: + IC(0.200 ns) + CELL(1.700 ns) = 28.400 ns; Loc. = LC6_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~1'
+            Info: 9: + IC(0.200 ns) + CELL(1.700 ns) = 30.300 ns; Loc. = LC1_A39; Fanout = 3; COMB Node = 'Maquina:inst8|inst12~2'
+            Info: 10: + IC(1.800 ns) + CELL(1.700 ns) = 33.800 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 11: + IC(0.200 ns) + CELL(0.000 ns) = 34.000 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+            Info: Total cell delay = 17.900 ns ( 52.65 % )
+            Info: Total interconnect delay = 16.100 ns ( 47.35 % )
+        Info: - Shortest clock path from clock "D6" to source register is 21.600 ns
+            Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_203; Fanout = 14; CLK Node = 'D6'
+            Info: 2: + IC(4.700 ns) + CELL(1.900 ns) = 9.700 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+            Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 12.100 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+            Info: 4: + IC(3.900 ns) + CELL(1.700 ns) = 17.700 ns; Loc. = LC1_A37; Fanout = 1; COMB Node = 'Maquina:inst8|DecodControle:inst3|inst5~0'
+            Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.400 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 6: + IC(0.200 ns) + CELL(0.000 ns) = 21.600 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+            Info: Total cell delay = 9.700 ns ( 44.91 % )
+            Info: Total interconnect delay = 11.900 ns ( 55.09 % )
+    Info: - Micro clock to output delay of source is 1.100 ns
+    Info: - Shortest register to register delay is 1.200 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+        Info: 2: + IC(0.200 ns) + CELL(1.000 ns) = 1.200 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+        Info: Total cell delay = 1.000 ns ( 83.33 % )
+        Info: Total interconnect delay = 0.200 ns ( 16.67 % )
+    Info: + Micro hold delay of destination is 0.900 ns
+Warning: Circuit may not operate. Detected 8 non-operational path(s) clocked by clock "CLK" with clock skew larger than data delay. See Compilation Report for details.
+Info: Found hold time violation between source  pin or register "Maquina:inst8|Contador3bits:inst1|inst2" and destination pin or register "Maquina:inst8|Contador3bits:inst1|inst1" for clock "CLK" (Hold time is 10.4 ns)
+    Info: + Largest clock skew is 11.800 ns
+        Info: + Longest clock path from clock "CLK" to destination register is 16.100 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 4; CLK Node = 'CLK'
+            Info: 2: + IC(1.600 ns) + CELL(1.700 ns) = 3.800 ns; Loc. = LC1_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~1'
+            Info: 3: + IC(1.800 ns) + CELL(1.100 ns) = 6.700 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+            Info: 4: + IC(0.200 ns) + CELL(1.700 ns) = 8.600 ns; Loc. = LC3_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~0'
+            Info: 5: + IC(0.200 ns) + CELL(1.700 ns) = 10.500 ns; Loc. = LC6_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~1'
+            Info: 6: + IC(0.200 ns) + CELL(1.700 ns) = 12.400 ns; Loc. = LC1_A39; Fanout = 3; COMB Node = 'Maquina:inst8|inst12~2'
+            Info: 7: + IC(1.800 ns) + CELL(1.700 ns) = 15.900 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 8: + IC(0.200 ns) + CELL(0.000 ns) = 16.100 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+            Info: Total cell delay = 10.100 ns ( 62.73 % )
+            Info: Total interconnect delay = 6.000 ns ( 37.27 % )
+        Info: - Shortest clock path from clock "CLK" to source register is 4.300 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 4; CLK Node = 'CLK'
+            Info: 2: + IC(1.600 ns) + CELL(2.000 ns) = 4.100 ns; Loc. = LC8_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst1|inst10'
+            Info: 3: + IC(0.200 ns) + CELL(0.000 ns) = 4.300 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+            Info: Total cell delay = 2.500 ns ( 58.14 % )
+            Info: Total interconnect delay = 1.800 ns ( 41.86 % )
+    Info: - Micro clock to output delay of source is 1.100 ns
+    Info: - Shortest register to register delay is 1.200 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC4_A44; Fanout = 5; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst2'
+        Info: 2: + IC(0.200 ns) + CELL(1.000 ns) = 1.200 ns; Loc. = LC3_A44; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst1|inst1'
+        Info: Total cell delay = 1.000 ns ( 83.33 % )
+        Info: Total interconnect delay = 0.200 ns ( 16.67 % )
+    Info: + Micro hold delay of destination is 0.900 ns
+Info: tsu for register "pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst" (data pin = "D0", clock pin = "D5") is 4.900 ns
+    Info: + Longest pin to register delay is 17.300 ns
+        Info: 1: + IC(0.000 ns) + CELL(3.400 ns) = 3.400 ns; Loc. = PIN_7; Fanout = 4; PIN Node = 'D0'
+        Info: 2: + IC(4.900 ns) + CELL(2.200 ns) = 10.500 ns; Loc. = LC2_G42; Fanout = 3; COMB Node = 'pbl03:inst|Mux:inst14|inst10~1'
+        Info: 3: + IC(1.800 ns) + CELL(1.700 ns) = 14.000 ns; Loc. = LC5_G43; Fanout = 1; COMB Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst16~0'
+        Info: 4: + IC(0.200 ns) + CELL(1.900 ns) = 16.100 ns; Loc. = LC6_G43; Fanout = 1; COMB Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst16~1'
+        Info: 5: + IC(0.200 ns) + CELL(1.000 ns) = 17.300 ns; Loc. = LC3_G43; Fanout = 15; REG Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+        Info: Total cell delay = 10.200 ns ( 58.96 % )
+        Info: Total interconnect delay = 7.100 ns ( 41.04 % )
+    Info: + Micro setup delay of destination is 0.700 ns
+    Info: - Shortest clock path from clock "D5" to destination register is 13.100 ns
+        Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_204; Fanout = 1; CLK Node = 'D5'
+        Info: 2: + IC(4.600 ns) + CELL(1.700 ns) = 9.400 ns; Loc. = LC1_G29; Fanout = 7; COMB Node = 'Demux8x16:inst14|inst44'
+        Info: 3: + IC(3.700 ns) + CELL(0.000 ns) = 13.100 ns; Loc. = LC3_G43; Fanout = 15; REG Node = 'pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+        Info: Total cell delay = 4.800 ns ( 36.64 % )
+        Info: Total interconnect delay = 8.300 ns ( 63.36 % )
+Info: tco from clock "D6" to destination pin "Z1" through register "Maquina:inst8|Contador3bits:inst|inst1" is 57.000 ns
+    Info: + Longest clock path from clock "D6" to source register is 23.500 ns
+        Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_203; Fanout = 14; CLK Node = 'D6'
+        Info: 2: + IC(4.700 ns) + CELL(1.900 ns) = 9.700 ns; Loc. = LC6_G28; Fanout = 3; COMB Node = 'Demux2x4:inst1|inst3'
+        Info: 3: + IC(1.300 ns) + CELL(1.100 ns) = 12.100 ns; Loc. = LC5_G41; Fanout = 10; REG Node = 'Maquina:inst8|Registrador3bits:inst20|inst'
+        Info: 4: + IC(3.900 ns) + CELL(2.000 ns) = 18.000 ns; Loc. = LC3_A37; Fanout = 1; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~0'
+        Info: 5: + IC(1.800 ns) + CELL(1.900 ns) = 21.700 ns; Loc. = LC1_A44; Fanout = 3; COMB Node = 'Maquina:inst8|Contador3bits:inst|inst10~1'
+        Info: 6: + IC(1.800 ns) + CELL(0.000 ns) = 23.500 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+        Info: Total cell delay = 10.000 ns ( 42.55 % )
+        Info: Total interconnect delay = 13.500 ns ( 57.45 % )
+    Info: + Micro clock to output delay of source is 1.100 ns
+    Info: + Longest register to pin delay is 32.400 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC2_A39; Fanout = 4; REG Node = 'Maquina:inst8|Contador3bits:inst|inst1'
+        Info: 2: + IC(0.200 ns) + CELL(1.700 ns) = 1.900 ns; Loc. = LC3_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~0'
+        Info: 3: + IC(0.200 ns) + CELL(1.700 ns) = 3.800 ns; Loc. = LC6_A39; Fanout = 1; COMB Node = 'Maquina:inst8|inst12~1'
+        Info: 4: + IC(0.200 ns) + CELL(1.700 ns) = 5.700 ns; Loc. = LC1_A39; Fanout = 3; COMB Node = 'Maquina:inst8|inst12~2'
+        Info: 5: + IC(1.700 ns) + CELL(1.700 ns) = 9.100 ns; Loc. = LC4_A37; Fanout = 2; COMB Node = 'Maquina:inst8|EstadoDaMaquina:inst2|inst33'
+        Info: 6: + IC(1.800 ns) + CELL(2.200 ns) = 13.100 ns; Loc. = LC2_A44; Fanout = 2; COMB Node = 'muxAux1:inst13|161mux:inst|14~0'
+        Info: 7: + IC(1.900 ns) + CELL(2.200 ns) = 17.200 ns; Loc. = LC7_A37; Fanout = 1; COMB Node = 'muxAux1:inst13|161mux:inst|14~1'
+        Info: 8: + IC(3.400 ns) + CELL(1.700 ns) = 22.300 ns; Loc. = LC8_G41; Fanout = 1; COMB Node = 'muxAux1:inst13|161mux:inst|14~2'
+        Info: 9: + IC(1.600 ns) + CELL(8.500 ns) = 32.400 ns; Loc. = PIN_196; Fanout = 0; PIN Node = 'Z1'
+        Info: Total cell delay = 21.400 ns ( 66.05 % )
+        Info: Total interconnect delay = 11.000 ns ( 33.95 % )
+Info: Longest tpd from source pin "D1" to destination pin "SaidaD" is 30.400 ns
+    Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_208; Fanout = 5; PIN Node = 'D1'
+    Info: 2: + IC(4.500 ns) + CELL(1.900 ns) = 9.500 ns; Loc. = LC7_G42; Fanout = 10; COMB Node = 'pbl03:inst|inst17'
+    Info: 3: + IC(1.800 ns) + CELL(2.000 ns) = 13.300 ns; Loc. = LC4_G39; Fanout = 1; COMB Node = 'pbl03:inst|Mux:inst14|inst20~1'
+    Info: 4: + IC(0.200 ns) + CELL(1.700 ns) = 15.200 ns; Loc. = LC1_G39; Fanout = 6; COMB Node = 'pbl03:inst|Mux:inst14|inst20~2'
+    Info: 5: + IC(1.800 ns) + CELL(2.000 ns) = 19.000 ns; Loc. = LC6_G34; Fanout = 1; COMB Node = 'pbl03:inst|DecodificadorBCD:inst2|inst35~0'
+    Info: 6: + IC(2.800 ns) + CELL(8.600 ns) = 30.400 ns; Loc. = PIN_18; Fanout = 0; PIN Node = 'SaidaD'
+    Info: Total cell delay = 19.300 ns ( 63.49 % )
+    Info: Total interconnect delay = 11.100 ns ( 36.51 % )
+Info: th for register "Registrador4bits:inst2|inst" (data pin = "D6", clock pin = "D6") is 3.800 ns
+    Info: + Longest clock path from clock "D6" to destination register is 11.500 ns
+        Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_203; Fanout = 14; CLK Node = 'D6'
+        Info: 2: + IC(4.700 ns) + CELL(1.700 ns) = 9.500 ns; Loc. = LC1_G28; Fanout = 4; COMB Node = 'inst3'
+        Info: 3: + IC(2.000 ns) + CELL(0.000 ns) = 11.500 ns; Loc. = LC3_G42; Fanout = 5; REG Node = 'Registrador4bits:inst2|inst'
+        Info: Total cell delay = 4.800 ns ( 41.74 % )
+        Info: Total interconnect delay = 6.700 ns ( 58.26 % )
+    Info: + Micro hold delay of destination is 0.900 ns
+    Info: - Shortest pin to register delay is 8.600 ns
+        Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_203; Fanout = 14; CLK Node = 'D6'
+        Info: 2: + IC(4.500 ns) + CELL(1.000 ns) = 8.600 ns; Loc. = LC3_G42; Fanout = 5; REG Node = 'Registrador4bits:inst2|inst'
+        Info: Total cell delay = 4.100 ns ( 47.67 % )
+        Info: Total interconnect delay = 4.500 ns ( 52.33 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 183 megabytes
+    Info: Processing ended: Tue Dec 09 01:00:49 2014
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+

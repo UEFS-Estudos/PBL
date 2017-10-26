@@ -1,0 +1,21 @@
+IBM726 2MB
+RAMAC305 5MB
+IBM1301 28MB
+IBM3370 571MB
+IBMPiccolo 64MB
+PrairieTek 20MB
+IOMEGA 100MB
+IBMCorsair 1GB
+Peripherals 21MB
+KittyHawk 2.1GB
+IBMGMR 16.8GB
+WesternDigital 37GB
+ToshibaMTN 2GB
+ToshibaGAL 40GB
+SeagateMomentus 160GB
+SeagateBarracuda 750GB
+WDRaptor 150GB
+SeagateCornice 12GB
+Sata 1TB
+
+

@@ -1,0 +1,129 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Washington Pagotto Batista>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.facede;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import br.uefs.ecomp.samu.model.exception.CadastroRepetidoException;
+import br.uefs.ecomp.samu.model.exception.CidadaoNaoEncontradoException;
+import br.uefs.ecomp.samu.util.Console;
+
+/**
+*
+* @author Washington Pagotto Batista
+*/
+public class SamuInterface {
+	
+  static SamuFacade facade;
+  static Console console;  
+  
+	public static void main(String[] args) throws IOException{
+		
+		facade=new SamuFacade();
+		console= new Console();
+		
+		//Scanner teclado= new Scanner(System.in);
+		int valor;
+		boolean repeticao=false;
+		
+		while(!repeticao){
+		
+		System.out.println("1-Cadastrar cidadao");
+		System.out.println("2-Listar cidadoes");
+		System.out.println("3-Consultar Divida");
+		System.out.println("4-Pagar divida");
+		System.out.println("5-Cadastrar Atendente");
+		System.out.println("6-Listar Atendentes");
+		System.out.println("7-Lisar Atendentes disponiveis");
+		System.out.println("8-Cadastrar Ambulancia");
+		System.out.println("9-Listar ambulancias disponiveis");
+		System.out.println("10-Listar ambulancias");
+		System.out.println("11-Cadastrar ocorrencia");
+		System.out.println("12-Atender Ocorrencia");
+		System.out.println("13-Finalizar Ocorrencia");
+		System.out.println("14-Consultar Ocorrencia");
+		System.out.println("15-Listar ocorrencia");
+		System.out.println("16-Sair");
+		
+		System.out.println("Digita a opcao que deseja");
+		
+		valor=console.readInt();
+		
+		
+		switch(valor){
+		
+		case 1:
+			System.out.println("eu");
+			try{
+			System.out.println("Digite seu cpf:");
+			String cpf=console.readString();
+		    
+			System.out.println("Digite o seu nome:");
+			String nome = console.readString();
+			//String cpf=console.readString();
+			
+			System.out.println("Digite seu endereco:");
+			String endereco=console.readString();
+			
+			facade.cadastrarCidadao(cpf,nome,endereco);
+			
+			}
+			catch(CadastroRepetidoException o){
+				System.out.println("Dados já cadastrados");
+			}
+			
+			break;
+
+			
+		case 2:
+			
+			break;
+		
+		case 3:
+			try{
+				System.out.println("Digite o cpf:");
+				String cpfCidadao=console.readString();
+			  System.out.println(facade.consultarDivida(cpfCidadao));
+			}
+			catch( CidadaoNaoEncontradoException o){
+				System.out.println("Cidadao nao encontrado");
+			}
+			break;
+		case 4:
+			try{
+               System.out.println("Digite seu cpf:");
+               String cpfCidadao= console.readString();
+				System.out.println("Digite o valor a ser pago:");
+				
+				double o = Console.readDouble();
+				
+               facade.pagarDivida(cpfCidadao, valor);
+			}
+			catch(CidadaoNaoEncontradoException o){
+				
+			}
+ 			default:
+				repeticao=true;
+				break;
+		}}
+	}
+	
+}

@@ -1,0 +1,121 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Washington Pagotto Batista>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.model;
+
+/**
+*
+* @author Washington Pagotto Batista
+*/
+
+import br.uefs.ecomp.samu.util.ListaEncadeada;
+
+public class Ocorrencia {
+
+	private int id;
+	private String status;
+	private int qtdAmbulancias;
+	private Cidadao cidadao;
+	private Atendente atendente;
+	private ListaEncadeada ambulanciasSolicitadas;
+	
+	//metodo estaAtiva retorna true se o status for Aberta ou Em Atendimento
+	//criar uma lista de ambulancias, metodo para inserir ambulancia e metodo para remover ambulancia
+	//criar Atributo atendente e cidadao que armazenam o atendente e o cidadao que sao da ocorrencia,gets e sets dele tb
+	public Ocorrencia(int id, int qtdAmbulancias){
+		
+		this.id=id;
+		this.qtdAmbulancias=qtdAmbulancias;
+		status=("Aberta");
+		ambulanciasSolicitadas= new ListaEncadeada();
+		
+	}
+	
+	public int getId(){
+		return id;
+	}
+	
+	public String getStatus(){
+		return status;
+	}
+	
+	public int getQtdAmbulancias(){
+		return qtdAmbulancias;
+	}
+	
+	public void setId(int id){
+		this.id=id;
+	}
+	
+	public void setStatus(String status){
+		this.status=status;
+	}
+	
+	public void setQtdAmbulancias(int qtdAmbulancias){
+		this.qtdAmbulancias=qtdAmbulancias;
+	}
+	
+	public Cidadao getCidadao(){
+		return cidadao;
+	}
+	
+	public Atendente getAtendente(){
+		return atendente;
+	}
+	
+	public void setCidadao(Cidadao cidadao){
+		this.cidadao=cidadao;
+	}
+	
+	public void setAtendente(Object atendente){
+		this.atendente=(Atendente) atendente;
+	}
+	
+	public boolean equals(Object obj) 
+	  { 
+		
+		if(obj instanceof Ocorrencia)
+		{
+			
+			Ocorrencia o =(Ocorrencia) obj;
+			
+			if(o.getId() == getId() && o.getStatus().equals(getStatus())&&
+					o.getQtdAmbulancias()== getQtdAmbulancias())
+			{ 
+				return true; 
+			} 
+		}
+		
+		return false;
+	  }
+	
+	public boolean estaAtiva(){
+		if(status.equals("Aberta") || status.equals("Em Atendimento"))
+			return true;
+		return false;
+	}
+	
+	public void insereAmbulancia(Ambulancia a){
+		ambulanciasSolicitadas.insereFinal(a);
+	}
+	
+	public Object removeAmbulancia(){
+		return ambulanciasSolicitadas.removeInicio();
+	}
+}

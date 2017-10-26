@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Washington Pagotto Batista>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.model;
+
+/**
+*
+* @author Washington Pagotto Batista
+*/
+
+public class Cidadao extends Pessoa 
+{
+
+	//atributos da classe.
+	private int qtdOcorrencias;
+	private double dividaSamu;
+
+	//construtor da classe.
+	public Cidadao(String cpf, String nome, String endereco) {
+		super(cpf, nome, endereco);
+
+		// TODO Auto-generated constructor stub
+	}
+
+
+    /**
+     * Esse metodo é usado para fazer a verificação do atributo NumOcorrenciasSolicitadas da classe cidadao
+     * @return retorna o valor.
+     */
+	public int getNumOcorrenciasSolicitadas()
+	{
+		return qtdOcorrencias;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a verificação do atributo DividaSamu da classe cidadao.
+	 * @return retorna o valor.
+	 */
+	public double getDividaSamu()
+	{
+		return dividaSamu;
+	}
+
+ 
+	/**
+	 * Esse metodo é usado para fazer a modificação do atributo QtdOcorrencias da classe cidadao.
+	 * @param alterar o valor recebido.
+	 */
+	public void setQtdOcorrencias(int qtdOcorrencias)
+	{
+		this.qtdOcorrencias=qtdOcorrencias;
+	}
+
+	/**
+	 * Esse metodo é usado para fazer a modificação do atributo DividaSamu da classe cidadao.
+	 * @param alterar o valor recebido.
+	 */
+	public void setDividaSamu(double dividaSamu)
+	{
+		this.dividaSamu=dividaSamu;
+	}
+
+
+
+}

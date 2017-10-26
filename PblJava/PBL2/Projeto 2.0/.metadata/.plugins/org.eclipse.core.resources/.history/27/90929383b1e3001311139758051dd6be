@@ -1,0 +1,87 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Yago Pimenta
+ * Cirino>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.util;
+/**
+*
+* @author Washington Pagotto Batista
+*/
+
+public class MeuIterador implements Iterador{
+	 
+	 //atributos da classe
+	 private No novo;
+	
+	 //construtor da classe
+	 public MeuIterador(No novo)
+	 {
+		this.novo=novo;
+		 
+	 }
+	
+	@Override
+	/**
+     * Esse metodo é responsavel por verificar se há um proximo elemento na
+     * lista, caso haja ele retorna um valor verdadeiro caso nao um valor falso.
+     */
+	public boolean temProximo() 
+	 {
+		// TODO Auto-generated method stub
+		if(novo!=null)
+		{
+			return true;
+		}
+		
+		return false;
+	 }
+
+	
+	@Override
+	 /**
+     * Esse metodo é responsavel por fazer o retorno do conteudo de uma celula
+     * da lista, nele é criado um novo objeto do tipo object, é feita a
+     * verificação se há um proximo elemento com o metodo temProximo() caso
+     * haja, esse objeto criado recebe o conteudo do link atual, e atual recebe
+     * o seu proximo elemento, ao final o objeto criado é retornado com o
+     * conteudo da celula, caso nao haja proximo é retornado um valor nulo.
+     */
+	public Object proximo() 
+	{
+		// TODO Auto-generated method stub
+		Object auxiliar;
+				
+		if(!temProximo())
+		{
+			return null;
+		}
+		
+		else
+		{
+			auxiliar=novo;
+			novo=novo.getNext();
+			return ((No) auxiliar).getDados();
+		}
+			
+	
+		
+	 }
+	
+	
+}

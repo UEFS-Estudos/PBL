@@ -1,0 +1,243 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Yago Pimenta
+ * Cirino>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.util;
+/**
+*
+* @author Washington Pagotto Batista
+*/
+public class ListaEncadeada implements ILista {
+
+	//atributos da classe
+	private int tamanho=0;
+	private No atual;
+	private No anterior;
+	private No ultimo;
+	
+	//construtor da classe
+	public ListaEncadeada()
+	{
+		
+		atual=null;
+		anterior=null;
+		ultimo=null;
+	}
+	
+	public No getAtual(){
+		return atual;
+	}
+	
+	@Override
+	 /**
+     * Metodo para verificar se a lista está vazia, apresenta um retorno boolean
+     */
+	public boolean estaVazia()
+	{
+		// TODO Auto-generated method stub
+		if(tamanho!=0)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+    
+	
+	@Override
+    /**
+     * Esse metodo é responsavel por fazer a contagem do tamanho total da lista,
+     * ela apresenta um comando de repetição que é executado até o final de
+     * lista ser encontrado e a cada repetição é aumentado o contador, ao
+     * encontrar o final da lista ele sai do laço de repetição e retorna um
+     * valor inteiro com o tamanho da lista.
+     */
+	public int tamanho() 
+	{
+		// TODO Auto-generated method stub
+		
+		return tamanho;
+	}
+    
+	
+	@Override
+	/**
+     * Esse metodo é responsavel por inserir um novo objeto no começo da lista,
+     * ele recebe um objeto de tipo object. É criado um novo objeto do tipo Link
+     * com os atributos do objeto recebido por parametro, a nova celula vai
+     * apontar pra o proximo de first e first vai apontar para a nova celula.
+     */
+	public void insereInicio(Object o) 
+	{
+		// TODO Auto-generated method stub
+		No novo=new No(o);
+		novo.setNext(atual);
+		atual=novo;
+		
+		if(this.tamanho==0)
+		{
+			this.ultimo=atual;
+		}
+		
+		tamanho++;
+		
+	}
+    
+	
+	
+	@Override
+	/**
+     * Esse metodo é responsavel por inserir um novo objeto no final da lista,
+     * ele recebe um objeto de tipo object. É criado um novo objeto do tipo Link
+     * com os atributos do objeto recebido por parametro, a nova celula vai
+     * apontar pra null. Depois é feita a verificação se a lista esta vazia,
+     * caso esteja tanto o first como o last irão receber a nova celula, caso
+     * nao entre o proximo de last irá receber a nova celula e last irá receber
+     * nova celula.
+     */
+	public void insereFinal(Object o) 
+	{
+		// TODO Auto-generated method stub
+		
+		if (tamanho == 0) 
+		{
+	         this.insereInicio(o);
+	    } 
+		
+		else 
+		{
+	         No nova = new No(o);
+	         nova.setNext(null);
+	         while(atual==null)
+	         {
+	        	 this.ultimo = nova;
+		         this.atual=nova;
+	         }
+	        
+	         ultimo.setNext(nova);
+	         this.ultimo=nova;
+	         tamanho++;
+	     }
+	    
+	   
+	}
+    
+	
+	@Override
+	 /**
+     * Esse metodo é responsavel por remover um objeto do inicio da lista. É
+     * criada uma variavel do tipo Link é ela recebe first. Por sua vez first
+     * passa a apontar para a seu proximo e é retornado um objeto de tipo
+     * object, que justamente é o item a ser removido.
+     */
+	public Object removeInicio() 
+	{
+		// TODO Auto-generated method stub
+		No novo=atual;
+		if( estaVazia())
+		{
+			return null;
+		}
+		
+		atual=atual.getNext();
+		tamanho--;
+		return novo.getObject(); 
+		
+	}
+    
+	
+	@Override
+	 /**
+     * Esse metodo é responsavel por remover um objeto do final da lista. É
+     * criada uma variavel do tipo Link é ela recebe first. Apos isso é feito um
+     * ciclo de repetição para varrer a lista e encontrar o seu final, usando
+     * outro auxiliar: o previous, de forma que o ao final da verificação
+     * current ira estara recebendo o ultimo elemento e previous o penultimo
+     * elemento da lista. É feita a verificação de quantos elementos tem na
+     * lista, caso esteja vazia é retornado null, caso só tenha um elemento o
+     * current ira receber first, e first irá receber null, e o conteudo do
+     * current irá ser retornado. Caso tenha mais de um elemento o proximo de
+     * previous(penultimo) irá apontar para null, e o conteudo do ultimo
+     * elemento irá ser retornado.
+     */
+	public Object removeFinal() 
+	{
+		// TODO Auto-generated method stub
+		
+		No novo=atual;
+		if(estaVazia())
+		{
+			return null;
+		}
+		
+		if(tamanho==1)
+		{
+			novo=atual;
+			atual=null;
+			
+		}
+		
+		while(novo.getNext()!=null)
+		{
+			anterior=novo;
+			novo=novo.getNext();
+		}
+		anterior.setNext(null);
+		tamanho--;
+		return novo.getObject();
+		
+	}
+    
+	
+	@Override
+	 /**
+     * Esse metodo é responsavel por fazer uma busca na lista, pelo indice
+     * recebido por parametro e retornar o conteudo da celula encontrada.
+     */
+	public Object recupera(int index) 
+	{
+		// TODO Auto-generated method stub
+		int auxiliar=0;
+		No novo=atual;
+		
+		while((auxiliar!=index))
+		{
+			if(novo!=null)
+			{ 
+			novo=novo.getNext();
+		    auxiliar++;
+			}
+		}
+		
+		return novo.getObject();
+	}
+    
+	/**
+     * Esse metodo é responsavel pela criação de um iterador da lista. Nele é
+     * criado um novo objeto iterador e o mesmo é retornado.
+     */
+	public Iterador iterador() 
+	{
+		// TODO Auto-generated method stub
+		
+		Iterador iterador = new MeuIterador (atual);
+		return iterador;
+	}
+
+}

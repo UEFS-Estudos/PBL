@@ -1,0 +1,126 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 4.900 ns
+From           : D0
+To             : pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst
+From Clock     : --
+To Clock       : D5
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 57.000 ns
+From           : Maquina:inst8|Contador3bits:inst|inst1
+To             : Z1
+From Clock     : D6
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case tpd
+Slack          : N/A
+Required Time  : None
+Actual Time    : 30.400 ns
+From           : D2
+To             : SaidaC
+From Clock     : --
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : 3.800 ns
+From           : D6
+To             : Registrador4bits:inst2|inst2
+From Clock     : --
+To Clock       : D7
+Failed Paths   : 0
+
+Type           : Clock Setup: 'D6'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 63.69 MHz ( period = 15.700 ns )
+From           : Maquina:inst8|Contador3bits:inst1|inst2
+To             : Maquina:inst8|Contador3bits:inst1|inst
+From Clock     : D6
+To Clock       : D6
+Failed Paths   : 0
+
+Type           : Clock Setup: 'D7'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 63.69 MHz ( period = 15.700 ns )
+From           : Maquina:inst8|Contador3bits:inst1|inst2
+To             : Maquina:inst8|Contador3bits:inst1|inst
+From Clock     : D7
+To Clock       : D7
+Failed Paths   : 0
+
+Type           : Clock Setup: 'CLK'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 66.23 MHz ( period = 15.100 ns )
+From           : Maquina:inst8|Contador3bits:inst1|inst2
+To             : Maquina:inst8|Contador3bits:inst1|inst
+From Clock     : CLK
+To Clock       : CLK
+Failed Paths   : 0
+
+Type           : Clock Setup: 'D5'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 119.05 MHz ( period = 8.400 ns )
+From           : pbl03:inst|MaquinaCedulas:inst|EquacaoFFA:inst|inst
+To             : pbl03:inst|MaquinaCedulas:inst|EquacaoFFB:inst1|inst
+From Clock     : D5
+To Clock       : D5
+Failed Paths   : 0
+
+Type           : Clock Hold: 'D7'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : Maquina:inst8|Contador3bits:inst1|inst2
+To             : Maquina:inst8|Contador3bits:inst1|inst1
+From Clock     : D7
+To Clock       : D7
+Failed Paths   : 8
+
+Type           : Clock Hold: 'D6'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : Maquina:inst8|Contador3bits:inst1|inst2
+To             : Maquina:inst8|Contador3bits:inst1|inst1
+From Clock     : D6
+To Clock       : D6
+Failed Paths   : 8
+
+Type           : Clock Hold: 'CLK'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : Maquina:inst8|Contador3bits:inst1|inst2
+To             : Maquina:inst8|Contador3bits:inst1|inst1
+From Clock     : CLK
+To Clock       : CLK
+Failed Paths   : 8
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 24
+
+--------------------------------------------------------------------------------------
+

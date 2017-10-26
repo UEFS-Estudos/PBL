@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Washington Pagotto Batista>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.model;
+
+public class Pessoa {
+
+	
+	private String cpf;
+	private String nome;
+	private String endereco;
+	
+	public Pessoa(String cpf,String nome,String endereco){
+		this.cpf=cpf;
+		this.nome=nome;
+		this.endereco=endereco;
+	}
+	
+	
+	public String getCpf(){
+		return cpf;
+	}
+	
+	public String getNome(){
+		return nome;
+	}
+	
+	public String getEndereco(){
+		return endereco;
+	}
+	
+	public void setCpf(String cpf){
+		this.cpf=cpf;
+	}
+	
+	public void setNome(String nome){
+		this.nome=nome;
+	}
+	
+	public void setEndereco(String endereco){
+		this.endereco=endereco;
+	}
+	
+	public boolean equals(Object obj) 
+	  { 
+		
+		if(obj instanceof Pessoa)
+		{
+			
+			Pessoa p=(Pessoa) obj;
+			
+			if(p.getNome().equals(getNome()) && p.getCpf().equals(getCpf()) && 
+					p.getEndereco().equals(getEndereco()))
+			{ 
+				return true; 
+			} 
+		}
+		
+		return false;
+	  }
+
+
+	
+	
+}

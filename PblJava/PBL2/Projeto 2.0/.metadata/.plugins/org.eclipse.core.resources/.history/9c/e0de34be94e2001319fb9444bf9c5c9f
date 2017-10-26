@@ -1,0 +1,62 @@
+package br.uefs.ecomp.samu.model;
+
+public class Pessoa implements Comparable<Pessoa>  {
+
+	
+	private String cpf;
+	private String nome;
+	private String endereco;
+	
+	public Pessoa(String cpf,String nome,String endereco){
+		this.cpf=cpf;
+		this.nome=nome;
+		this.endereco=endereco;
+	}
+	
+	
+	public String getCpf(){
+		return cpf;
+	}
+	
+	public String getNome(){
+		return nome;
+	}
+	
+	public String getEndereco(){
+		return endereco;
+	}
+	
+	public void setCpf(String cpf){
+		this.cpf=cpf;
+	}
+	
+	public void setNome(String nome){
+		this.nome=nome;
+	}
+	
+	public void setEndereco(String endereco){
+		this.endereco=endereco;
+	}
+	
+	public boolean equals(Object obj) 
+	  { 
+		
+		if(obj instanceof Pessoa)
+		{
+			
+			Pessoa p=(Pessoa) obj;
+			
+			if(p.getNome().equals(getNome()) && p.getCpf().equals(getCpf()) && 
+					p.getEndereco().equals(getEndereco()))
+			{ 
+				return true; 
+			} 
+		}
+		
+		return false;
+	  }
+
+
+	
+	
+}

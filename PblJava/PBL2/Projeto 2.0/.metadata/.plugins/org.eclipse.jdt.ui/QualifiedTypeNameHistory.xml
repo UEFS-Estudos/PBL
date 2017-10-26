@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.Cidadao"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.Atendente"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.Ambulancia"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.Ocorrencia"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.util.ListaEncadeada"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.util.Console"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.CadastroRepetidoException"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.CapacidadeMaximaException"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.CidadaoNaoEncontradoException"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.AtendenteIndisponivelException"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.AmbulanciasInsifucienteException"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.QuantidadeDiferenteAmbulanciasException"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.exception.OcorrenciaNaoEncontradaException"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.util.Iterador"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.Pessoa"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.Ambulancia"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.Ocorrencia"/>
+<fullyQualifiedTypeName name="br.uefs.ecomp.samu.model.Cidadao"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+</qualifiedTypeNameHistroy>

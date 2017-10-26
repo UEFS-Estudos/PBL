@@ -1,0 +1,328 @@
+|pbl03
+SaidaA <= DecodificadorBCD:inst2.SaidaA
+X1 => Decodificador2x8:inst8.X1
+X1 => MaquinaCedulas:inst.X1
+X1 => MaquinaSecagem:inst4.X1
+X0 => Decodificador2x8:inst8.X0
+X0 => MaquinaCedulas:inst.X0
+X0 => MaquinaSecagem:inst4.X0
+CLKDip => MaquinaCedulas:inst.CLK
+CLKDip => MaquinaSecagem:inst4.CLK
+Reset => inst21.IN0
+Reset => inst22.IN0
+Reset => inst19.OE
+CLK => Dividor:inst11.clock_in
+SaidaD <= DecodificadorBCD:inst2.SaidaD
+SaidaB <= DecodificadorBCD:inst2.SaidaB
+SaidaC <= DecodificadorBCD:inst2.SaidaC
+SaidaG <= DecodificadorBCD:inst2.SaidaG
+SaidaF <= DecodificadorBCD:inst2.SaidaF
+SaidaE <= DecodificadorBCD:inst2.SaidaE
+Display4 <= DecodFuncDisplay:inst15.Z4
+Display1 <= DecodFuncDisplay:inst15.Z1
+Display2 <= DecodFuncDisplay:inst15.Z2
+Display3 <= DecodFuncDisplay:inst15.Z3
+QA <= MaquinaCedulas:inst.QA
+QB <= MaquinaCedulas:inst.QB
+QC <= MaquinaCedulas:inst.QC
+QD <= MaquinaCedulas:inst.QD
+LEDSecagem <= MaquinaSecagem:inst4.Saida
+Controle => inst5.CLK
+Controle => inst7.IN1
+
+
+|pbl03|DecodificadorBCD:inst2
+SaidaD <= inst41.DB_MAX_OUTPUT_PORT_TYPE
+A => inst15.IN0
+A => inst15.IN1
+D => inst.IN1
+D => inst17.IN0
+D => inst17.IN1
+D => inst34.IN1
+D => inst55.IN0
+D => inst58.IN0
+D => inst62.IN1
+B => inst16.IN0
+B => inst16.IN1
+B => inst33.IN2
+B => inst34.IN2
+B => inst55.IN1
+B => inst61.IN1
+B => inst65.IN0
+B => inst47.IN1
+B => inst45.IN0
+C => inst19.IN0
+C => inst19.IN1
+C => inst34.IN3
+C => inst58.IN1
+C => inst67.IN1
+C => inst66.IN0
+C => inst43.IN1
+SaidaA <= inst54.DB_MAX_OUTPUT_PORT_TYPE
+SaidaB <= inst60.DB_MAX_OUTPUT_PORT_TYPE
+SaidaC <= inst64.DB_MAX_OUTPUT_PORT_TYPE
+SaidaG <= inst53.DB_MAX_OUTPUT_PORT_TYPE
+SaidaF <= inst48.DB_MAX_OUTPUT_PORT_TYPE
+SaidaE <= inst44.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|pbl03|Mux:inst14
+Z1 <= inst19.DB_MAX_OUTPUT_PORT_TYPE
+Hab => inst3.IN0
+Hab => inst.IN0
+Hab => inst2.IN0
+Hab => inst1.IN0
+Hab => inst7.IN0
+Hab => inst4.IN0
+Hab => inst6.IN0
+Hab => inst5.IN0
+Hab => inst11.IN0
+Hab => inst8.IN0
+Hab => inst9.IN0
+Hab => inst10.IN0
+Hab => inst13.IN0
+Hab => inst15.IN0
+Hab => inst12.IN0
+Hab => inst14.IN0
+D1 => inst3.IN1
+S0 => inst3.IN2
+S0 => inst18.IN0
+S0 => inst18.IN1
+S0 => inst1.IN2
+S0 => inst7.IN2
+S0 => inst5.IN2
+S0 => inst11.IN2
+S0 => inst10.IN2
+S0 => inst13.IN2
+S0 => inst14.IN2
+S1 => inst3.IN3
+S1 => inst17.IN0
+S1 => inst17.IN1
+S1 => inst2.IN3
+S1 => inst7.IN3
+S1 => inst6.IN3
+S1 => inst11.IN3
+S1 => inst9.IN3
+S1 => inst13.IN3
+S1 => inst12.IN3
+A1 => inst.IN1
+C1 => inst2.IN1
+B1 => inst1.IN1
+Z2 <= inst20.DB_MAX_OUTPUT_PORT_TYPE
+D2 => inst7.IN1
+A2 => inst4.IN1
+C2 => inst6.IN1
+B2 => inst5.IN1
+Z3 <= inst21.DB_MAX_OUTPUT_PORT_TYPE
+D3 => inst11.IN1
+A3 => inst8.IN1
+C3 => inst9.IN1
+B3 => inst10.IN1
+Z4 <= inst22.DB_MAX_OUTPUT_PORT_TYPE
+D4 => inst13.IN1
+A4 => inst15.IN1
+C4 => inst12.IN1
+B4 => inst14.IN1
+
+
+|pbl03|Decodificador2x8:inst8
+SA <= inst.DB_MAX_OUTPUT_PORT_TYPE
+X0 => inst5.IN0
+X0 => inst2.IN1
+X0 => inst3.IN0
+X1 => inst4.IN0
+X1 => inst2.IN0
+X1 => inst14.IN0
+SB <= inst.DB_MAX_OUTPUT_PORT_TYPE
+SC <= <GND>
+SD <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+SE <= inst.DB_MAX_OUTPUT_PORT_TYPE
+SF <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+SG <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+SH <= inst14.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|pbl03|Decodificador2x8Soma:inst9
+SD <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+X0 => inst1.IN0
+X0 => SB2.DATAIN
+X0 => inst.IN1
+X1 => inst1.IN1
+X1 => inst11.IN0
+SB2 <= X0.DB_MAX_OUTPUT_PORT_TYPE
+SC2 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+SD2 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|pbl03|MaquinaCedulas:inst
+Z1 <= SaidaZ1:inst5.Z1
+X0 => EquacaoFFB:inst1.X0
+X0 => EquacaoFFD:inst3.X0
+X0 => EquacaoFFC:inst2.X0
+X0 => EquacaoFFA:inst.X0
+X1 => EquacaoFFB:inst1.X1
+X1 => EquacaoFFD:inst3.X1
+X1 => EquacaoFFC:inst2.X1
+X1 => EquacaoFFA:inst.X1
+CLK => EquacaoFFA:inst.CLK
+CLK => EquacaoFFC:inst2.CLK
+CLK => EquacaoFFD:inst3.CLK
+CLK => EquacaoFFB:inst1.CLK
+Reset => EquacaoFFA:inst.Reset
+Reset => EquacaoFFC:inst2.Reset
+Reset => EquacaoFFD:inst3.Reset
+Reset => EquacaoFFB:inst1.Reset
+Z0 <= SaidaZ0:inst4.Z0
+QA <= EquacaoFFA:inst.ZFFA
+QB <= EquacaoFFB:inst1.ZFFB
+QC <= EquacaoFFC:inst2.ZFFC
+QD <= EquacaoFFD:inst3.ZFFD
+
+
+|pbl03|MaquinaCedulas:inst|SaidaZ1:inst5
+Z1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+ffA => inst4.IN0
+ffB => inst10.IN0
+ffB => inst.IN1
+ffC => inst1.IN2
+ffC => inst11.IN0
+ffD => inst12.IN0
+ffD => inst.IN3
+
+
+|pbl03|MaquinaCedulas:inst|EquacaoFFB:inst1
+ZFFB <= inst.DB_MAX_OUTPUT_PORT_TYPE
+Reset => inst.ACLR
+CLK => inst.CLK
+ffD => inst4.IN0
+ffD => inst12.IN0
+ffD => inst6.IN0
+ffD => inst7.IN0
+ffD => inst8.IN0
+X0 => inst13.IN0
+X0 => inst3.IN1
+X0 => inst5.IN1
+X0 => inst6.IN2
+X0 => inst8.IN2
+X1 => inst4.IN2
+X1 => inst1.IN0
+X1 => inst6.IN1
+X1 => inst7.IN1
+X1 => inst9.IN1
+X1 => inst8.IN1
+ffC => inst11.IN0
+ffC => inst3.IN3
+ffC => inst7.IN4
+ffC => inst8.IN4
+ffA => inst10.IN0
+ffA => inst5.IN5
+
+
+|pbl03|MaquinaCedulas:inst|EquacaoFFD:inst3
+ZFFD <= inst.DB_MAX_OUTPUT_PORT_TYPE
+Reset => inst.ACLR
+CLK => inst.CLK
+X1 => inst6.IN0
+X1 => inst1.IN1
+X1 => inst3.IN1
+X1 => inst4.IN2
+X0 => inst13.IN0
+X0 => inst5.IN1
+X0 => inst2.IN2
+ffA => inst10.IN0
+ffB => inst11.IN0
+ffB => inst5.IN4
+ffC => inst12.IN0
+ffC => inst5.IN3
+
+
+|pbl03|MaquinaCedulas:inst|EquacaoFFC:inst2
+ZFFC <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+Reset => inst6.ACLR
+CLK => inst6.CLK
+ffD => inst.IN0
+ffD => inst12.IN0
+ffD => inst5.IN1
+X0 => inst13.IN0
+X0 => inst.IN1
+X0 => inst5.IN2
+ffA => inst10.IN0
+ffB => inst11.IN0
+ffB => inst5.IN4
+X1 => inst1.IN0
+X1 => inst3.IN1
+X1 => inst4.IN1
+
+
+|pbl03|MaquinaCedulas:inst|EquacaoFFA:inst
+ZFFA <= inst.DB_MAX_OUTPUT_PORT_TYPE
+Reset => inst.ACLR
+CLK => inst.CLK
+ffC => inst3.IN0
+ffC => inst11.IN0
+ffB => inst10.IN0
+ffD => inst3.IN3
+ffD => inst12.IN0
+X1 => inst3.IN4
+X1 => inst2.IN4
+X0 => inst13.IN0
+X0 => inst2.IN5
+
+
+|pbl03|MaquinaCedulas:inst|SaidaZ0:inst4
+Z0 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+ffA => inst4.IN0
+ffB => inst10.IN0
+ffB => inst.IN1
+ffC => inst1.IN2
+ffC => inst11.IN0
+ffD => inst12.IN0
+
+
+|pbl03|Contador:inst13
+Z0 <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+CLK => inst9.CLK
+CLK => inst8.CLK
+Z1 <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|pbl03|Dividor:inst12
+clock_out <= inst15.DB_MAX_OUTPUT_PORT_TYPE
+clock_in => inst8.CLK
+
+
+|pbl03|Dividor:inst11
+clock_out <= inst15.DB_MAX_OUTPUT_PORT_TYPE
+clock_in => inst8.CLK
+
+
+|pbl03|DecodFuncDisplay:inst15
+Z3 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+B => inst1.IN0
+B => inst1.IN1
+B => inst4.IN0
+B => inst2.IN0
+A => inst3.IN1
+A => inst.IN0
+A => inst.IN1
+A => inst2.IN1
+Z2 <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+Z1 <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+Z4 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|pbl03|MaquinaSecagem:inst4
+ZFFA <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+Reset => inst1.ACLR
+Reset => inst.ACLR
+CLK => inst1.CLK
+CLK => inst.CLK
+X1 => inst5.IN2
+X1 => inst4.IN2
+X1 => inst3.IN2
+X0 => inst5.IN3
+X0 => inst8.IN0
+ZFFB <= inst.DB_MAX_OUTPUT_PORT_TYPE
+Saida <= inst.DB_MAX_OUTPUT_PORT_TYPE
+
+

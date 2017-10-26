@@ -1,0 +1,467 @@
+Classic Timing Analyzer report for pbl03
+Sun Nov 09 22:14:45 2014
+Quartus II Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Parallel Compilation
+  6. Clock Setup: 'CLK'
+  7. Clock Setup: 'CLKDip'
+  8. tsu
+  9. tco
+ 10. tpd
+ 11. th
+ 12. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2009 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                                                                              ;
++------------------------------+-------+---------------+------------------------------------------------+-------------------------------------------+-------------------------------------------+------------+----------+--------------+
+; Type                         ; Slack ; Required Time ; Actual Time                                    ; From                                      ; To                                        ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+-------+---------------+------------------------------------------------+-------------------------------------------+-------------------------------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A   ; None          ; 10.700 ns                                      ; X1                                        ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst ; --         ; CLKDip   ; 0            ;
+; Worst-case tco               ; N/A   ; None          ; 80.000 ns                                      ; Contador:inst13|inst8                     ; SaidaA                                    ; CLK        ; --       ; 0            ;
+; Worst-case tpd               ; N/A   ; None          ; 23.700 ns                                      ; X1                                        ; SaidaA                                    ; --         ; --       ; 0            ;
+; Worst-case th                ; N/A   ; None          ; -0.500 ns                                      ; X0                                        ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst ; --         ; CLKDip   ; 0            ;
+; Clock Setup: 'CLKDip'        ; N/A   ; None          ; 128.21 MHz ( period = 7.800 ns )               ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst ; CLKDip     ; CLKDip   ; 0            ;
+; Clock Setup: 'CLK'           ; N/A   ; None          ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst8                      ; Dividor:inst11|inst8                      ; CLK        ; CLK      ; 0            ;
+; Total number of failed paths ;       ;               ;                                                ;                                           ;                                           ;            ;          ; 0            ;
++------------------------------+-------+---------------+------------------------------------------------+-------------------------------------------+-------------------------------------------+------------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                           ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                              ; Setting            ; From ; To ; Entity Name ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                         ; EP1K100QC208-3     ;      ;    ;             ;
+; Timing Models                                                       ; Final              ;      ;    ;             ;
+; Default hold multicycle                                             ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                           ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                              ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                      ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                    ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                               ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                             ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                    ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                       ; Off                ;      ;    ;             ;
+; Minimum Core Junction Temperature                                   ; 0                  ;      ;    ;             ;
+; Maximum Core Junction Temperature                                   ; 85                 ;      ;    ;             ;
+; Number of source nodes to report per destination node               ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                               ; 10                 ;      ;    ;             ;
+; Number of paths to report                                           ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                        ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                              ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                          ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                        ; Off                ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis      ; Off                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation ; Off                ;      ;    ;             ;
+; Output I/O Timing Endpoint                                          ; Near End           ;      ;    ;             ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; CLK             ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
+; CLKDip          ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
+; Controle        ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 2      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'CLK'                                                                                                                                                                                                 ;
++-------+------------------------------------------------+-----------------------+-----------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack ; Actual fmax (period)                           ; From                  ; To                    ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-------+------------------------------------------------+-----------------------+-----------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Contador:inst13|inst8 ; Contador:inst13|inst8 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Contador:inst13|inst9 ; Contador:inst13|inst9 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst15 ; Dividor:inst12|inst15 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst14 ; Dividor:inst12|inst14 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst13 ; Dividor:inst12|inst13 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst12 ; Dividor:inst12|inst12 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst11 ; Dividor:inst12|inst11 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst10 ; Dividor:inst12|inst10 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst9  ; Dividor:inst12|inst9  ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst12|inst8  ; Dividor:inst12|inst8  ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst15 ; Dividor:inst11|inst15 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst14 ; Dividor:inst11|inst14 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst13 ; Dividor:inst11|inst13 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst12 ; Dividor:inst11|inst12 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst11 ; Dividor:inst11|inst11 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst10 ; Dividor:inst11|inst10 ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst9  ; Dividor:inst11|inst9  ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Dividor:inst11|inst8  ; Dividor:inst11|inst8  ; CLK        ; CLK      ; None                        ; None                      ; 1.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; Contador:inst13|inst9 ; Contador:inst13|inst8 ; CLK        ; CLK      ; None                        ; None                      ; 0.500 ns                ;
++-------+------------------------------------------------+-----------------------+-----------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'CLKDip'                                                                                                                                                                                                                                        ;
++-------+------------------------------------------------+--------------------------------------------+--------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack ; Actual fmax (period)                           ; From                                       ; To                                         ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-------+------------------------------------------------+--------------------------------------------+--------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A   ; 128.21 MHz ( period = 7.800 ns )               ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 6.000 ns                ;
+; N/A   ; 133.33 MHz ( period = 7.500 ns )               ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 5.700 ns                ;
+; N/A   ; 136.99 MHz ( period = 7.300 ns )               ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 5.500 ns                ;
+; N/A   ; 140.85 MHz ( period = 7.100 ns )               ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 5.300 ns                ;
+; N/A   ; 142.86 MHz ( period = 7.000 ns )               ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 5.200 ns                ;
+; N/A   ; 151.52 MHz ( period = 6.600 ns )               ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 4.800 ns                ;
+; N/A   ; 163.93 MHz ( period = 6.100 ns )               ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 4.300 ns                ;
+; N/A   ; 169.49 MHz ( period = 5.900 ns )               ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip     ; CLKDip   ; None                        ; None                      ; 4.100 ns                ;
+; N/A   ; 181.82 MHz ( period = 5.500 ns )               ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 3.700 ns                ;
+; N/A   ; 185.19 MHz ( period = 5.400 ns )               ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip     ; CLKDip   ; None                        ; None                      ; 3.600 ns                ;
+; N/A   ; 188.68 MHz ( period = 5.300 ns )               ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip     ; CLKDip   ; None                        ; None                      ; 3.500 ns                ;
+; N/A   ; 192.31 MHz ( period = 5.200 ns )               ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip     ; CLKDip   ; None                        ; None                      ; 3.400 ns                ;
+; N/A   ; 200.00 MHz ( period = 5.000 ns )               ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip     ; CLKDip   ; None                        ; None                      ; 3.200 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip     ; CLKDip   ; None                        ; None                      ; 2.400 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip     ; CLKDip   ; None                        ; None                      ; 2.300 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; MaquinaSecagem:inst4|inst                  ; MaquinaSecagem:inst4|inst                  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 1.700 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; MaquinaSecagem:inst4|inst1                 ; MaquinaSecagem:inst4|inst1                 ; CLKDip     ; CLKDip   ; None                        ; None                      ; 1.700 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip     ; CLKDip   ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; MaquinaSecagem:inst4|inst1                 ; MaquinaSecagem:inst4|inst                  ; CLKDip     ; CLKDip   ; None                        ; None                      ; 1.500 ns                ;
+; N/A   ; Restricted to 200.00 MHz ( period = 5.000 ns ) ; MaquinaSecagem:inst4|inst                  ; MaquinaSecagem:inst4|inst1                 ; CLKDip     ; CLKDip   ; None                        ; None                      ; 1.500 ns                ;
++-------+------------------------------------------------+--------------------------------------------+--------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; tsu                                                                                              ;
++-------+--------------+------------+------+--------------------------------------------+----------+
+; Slack ; Required tsu ; Actual tsu ; From ; To                                         ; To Clock ;
++-------+--------------+------------+------+--------------------------------------------+----------+
+; N/A   ; None         ; 10.700 ns  ; X1   ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip   ;
+; N/A   ; None         ; 10.500 ns  ; X1   ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip   ;
+; N/A   ; None         ; 9.300 ns   ; X1   ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip   ;
+; N/A   ; None         ; 8.600 ns   ; X1   ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip   ;
+; N/A   ; None         ; 6.900 ns   ; X1   ; MaquinaSecagem:inst4|inst                  ; CLKDip   ;
+; N/A   ; None         ; 6.900 ns   ; X1   ; MaquinaSecagem:inst4|inst1                 ; CLKDip   ;
+; N/A   ; None         ; 6.100 ns   ; X0   ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip   ;
+; N/A   ; None         ; 4.300 ns   ; X0   ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip   ;
+; N/A   ; None         ; 4.000 ns   ; X0   ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip   ;
+; N/A   ; None         ; 2.400 ns   ; X0   ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip   ;
+; N/A   ; None         ; 2.400 ns   ; X0   ; MaquinaSecagem:inst4|inst                  ; CLKDip   ;
+; N/A   ; None         ; 2.400 ns   ; X0   ; MaquinaSecagem:inst4|inst1                 ; CLKDip   ;
++-------+--------------+------------+------+--------------------------------------------+----------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; tco                                                                                                      ;
++-------+--------------+------------+--------------------------------------------+------------+------------+
+; Slack ; Required tco ; Actual tco ; From                                       ; To         ; From Clock ;
++-------+--------------+------------+--------------------------------------------+------------+------------+
+; N/A   ; None         ; 80.000 ns  ; Contador:inst13|inst8                      ; SaidaA     ; CLK        ;
+; N/A   ; None         ; 79.900 ns  ; Contador:inst13|inst9                      ; SaidaA     ; CLK        ;
+; N/A   ; None         ; 79.300 ns  ; Contador:inst13|inst8                      ; SaidaE     ; CLK        ;
+; N/A   ; None         ; 79.300 ns  ; Contador:inst13|inst8                      ; SaidaG     ; CLK        ;
+; N/A   ; None         ; 79.200 ns  ; Contador:inst13|inst9                      ; SaidaG     ; CLK        ;
+; N/A   ; None         ; 79.100 ns  ; Contador:inst13|inst9                      ; SaidaE     ; CLK        ;
+; N/A   ; None         ; 78.800 ns  ; Contador:inst13|inst8                      ; SaidaD     ; CLK        ;
+; N/A   ; None         ; 78.600 ns  ; Contador:inst13|inst9                      ; SaidaF     ; CLK        ;
+; N/A   ; None         ; 78.600 ns  ; Contador:inst13|inst9                      ; SaidaD     ; CLK        ;
+; N/A   ; None         ; 78.500 ns  ; Contador:inst13|inst8                      ; SaidaF     ; CLK        ;
+; N/A   ; None         ; 78.300 ns  ; Contador:inst13|inst9                      ; SaidaC     ; CLK        ;
+; N/A   ; None         ; 78.200 ns  ; Contador:inst13|inst8                      ; SaidaC     ; CLK        ;
+; N/A   ; None         ; 77.900 ns  ; Contador:inst13|inst8                      ; SaidaB     ; CLK        ;
+; N/A   ; None         ; 77.900 ns  ; Contador:inst13|inst9                      ; SaidaB     ; CLK        ;
+; N/A   ; None         ; 74.100 ns  ; Contador:inst13|inst8                      ; Display4   ; CLK        ;
+; N/A   ; None         ; 73.900 ns  ; Contador:inst13|inst9                      ; Display4   ; CLK        ;
+; N/A   ; None         ; 73.000 ns  ; Contador:inst13|inst8                      ; Display2   ; CLK        ;
+; N/A   ; None         ; 72.800 ns  ; Contador:inst13|inst9                      ; Display2   ; CLK        ;
+; N/A   ; None         ; 72.500 ns  ; Contador:inst13|inst9                      ; Display3   ; CLK        ;
+; N/A   ; None         ; 72.300 ns  ; Contador:inst13|inst8                      ; Display3   ; CLK        ;
+; N/A   ; None         ; 71.500 ns  ; Contador:inst13|inst8                      ; Display1   ; CLK        ;
+; N/A   ; None         ; 71.300 ns  ; Contador:inst13|inst9                      ; Display1   ; CLK        ;
+; N/A   ; None         ; 25.500 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaA     ; CLKDip     ;
+; N/A   ; None         ; 24.800 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaG     ; CLKDip     ;
+; N/A   ; None         ; 24.500 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaE     ; CLKDip     ;
+; N/A   ; None         ; 24.300 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaA     ; CLKDip     ;
+; N/A   ; None         ; 24.200 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaF     ; CLKDip     ;
+; N/A   ; None         ; 24.200 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaD     ; CLKDip     ;
+; N/A   ; None         ; 23.900 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaC     ; CLKDip     ;
+; N/A   ; None         ; 23.600 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaG     ; CLKDip     ;
+; N/A   ; None         ; 23.500 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; SaidaB     ; CLKDip     ;
+; N/A   ; None         ; 23.300 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaE     ; CLKDip     ;
+; N/A   ; None         ; 23.000 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaF     ; CLKDip     ;
+; N/A   ; None         ; 23.000 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaD     ; CLKDip     ;
+; N/A   ; None         ; 22.700 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaC     ; CLKDip     ;
+; N/A   ; None         ; 22.300 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; SaidaB     ; CLKDip     ;
+; N/A   ; None         ; 20.400 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaA     ; CLKDip     ;
+; N/A   ; None         ; 20.400 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaA     ; CLKDip     ;
+; N/A   ; None         ; 19.700 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaE     ; CLKDip     ;
+; N/A   ; None         ; 19.700 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaG     ; CLKDip     ;
+; N/A   ; None         ; 19.700 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaG     ; CLKDip     ;
+; N/A   ; None         ; 19.400 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaE     ; CLKDip     ;
+; N/A   ; None         ; 19.200 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaD     ; CLKDip     ;
+; N/A   ; None         ; 19.100 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaF     ; CLKDip     ;
+; N/A   ; None         ; 19.100 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaD     ; CLKDip     ;
+; N/A   ; None         ; 18.800 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaF     ; CLKDip     ;
+; N/A   ; None         ; 18.800 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaC     ; CLKDip     ;
+; N/A   ; None         ; 18.500 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaC     ; CLKDip     ;
+; N/A   ; None         ; 18.400 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; SaidaB     ; CLKDip     ;
+; N/A   ; None         ; 18.300 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; SaidaB     ; CLKDip     ;
+; N/A   ; None         ; 14.500 ns  ; MaquinaSecagem:inst4|inst                  ; LEDSecagem ; CLKDip     ;
+; N/A   ; None         ; 13.500 ns  ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; QB         ; CLKDip     ;
+; N/A   ; None         ; 13.100 ns  ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; QD         ; CLKDip     ;
+; N/A   ; None         ; 13.000 ns  ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; QC         ; CLKDip     ;
+; N/A   ; None         ; 12.300 ns  ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; QA         ; CLKDip     ;
++-------+--------------+------------+--------------------------------------------+------------+------------+
+
+
++-------------------------------------------------------------+
+; tpd                                                         ;
++-------+-------------------+-----------------+------+--------+
+; Slack ; Required P2P Time ; Actual P2P Time ; From ; To     ;
++-------+-------------------+-----------------+------+--------+
+; N/A   ; None              ; 23.700 ns       ; X1   ; SaidaA ;
+; N/A   ; None              ; 23.100 ns       ; X1   ; SaidaE ;
+; N/A   ; None              ; 23.000 ns       ; X1   ; SaidaG ;
+; N/A   ; None              ; 23.000 ns       ; X1   ; SaidaD ;
+; N/A   ; None              ; 22.500 ns       ; X1   ; SaidaC ;
+; N/A   ; None              ; 22.200 ns       ; X1   ; SaidaF ;
+; N/A   ; None              ; 22.100 ns       ; X1   ; SaidaB ;
+; N/A   ; None              ; 18.400 ns       ; X0   ; SaidaA ;
+; N/A   ; None              ; 17.900 ns       ; X0   ; SaidaE ;
+; N/A   ; None              ; 17.900 ns       ; X0   ; SaidaD ;
+; N/A   ; None              ; 17.700 ns       ; X0   ; SaidaG ;
+; N/A   ; None              ; 17.400 ns       ; X0   ; SaidaC ;
+; N/A   ; None              ; 16.900 ns       ; X0   ; SaidaF ;
+; N/A   ; None              ; 16.800 ns       ; X0   ; SaidaB ;
++-------+-------------------+-----------------+------+--------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; th                                                                                                     ;
++---------------+-------------+-----------+------+--------------------------------------------+----------+
+; Minimum Slack ; Required th ; Actual th ; From ; To                                         ; To Clock ;
++---------------+-------------+-----------+------+--------------------------------------------+----------+
+; N/A           ; None        ; -0.500 ns ; X0   ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip   ;
+; N/A           ; None        ; -0.500 ns ; X0   ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip   ;
+; N/A           ; None        ; -0.800 ns ; X0   ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip   ;
+; N/A           ; None        ; -0.800 ns ; X0   ; MaquinaSecagem:inst4|inst                  ; CLKDip   ;
+; N/A           ; None        ; -0.800 ns ; X0   ; MaquinaSecagem:inst4|inst1                 ; CLKDip   ;
+; N/A           ; None        ; -2.400 ns ; X0   ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip   ;
+; N/A           ; None        ; -5.300 ns ; X1   ; MaquinaSecagem:inst4|inst                  ; CLKDip   ;
+; N/A           ; None        ; -5.300 ns ; X1   ; MaquinaSecagem:inst4|inst1                 ; CLKDip   ;
+; N/A           ; None        ; -5.600 ns ; X1   ; MaquinaCedulas:inst|EquacaoFFD:inst3|inst  ; CLKDip   ;
+; N/A           ; None        ; -5.600 ns ; X1   ; MaquinaCedulas:inst|EquacaoFFB:inst1|inst  ; CLKDip   ;
+; N/A           ; None        ; -7.000 ns ; X1   ; MaquinaCedulas:inst|EquacaoFFC:inst2|inst6 ; CLKDip   ;
+; N/A           ; None        ; -7.000 ns ; X1   ; MaquinaCedulas:inst|EquacaoFFA:inst|inst   ; CLKDip   ;
++---------------+-------------+-----------+------+--------------------------------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
+    Info: Processing started: Sun Nov 09 22:14:44 2014
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off pbl03 -c pbl03
+Info: Started post-fitting delay annotation
+Info: Delay annotation completed successfully
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "CLK" is an undefined clock
+    Info: Assuming node "CLKDip" is an undefined clock
+    Info: Assuming node "Controle" is an undefined clock
+Warning: Found 16 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected ripple clock "Dividor:inst11|inst8" as buffer
+    Info: Detected ripple clock "Dividor:inst11|inst9" as buffer
+    Info: Detected ripple clock "Dividor:inst11|inst10" as buffer
+    Info: Detected ripple clock "Dividor:inst11|inst11" as buffer
+    Info: Detected ripple clock "Dividor:inst11|inst12" as buffer
+    Info: Detected ripple clock "Dividor:inst11|inst13" as buffer
+    Info: Detected ripple clock "Dividor:inst11|inst14" as buffer
+    Info: Detected ripple clock "Dividor:inst11|inst15" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst8" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst9" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst10" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst11" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst12" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst13" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst14" as buffer
+    Info: Detected ripple clock "Dividor:inst12|inst15" as buffer
+Info: Clock "CLK" Internal fmax is restricted to 200.0 MHz between source register "Contador:inst13|inst8" and destination register "Contador:inst13|inst8"
+    Info: fmax restricted to Clock High delay (2.5 ns) plus Clock Low delay (2.5 ns) : restricted to 5.0 ns. Expand message to see actual delay path.
+        Info: + Longest register to register delay is 1.200 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC5_B51; Fanout = 8; REG Node = 'Contador:inst13|inst8'
+            Info: 2: + IC(0.200 ns) + CELL(1.000 ns) = 1.200 ns; Loc. = LC5_B51; Fanout = 8; REG Node = 'Contador:inst13|inst8'
+            Info: Total cell delay = 1.000 ns ( 83.33 % )
+            Info: Total interconnect delay = 0.200 ns ( 16.67 % )
+        Info: - Smallest clock skew is 0.000 ns
+            Info: + Shortest clock path from clock "CLK" to destination register is 58.100 ns
+                Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_182; Fanout = 1; CLK Node = 'CLK'
+                Info: 2: + IC(1.400 ns) + CELL(1.100 ns) = 3.000 ns; Loc. = LC1_C6; Fanout = 2; REG Node = 'Dividor:inst11|inst8'
+                Info: 3: + IC(1.800 ns) + CELL(1.100 ns) = 5.900 ns; Loc. = LC1_C2; Fanout = 2; REG Node = 'Dividor:inst11|inst9'
+                Info: 4: + IC(1.800 ns) + CELL(1.100 ns) = 8.800 ns; Loc. = LC1_C1; Fanout = 2; REG Node = 'Dividor:inst11|inst10'
+                Info: 5: + IC(2.600 ns) + CELL(1.100 ns) = 12.500 ns; Loc. = LC1_C26; Fanout = 2; REG Node = 'Dividor:inst11|inst11'
+                Info: 6: + IC(1.900 ns) + CELL(1.100 ns) = 15.500 ns; Loc. = LC1_C51; Fanout = 2; REG Node = 'Dividor:inst11|inst12'
+                Info: 7: + IC(1.800 ns) + CELL(1.100 ns) = 18.400 ns; Loc. = LC1_C45; Fanout = 2; REG Node = 'Dividor:inst11|inst13'
+                Info: 8: + IC(3.700 ns) + CELL(1.100 ns) = 23.200 ns; Loc. = LC1_E42; Fanout = 2; REG Node = 'Dividor:inst11|inst14'
+                Info: 9: + IC(1.800 ns) + CELL(1.100 ns) = 26.100 ns; Loc. = LC1_E36; Fanout = 2; REG Node = 'Dividor:inst11|inst15'
+                Info: 10: + IC(1.700 ns) + CELL(1.100 ns) = 28.900 ns; Loc. = LC1_E34; Fanout = 2; REG Node = 'Dividor:inst12|inst8'
+                Info: 11: + IC(1.700 ns) + CELL(1.100 ns) = 31.700 ns; Loc. = LC1_E30; Fanout = 2; REG Node = 'Dividor:inst12|inst9'
+                Info: 12: + IC(3.600 ns) + CELL(1.100 ns) = 36.400 ns; Loc. = LC1_A27; Fanout = 2; REG Node = 'Dividor:inst12|inst10'
+                Info: 13: + IC(2.000 ns) + CELL(1.100 ns) = 39.500 ns; Loc. = LC1_A36; Fanout = 2; REG Node = 'Dividor:inst12|inst11'
+                Info: 14: + IC(1.800 ns) + CELL(1.100 ns) = 42.400 ns; Loc. = LC1_A43; Fanout = 2; REG Node = 'Dividor:inst12|inst12'
+                Info: 15: + IC(1.800 ns) + CELL(1.100 ns) = 45.300 ns; Loc. = LC1_A46; Fanout = 2; REG Node = 'Dividor:inst12|inst13'
+                Info: 16: + IC(2.600 ns) + CELL(1.100 ns) = 49.000 ns; Loc. = LC1_A6; Fanout = 2; REG Node = 'Dividor:inst12|inst14'
+                Info: 17: + IC(2.400 ns) + CELL(1.100 ns) = 52.500 ns; Loc. = LC1_A25; Fanout = 3; REG Node = 'Dividor:inst12|inst15'
+                Info: 18: + IC(5.600 ns) + CELL(0.000 ns) = 58.100 ns; Loc. = LC5_B51; Fanout = 8; REG Node = 'Contador:inst13|inst8'
+                Info: Total cell delay = 18.100 ns ( 31.15 % )
+                Info: Total interconnect delay = 40.000 ns ( 68.85 % )
+            Info: - Longest clock path from clock "CLK" to source register is 58.100 ns
+                Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_182; Fanout = 1; CLK Node = 'CLK'
+                Info: 2: + IC(1.400 ns) + CELL(1.100 ns) = 3.000 ns; Loc. = LC1_C6; Fanout = 2; REG Node = 'Dividor:inst11|inst8'
+                Info: 3: + IC(1.800 ns) + CELL(1.100 ns) = 5.900 ns; Loc. = LC1_C2; Fanout = 2; REG Node = 'Dividor:inst11|inst9'
+                Info: 4: + IC(1.800 ns) + CELL(1.100 ns) = 8.800 ns; Loc. = LC1_C1; Fanout = 2; REG Node = 'Dividor:inst11|inst10'
+                Info: 5: + IC(2.600 ns) + CELL(1.100 ns) = 12.500 ns; Loc. = LC1_C26; Fanout = 2; REG Node = 'Dividor:inst11|inst11'
+                Info: 6: + IC(1.900 ns) + CELL(1.100 ns) = 15.500 ns; Loc. = LC1_C51; Fanout = 2; REG Node = 'Dividor:inst11|inst12'
+                Info: 7: + IC(1.800 ns) + CELL(1.100 ns) = 18.400 ns; Loc. = LC1_C45; Fanout = 2; REG Node = 'Dividor:inst11|inst13'
+                Info: 8: + IC(3.700 ns) + CELL(1.100 ns) = 23.200 ns; Loc. = LC1_E42; Fanout = 2; REG Node = 'Dividor:inst11|inst14'
+                Info: 9: + IC(1.800 ns) + CELL(1.100 ns) = 26.100 ns; Loc. = LC1_E36; Fanout = 2; REG Node = 'Dividor:inst11|inst15'
+                Info: 10: + IC(1.700 ns) + CELL(1.100 ns) = 28.900 ns; Loc. = LC1_E34; Fanout = 2; REG Node = 'Dividor:inst12|inst8'
+                Info: 11: + IC(1.700 ns) + CELL(1.100 ns) = 31.700 ns; Loc. = LC1_E30; Fanout = 2; REG Node = 'Dividor:inst12|inst9'
+                Info: 12: + IC(3.600 ns) + CELL(1.100 ns) = 36.400 ns; Loc. = LC1_A27; Fanout = 2; REG Node = 'Dividor:inst12|inst10'
+                Info: 13: + IC(2.000 ns) + CELL(1.100 ns) = 39.500 ns; Loc. = LC1_A36; Fanout = 2; REG Node = 'Dividor:inst12|inst11'
+                Info: 14: + IC(1.800 ns) + CELL(1.100 ns) = 42.400 ns; Loc. = LC1_A43; Fanout = 2; REG Node = 'Dividor:inst12|inst12'
+                Info: 15: + IC(1.800 ns) + CELL(1.100 ns) = 45.300 ns; Loc. = LC1_A46; Fanout = 2; REG Node = 'Dividor:inst12|inst13'
+                Info: 16: + IC(2.600 ns) + CELL(1.100 ns) = 49.000 ns; Loc. = LC1_A6; Fanout = 2; REG Node = 'Dividor:inst12|inst14'
+                Info: 17: + IC(2.400 ns) + CELL(1.100 ns) = 52.500 ns; Loc. = LC1_A25; Fanout = 3; REG Node = 'Dividor:inst12|inst15'
+                Info: 18: + IC(5.600 ns) + CELL(0.000 ns) = 58.100 ns; Loc. = LC5_B51; Fanout = 8; REG Node = 'Contador:inst13|inst8'
+                Info: Total cell delay = 18.100 ns ( 31.15 % )
+                Info: Total interconnect delay = 40.000 ns ( 68.85 % )
+        Info: + Micro clock to output delay of source is 1.100 ns
+        Info: + Micro setup delay of destination is 0.700 ns
+Info: Clock "CLKDip" has Internal fmax of 128.21 MHz between source register "MaquinaCedulas:inst|EquacaoFFB:inst1|inst" and destination register "MaquinaCedulas:inst|EquacaoFFD:inst3|inst" (period= 7.8 ns)
+    Info: + Longest register to register delay is 6.000 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC2_B46; Fanout = 10; REG Node = 'MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+        Info: 2: + IC(1.000 ns) + CELL(1.900 ns) = 2.900 ns; Loc. = LC5_B47; Fanout = 2; COMB Node = 'MaquinaCedulas:inst|EquacaoFFA:inst|inst4~0'
+        Info: 3: + IC(0.200 ns) + CELL(1.700 ns) = 4.800 ns; Loc. = LC6_B47; Fanout = 1; COMB Node = 'MaquinaCedulas:inst|EquacaoFFD:inst3|inst7~0'
+        Info: 4: + IC(0.200 ns) + CELL(1.000 ns) = 6.000 ns; Loc. = LC1_B47; Fanout = 9; REG Node = 'MaquinaCedulas:inst|EquacaoFFD:inst3|inst'
+        Info: Total cell delay = 4.600 ns ( 76.67 % )
+        Info: Total interconnect delay = 1.400 ns ( 23.33 % )
+    Info: - Smallest clock skew is 0.000 ns
+        Info: + Shortest clock path from clock "CLKDip" to destination register is 1.900 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 6; CLK Node = 'CLKDip'
+            Info: 2: + IC(1.400 ns) + CELL(0.000 ns) = 1.900 ns; Loc. = LC1_B47; Fanout = 9; REG Node = 'MaquinaCedulas:inst|EquacaoFFD:inst3|inst'
+            Info: Total cell delay = 0.500 ns ( 26.32 % )
+            Info: Total interconnect delay = 1.400 ns ( 73.68 % )
+        Info: - Longest clock path from clock "CLKDip" to source register is 1.900 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 6; CLK Node = 'CLKDip'
+            Info: 2: + IC(1.400 ns) + CELL(0.000 ns) = 1.900 ns; Loc. = LC2_B46; Fanout = 10; REG Node = 'MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+            Info: Total cell delay = 0.500 ns ( 26.32 % )
+            Info: Total interconnect delay = 1.400 ns ( 73.68 % )
+    Info: + Micro clock to output delay of source is 1.100 ns
+    Info: + Micro setup delay of destination is 0.700 ns
+Info: No valid register-to-register data paths exist for clock "Controle"
+Info: tsu for register "MaquinaCedulas:inst|EquacaoFFB:inst1|inst" (data pin = "X1", clock pin = "CLKDip") is 10.700 ns
+    Info: + Longest pin to register delay is 11.900 ns
+        Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_202; Fanout = 10; PIN Node = 'X1'
+        Info: 2: + IC(3.800 ns) + CELL(1.700 ns) = 8.600 ns; Loc. = LC6_B46; Fanout = 1; COMB Node = 'MaquinaCedulas:inst|EquacaoFFB:inst1|inst16~0'
+        Info: 3: + IC(0.200 ns) + CELL(1.900 ns) = 10.700 ns; Loc. = LC7_B46; Fanout = 1; COMB Node = 'MaquinaCedulas:inst|EquacaoFFB:inst1|inst16~1'
+        Info: 4: + IC(0.200 ns) + CELL(1.000 ns) = 11.900 ns; Loc. = LC2_B46; Fanout = 10; REG Node = 'MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+        Info: Total cell delay = 7.700 ns ( 64.71 % )
+        Info: Total interconnect delay = 4.200 ns ( 35.29 % )
+    Info: + Micro setup delay of destination is 0.700 ns
+    Info: - Shortest clock path from clock "CLKDip" to destination register is 1.900 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 6; CLK Node = 'CLKDip'
+        Info: 2: + IC(1.400 ns) + CELL(0.000 ns) = 1.900 ns; Loc. = LC2_B46; Fanout = 10; REG Node = 'MaquinaCedulas:inst|EquacaoFFB:inst1|inst'
+        Info: Total cell delay = 0.500 ns ( 26.32 % )
+        Info: Total interconnect delay = 1.400 ns ( 73.68 % )
+Info: tco from clock "CLK" to destination pin "SaidaA" through register "Contador:inst13|inst8" is 80.000 ns
+    Info: + Longest clock path from clock "CLK" to source register is 58.100 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_182; Fanout = 1; CLK Node = 'CLK'
+        Info: 2: + IC(1.400 ns) + CELL(1.100 ns) = 3.000 ns; Loc. = LC1_C6; Fanout = 2; REG Node = 'Dividor:inst11|inst8'
+        Info: 3: + IC(1.800 ns) + CELL(1.100 ns) = 5.900 ns; Loc. = LC1_C2; Fanout = 2; REG Node = 'Dividor:inst11|inst9'
+        Info: 4: + IC(1.800 ns) + CELL(1.100 ns) = 8.800 ns; Loc. = LC1_C1; Fanout = 2; REG Node = 'Dividor:inst11|inst10'
+        Info: 5: + IC(2.600 ns) + CELL(1.100 ns) = 12.500 ns; Loc. = LC1_C26; Fanout = 2; REG Node = 'Dividor:inst11|inst11'
+        Info: 6: + IC(1.900 ns) + CELL(1.100 ns) = 15.500 ns; Loc. = LC1_C51; Fanout = 2; REG Node = 'Dividor:inst11|inst12'
+        Info: 7: + IC(1.800 ns) + CELL(1.100 ns) = 18.400 ns; Loc. = LC1_C45; Fanout = 2; REG Node = 'Dividor:inst11|inst13'
+        Info: 8: + IC(3.700 ns) + CELL(1.100 ns) = 23.200 ns; Loc. = LC1_E42; Fanout = 2; REG Node = 'Dividor:inst11|inst14'
+        Info: 9: + IC(1.800 ns) + CELL(1.100 ns) = 26.100 ns; Loc. = LC1_E36; Fanout = 2; REG Node = 'Dividor:inst11|inst15'
+        Info: 10: + IC(1.700 ns) + CELL(1.100 ns) = 28.900 ns; Loc. = LC1_E34; Fanout = 2; REG Node = 'Dividor:inst12|inst8'
+        Info: 11: + IC(1.700 ns) + CELL(1.100 ns) = 31.700 ns; Loc. = LC1_E30; Fanout = 2; REG Node = 'Dividor:inst12|inst9'
+        Info: 12: + IC(3.600 ns) + CELL(1.100 ns) = 36.400 ns; Loc. = LC1_A27; Fanout = 2; REG Node = 'Dividor:inst12|inst10'
+        Info: 13: + IC(2.000 ns) + CELL(1.100 ns) = 39.500 ns; Loc. = LC1_A36; Fanout = 2; REG Node = 'Dividor:inst12|inst11'
+        Info: 14: + IC(1.800 ns) + CELL(1.100 ns) = 42.400 ns; Loc. = LC1_A43; Fanout = 2; REG Node = 'Dividor:inst12|inst12'
+        Info: 15: + IC(1.800 ns) + CELL(1.100 ns) = 45.300 ns; Loc. = LC1_A46; Fanout = 2; REG Node = 'Dividor:inst12|inst13'
+        Info: 16: + IC(2.600 ns) + CELL(1.100 ns) = 49.000 ns; Loc. = LC1_A6; Fanout = 2; REG Node = 'Dividor:inst12|inst14'
+        Info: 17: + IC(2.400 ns) + CELL(1.100 ns) = 52.500 ns; Loc. = LC1_A25; Fanout = 3; REG Node = 'Dividor:inst12|inst15'
+        Info: 18: + IC(5.600 ns) + CELL(0.000 ns) = 58.100 ns; Loc. = LC5_B51; Fanout = 8; REG Node = 'Contador:inst13|inst8'
+        Info: Total cell delay = 18.100 ns ( 31.15 % )
+        Info: Total interconnect delay = 40.000 ns ( 68.85 % )
+    Info: + Micro clock to output delay of source is 1.100 ns
+    Info: + Longest register to pin delay is 20.800 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC5_B51; Fanout = 8; REG Node = 'Contador:inst13|inst8'
+        Info: 2: + IC(1.800 ns) + CELL(1.900 ns) = 3.700 ns; Loc. = LC7_B47; Fanout = 2; COMB Node = 'Mux:inst14|inst7~0'
+        Info: 3: + IC(0.200 ns) + CELL(1.700 ns) = 5.600 ns; Loc. = LC3_B47; Fanout = 7; COMB Node = 'Mux:inst14|inst11'
+        Info: 4: + IC(1.800 ns) + CELL(2.200 ns) = 9.600 ns; Loc. = LC4_B52; Fanout = 1; COMB Node = 'DecodificadorBCD:inst2|inst54~0'
+        Info: 5: + IC(2.600 ns) + CELL(8.600 ns) = 20.800 ns; Loc. = PIN_17; Fanout = 0; PIN Node = 'SaidaA'
+        Info: Total cell delay = 14.400 ns ( 69.23 % )
+        Info: Total interconnect delay = 6.400 ns ( 30.77 % )
+Info: Longest tpd from source pin "X1" to destination pin "SaidaA" is 23.700 ns
+    Info: 1: + IC(0.000 ns) + CELL(3.100 ns) = 3.100 ns; Loc. = PIN_202; Fanout = 10; PIN Node = 'X1'
+    Info: 2: + IC(3.800 ns) + CELL(2.000 ns) = 8.900 ns; Loc. = LC3_B51; Fanout = 7; COMB Node = 'Mux:inst14|inst20~0'
+    Info: 3: + IC(1.700 ns) + CELL(1.900 ns) = 12.500 ns; Loc. = LC4_B52; Fanout = 1; COMB Node = 'DecodificadorBCD:inst2|inst54~0'
+    Info: 4: + IC(2.600 ns) + CELL(8.600 ns) = 23.700 ns; Loc. = PIN_17; Fanout = 0; PIN Node = 'SaidaA'
+    Info: Total cell delay = 15.600 ns ( 65.82 % )
+    Info: Total interconnect delay = 8.100 ns ( 34.18 % )
+Info: th for register "MaquinaCedulas:inst|EquacaoFFD:inst3|inst" (data pin = "X0", clock pin = "CLKDip") is -0.500 ns
+    Info: + Longest clock path from clock "CLKDip" to destination register is 1.900 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_79; Fanout = 6; CLK Node = 'CLKDip'
+        Info: 2: + IC(1.400 ns) + CELL(0.000 ns) = 1.900 ns; Loc. = LC1_B47; Fanout = 9; REG Node = 'MaquinaCedulas:inst|EquacaoFFD:inst3|inst'
+        Info: Total cell delay = 0.500 ns ( 26.32 % )
+        Info: Total interconnect delay = 1.400 ns ( 73.68 % )
+    Info: + Micro hold delay of destination is 0.900 ns
+    Info: - Shortest pin to register delay is 3.300 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.500 ns) = 0.500 ns; Loc. = PIN_80; Fanout = 11; PIN Node = 'X0'
+        Info: 2: + IC(1.600 ns) + CELL(1.200 ns) = 3.300 ns; Loc. = LC1_B47; Fanout = 9; REG Node = 'MaquinaCedulas:inst|EquacaoFFD:inst3|inst'
+        Info: Total cell delay = 1.700 ns ( 51.52 % )
+        Info: Total interconnect delay = 1.600 ns ( 48.48 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 167 megabytes
+    Info: Processing ended: Sun Nov 09 22:14:45 2014
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+

@@ -1,0 +1,343 @@
+Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
+2
+51
+OFF
+OFF
+OFF
+ON
+ON
+OFF
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+Decodificador2x8
+# storage
+db|pbl03.(0).cnf
+db|pbl03.(0).cnf
+# case_insensitive
+# source_file
+Decodificador2x8.bdf
+28834e9657ff586fba1b5411a3cc731
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+Decodificador2x8:inst8
+}
+# macro_sequence
+
+# end
+# entity
+Decodificador2x8Soma
+# storage
+db|pbl03.(1).cnf
+db|pbl03.(1).cnf
+# case_insensitive
+# source_file
+Decodificador2x8Soma.bdf
+7ddb594c339837424e57bee9411428
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+Decodificador2x8Soma:inst9
+}
+# macro_sequence
+
+# end
+# entity
+SaidaZ1
+# storage
+db|pbl03.(3).cnf
+db|pbl03.(3).cnf
+# case_insensitive
+# source_file
+SaidaZ1.bdf
+c85928f339dc6ca327ddc87325cd48d
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaCedulas:inst|SaidaZ1:inst5
+}
+# macro_sequence
+
+# end
+# entity
+EquacaoFFB
+# storage
+db|pbl03.(4).cnf
+db|pbl03.(4).cnf
+# case_insensitive
+# source_file
+EquacaoFFB.bdf
+f865ab63791e1ef1b7a68e9c5795ce
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaCedulas:inst|EquacaoFFB:inst1
+}
+# macro_sequence
+
+# end
+# entity
+EquacaoFFA
+# storage
+db|pbl03.(5).cnf
+db|pbl03.(5).cnf
+# case_insensitive
+# source_file
+EquacaoFFA.bdf
+93906edaf39330f837c5a8ac6b015b0
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaCedulas:inst|EquacaoFFA:inst
+}
+# macro_sequence
+
+# end
+# entity
+EquacaoFFC
+# storage
+db|pbl03.(6).cnf
+db|pbl03.(6).cnf
+# case_insensitive
+# source_file
+EquacaoFFC.bdf
+881e17ddb295968df2626d87341b9c69
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaCedulas:inst|EquacaoFFC:inst2
+}
+# macro_sequence
+
+# end
+# entity
+EquacaoFFD
+# storage
+db|pbl03.(7).cnf
+db|pbl03.(7).cnf
+# case_insensitive
+# source_file
+EquacaoFFD.bdf
+bd765b25fbdae59899b938a5aeb8243
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaCedulas:inst|EquacaoFFD:inst3
+}
+# macro_sequence
+
+# end
+# entity
+SaidaZ0
+# storage
+db|pbl03.(8).cnf
+db|pbl03.(8).cnf
+# case_insensitive
+# source_file
+SaidaZ0.bdf
+6ac1c3dfef126e14ac1afec43bbd666a
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaCedulas:inst|SaidaZ0:inst4
+}
+# macro_sequence
+
+# end
+# entity
+MaquinaCedulas
+# storage
+db|pbl03.(2).cnf
+db|pbl03.(2).cnf
+# case_insensitive
+# source_file
+MaquinaCedulas.bdf
+d25d2aa8429de0e5309e2e25b8135770
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaCedulas:inst
+}
+# macro_sequence
+
+# end
+# entity
+pbl03
+# storage
+db|pbl03.(9).cnf
+db|pbl03.(9).cnf
+# case_insensitive
+# source_file
+pbl03.bdf
+16f1ab69411952546dd98692cfb386a
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+Mux
+# storage
+db|pbl03.(11).cnf
+db|pbl03.(11).cnf
+# case_insensitive
+# source_file
+Mux.bdf
+91c127e2fcc04097ebbf14cb7151e955
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+Mux:inst14
+}
+# macro_sequence
+
+# end
+# entity
+Contador
+# storage
+db|pbl03.(12).cnf
+db|pbl03.(12).cnf
+# case_insensitive
+# source_file
+Contador.bdf
+a5ca59ae80858830e97f27c5f8d964f
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+Contador:inst13
+}
+# macro_sequence
+
+# end
+# entity
+Dividor
+# storage
+db|pbl03.(13).cnf
+db|pbl03.(13).cnf
+# case_insensitive
+# source_file
+Dividor.bdf
+541b3fecd338518b14ab0a034749
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+Dividor:inst12
+Dividor:inst11
+}
+# macro_sequence
+
+# end
+# entity
+DecodFuncDisplay
+# storage
+db|pbl03.(14).cnf
+db|pbl03.(14).cnf
+# case_insensitive
+# source_file
+DecodFuncDisplay.bdf
+e883bd381336c7913e703d49a95a757
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+DecodFuncDisplay:inst15
+}
+# macro_sequence
+
+# end
+# entity
+MaquinaSecagem
+# storage
+db|pbl03.(15).cnf
+db|pbl03.(15).cnf
+# case_insensitive
+# source_file
+MaquinaSecagem.bdf
+9dca70e93bdd941bced05272ec2ca068
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+MaquinaSecagem:inst4
+}
+# macro_sequence
+
+# end
+# entity
+DecodificadorBCD
+# storage
+db|pbl03.(10).cnf
+db|pbl03.(10).cnf
+# case_insensitive
+# source_file
+DecodificadorBCD.bdf
+ef9456d9732f4018fe58e53858ae42eb
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+DecodificadorBCD:inst2
+}
+# macro_sequence
+
+# end
+# complete
+

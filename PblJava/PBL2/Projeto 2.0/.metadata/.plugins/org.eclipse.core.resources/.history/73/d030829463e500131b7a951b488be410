@@ -1,0 +1,594 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Washington Pagotto Batista>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.model;
+
+//import java.util.Arrays;
+//import java.util.Collections;
+//import java.util.Comparator;
+//import java.util.List;
+
+//import br.uefs.ecomp.samu.util.No;
+import br.uefs.ecomp.samu.model.exception.AmbulanciasInsifucienteException;
+import br.uefs.ecomp.samu.model.exception.AtendenteIndisponivelException;
+import br.uefs.ecomp.samu.model.exception.CadastroRepetidoException;
+import br.uefs.ecomp.samu.model.exception.CapacidadeMaximaException;
+import br.uefs.ecomp.samu.model.exception.CidadaoNaoEncontradoException;
+import br.uefs.ecomp.samu.model.exception.OcorrenciaNaoEncontradaException;
+import br.uefs.ecomp.samu.model.exception.QuantidadeDiferenteAmbulanciasException;
+import br.uefs.ecomp.samu.util.Fila;
+//import br.uefs.ecomp.samu.util.ILista;
+import br.uefs.ecomp.samu.util.Iterador;
+import br.uefs.ecomp.samu.util.ListaEncadeada;
+import br.uefs.ecomp.samu.util.Pilha;
+
+/**
+*
+* @author Washington Pagotto Batista
+*/
+
+public class SamuController {
+	//lembrar de criar uma maneira para o ID ser gerado automatico, se eu esqueci alguma coisa ou vc n conseguir fazer algo me proucure!
+	//Atributos da classe
+	private ListaEncadeada listaCidadoes;
+	private ListaEncadeada listaAmbulancias;
+	private ListaEncadeada listaAtendentes;
+	private Pilha pilhaAmbulancias;
+	private Fila filaAtendentes;
+	private int idOcorrencias;
+	private ListaEncadeada listaOcorrencias;
+	private ListaEncadeada cidadoesOrdenado;
+	private ListaEncadeada atendenteOrdenado;
+	private ListaEncadeada ambulanciaOrdenado;
+	
+	/*criar uma lista pra ambulancias cadastradas, atendentes cadastrados,  cidadaos cadastrados
+	 * criar uma pilha para ambulancias...quando for atender0 uma nova ocorrencia a ambulancia sai da pilha pelo metodo remover topo
+	 * criar uma fila para atendentes, quando um cadastrar um ocorrente o atendente sai desta fila...quando a ocorrencia for atendida
+	 * o atendente sai da ocorrencia e volta para o final da fila*/
+	//Construtor da classe.
+	public SamuController()
+	{
+		
+		listaCidadoes=new ListaEncadeada();
+		listaAmbulancias= new ListaEncadeada();
+		listaAtendentes= new ListaEncadeada();
+		pilhaAmbulancias= new Pilha();
+		filaAtendentes= new Fila();
+		idOcorrencias=1;
+		listaOcorrencias= new ListaEncadeada();
+		cidadoesOrdenado= new ListaEncadeada();
+		atendenteOrdenado= new ListaEncadeada();
+		ambulanciaOrdenado= new ListaEncadeada();
+	}
+	
+	
+	//se tiver cadastro repetido throw new CadastroRepetidoException(); se nao lançar excessão cadastrar o atendente na lista de cidadaos
+	/**
+	 * Método que cadastrar o Cidadao.
+	 * @param cpf-String
+	 * @param nome-String
+	 * @param endereco-String 
+	 * @return o Objeto cadastrado
+	 * @throws CadastroRepetidoException
+	 */
+	public Cidadao cadastrarCidadao(String cpf, String nome, String endereco) throws CadastroRepetidoException 
+	{
+		
+		/* é criado um novo objeto do tipo cidadao com
+		 * os valores passados por parametro e o cidadao é inserido no final da lista,
+		 * por fim o objeto é retornado.
+		 * 
+		 */
+		
+		//variaveis da classe
+		Object aux;
+		
+		Cidadao c= new Cidadao(cpf,nome,endereco);
+		
+		//criando um iterador de listaCidadoes.
+		Iterador it= listaCidadoes.iterador();
+		
+		//condição que verifica se existe um proximo na lista.
+		while(it.temProximo())
+		{
+		   
+			//assim o objeto do tipo Object, recebe o proximo.
+			aux= it.proximo();
+		 
+		    //fazendo a comparação pra ver se existe cadastro repetido.
+		    //if(c.equals(aux))
+			if(cpf.equals(((Cidadao) aux).getCpf()))
+		    {
+			    throw new CadastroRepetidoException("");
+		    
+		    }
+			
+		}
+		
+		listaCidadoes.insereFinal(c);
+		cidadoesOrdenado.insereOrdenado(nome);
+		return c;
+	}
+	//ultimo caso vc passa tdos os cidadaos para um vetor do tamanho da lista de cidadaos e usa  nomevetor.sort, depois volta os elementos pra uma lista auxiliar e retorna o iterador dela0
+	public Iterador listarCidadaos() {
+		
+	
+		int x=listaCidadoes.tamanho();
+		int i,j;
+		
+		ListaEncadeada novo = new ListaEncadeada();
+        
+		for (i = 0; i < x; i++) {
+            for (j = 0; j < x; j++) {
+                if (((Cidadao) listaCidadoes.recupera(j)).getNome().equals(cidadoesOrdenado.recupera(i))) {
+                    novo.insereFinal(listaCidadoes.recupera(j)); // aux sera uma lista de cidadaos que com a mesma ordem da lista de nomes ordenados
+                }
+            }
+        }
+        
+        Iterador at=novo.iterador();
+        return at;
+		
+	
+	}
+	
+	//proucura o cidadao dentro da lista de cidadao pelo cpf passado por parametro...caso encontre retorna cidadao.getDivida caso nao ache o cidadao lança excessão
+	/**
+	 * Método que consulta a Divida do cidadão.
+	 * @param cpfCidadao- recebe um String
+	 * @return a divida do cidadao
+	 * @throws CidadaoNaoEncontradoException
+	 */
+	public double consultarDivida(String cpfCidadao) throws CidadaoNaoEncontradoException
+	{
+		
+		//criando um objeto do tipo cidadao que recebe  o BuscaCidadao.
+		Cidadao aux=buscaCidadao(cpfCidadao);
+		
+		//se aux for igual a null, o cadastro não foi encontrado.
+		if(aux == null)
+		{
+			throw new CidadaoNaoEncontradoException("");
+		}
+		
+		//retorna a divida do cidadão.
+		return aux.getDividaSamu();
+	}
+	//proucura o cidadao, setDivida(getDivida-valor) ou cria um metodo em cidadao pagarDivida(valor), caso nao encontre o cidadao retorna exception
+	/**
+	 * Método que pagar a divida do cidadão
+	 * @param cpfCidadao-String, para fazer a busca
+	 * @param valor- double, para abater o valor na divida
+	 * @throws CidadaoNaoEncontradoException
+	 */
+	public void pagarDivida(String cpfCidadao, double valor) throws CidadaoNaoEncontradoException 
+	{
+		//criando um objeto do tipo cidadao que recebe  o BuscaCidadao.
+		Cidadao aux=buscaCidadao(cpfCidadao);
+		
+		//se aux for igual a null, o cadastro não foi encontrado.
+		if(aux == null){
+			throw new CidadaoNaoEncontradoException("");
+		}
+		
+		/*
+		 * sendo assim ele abate a divida que 
+		 * o cidadao tem e assim alterando a mesma.
+		 */
+		buscaCidadao(cpfCidadao).setDividaSamu(aux.getDividaSamu()-valor);
+	}
+	//caso a lista de atendente tenha 5 pessoas labnca capacidade maxima, caso ja tenha o atendente no sistema lança cadastro repetido, se nao lancar nenhuma das excessoes cadastra o atendente na lista e na fila de atendentes.0
+	/**
+	 * 
+	 * @param cpf-String
+	 * @param nome-String
+	 * @param endereco-String
+	 * @param salario-Double
+	 * @return o objeto do tipo atendente
+	 * @throws CadastroRepetidoException
+	 * @throws CapacidadeMaximaException
+	 */
+	public Atendente cadastrarAtendente(String cpf, String nome, String endereco, double salario) 
+            throws CadastroRepetidoException, CapacidadeMaximaException
+            {
+		
+		//criando um objeto do tipo object.
+		Object aux;
+		
+		//criando um objeto do tipo atendente.
+		Atendente lt= new Atendente(cpf,nome,endereco,salario);
+		
+		//criando um iterador de listaAtendentes.
+		Iterador it= listaAtendentes.iterador();
+		
+		//Como só são 5 atendentes, essa condição é feita que a capacidade maxima já foi atingida se passar de 5.
+		if(listaAtendentes.tamanho() == 5)
+		{
+			throw new CapacidadeMaximaException("");
+		}
+		
+		//condição que verifica se existe um proximo na lista.
+		while(it.temProximo())
+		{
+			//assim o objeto do tipo Object, recebe o proximo.
+		    aux= it.proximo();
+		   
+		    //caso exista o atendente já cadastrado.
+		    if(lt.equals(aux))
+		    {
+			    throw new CadastroRepetidoException(" ");
+		    
+		    }
+			
+		}
+		
+		//inserindo da lista e na fila
+		atendenteOrdenado.insereOrdenado(nome);
+		listaAtendentes.insereFinal(lt);
+		filaAtendentes.insereFinal(lt);
+		
+		return at;
+	}
+	//mesmsa  coisa que cidadaos
+	 public Iterador listarAtendentes() 
+	 {
+		 int x=listaAtendentes.tamanho();
+			int i,j;
+			
+			ListaEncadeada a = new ListaEncadeada();
+	        
+			for (i = 0; i < x; i++) {
+	            for (j = 0; j < x; j++) {
+	                if (((Cidadao) listaAtendentes.recupera(j)).getNome().equals(atendenteOrdenado.recupera(i))) {
+	                    a.insereFinal(listaAtendentes.recupera(j)); // aux sera uma lista de cidadaos que com a mesma ordem da lista de nomes ordenados
+	                }
+	            }
+	        }
+	        
+	        
+	        return a.iterador();
+		 
+	 }
+	 //passa eleentos da fila de atendentes para uma lista auxiliar e retorna o seu iterador, nao lembro se vai inserindo na lista pelo inicio ou pelo final...acho q é final, mas faz o teste0
+	 
+	 /**
+	  * Método que lista os Atendentes disponiveis para atendimento.
+	  * @return o iterador.
+	  */
+	 
+	 public Iterador listarAtendentesDisponiveis() 
+	 {
+		 
+		 //criando um objeto do tipo fila, que recebe a fila de atendentes.
+		 Fila f = filaAtendentes;
+		 
+		 return f.iterador();
+	 }
+	//se a lista de abulancia tiver 10 zambulancias lança capacidade maxima, se ja houver ambulancia com tal placa lanca cadastro repetido, se nao cair em exceção você cadastra na pilha de ambulancias e na lista de ambulancias
+	/**
+	 * Método que cadastra a ambulancia.
+	 * @param placa-String
+	 * @return um objeto do tipo ambulancia
+	 * @throws CadastroRepetidoException
+	 * @throws CapacidadeMaximaException
+	 */
+	 public Ambulancia cadastrarAmbulancia(String placa) throws CadastroRepetidoException, CapacidadeMaximaException
+	 {
+		 
+		 //criando um objeto do tipo object
+		 Object aux;
+
+		 //Criando um objeto do tipo ambulancia que recebe placa.
+		 Ambulancia a= new Ambulancia(placa);
+
+		 //criando um iterador de listaAmbulancias.
+		 Iterador it= listaAmbulancias.iterador();
+
+		 /*
+		  * Como a garagem só tem capacidade para 10 ambulancias, o tamanho da listaAmbulancia
+		  * tem que ser 10. Pra que não tenha mais ambulancia do que a capacidade maxima.
+		  */
+		 if(listaAmbulancias.tamanho()== 10)
+		 {
+			 throw new CapacidadeMaximaException("");
+		 }
+		 
+		 //verifica se tem um proximo na lista.
+		 while(it.temProximo())
+		 {
+			//assim o objeto do tipo Object, recebe o proximo.
+			 aux= it.proximo();
+			 
+			//caso exista o atendente já cadastrado.
+			 if(a.equals(aux))
+			 {
+				 throw new CadastroRepetidoException(" ");
+
+			 }
+
+		 }
+		 
+		 //inserindo tanto na pilha e na lista.
+		 listaAmbulancias.insereFinal(a);
+		 pilhaAmbulancias.insereTopo(a);
+
+		 return a;
+	 }
+	 //passa as ambulancias da pilha pra uma lista auxiliar e retorna o iterador da lista auxiliar
+	/**
+	 * Método que lista as ambulancias disponiveis.
+	 * @return o iterador.
+	 */
+	 
+	 public Iterador listarAmbulanciasDisponiveis() 
+	 {
+		 //Criando um iterador que recebe a pilhaAmbulancias.
+		 Iterador it = pilhaAmbulancias.iterador();
+		 return it;
+		 
+	 }
+	
+	 //mesma coisa que listarAtendentes
+	 public Iterador listarAmbulancias() 
+	 {
+		 
+	 }
+	 
+	 //cria id automatico, que será atribuido ao cidadao cujo cpf é passado, este cidadao tambem recebera +1 qtdOcorrencias, remove um atendente da fila e insere na ocorrencia.
+	 //se nao achar cidadao lança exceção  e se a fila de atendentes estiver vazia == 0 lança atendenteINdisponivel o status é alterado pra Aberta
+	 /**
+	  * Método que cadastrar a Ocorrencia.
+	  * @param cpf-String
+	  * @param qtdAmbulancias-inteiro
+	  * @return o id da ocorrencia.
+	  * @throws CidadaoNaoEncontradoException
+	  * @throws AtendenteIndisponivelException
+	  */
+	 public int cadastrarOcorrencia(String cpf, int qtdAmbulancias) 
+	            throws CidadaoNaoEncontradoException, AtendenteIndisponivelException
+	            {
+		 
+		 /*
+		  * Criando um objeto do tipo Ocorrencia que recebe IdOcorrencias e QtdAmbulancias.
+		  * Criando um objeto do tipo cidadao que recebe cidadao que fez a ocorrencia.
+		  */
+		 Ocorrencia o = new Ocorrencia(idOcorrencias,qtdAmbulancias);
+		 Cidadao aux=buscaCidadao(cpf);
+		 
+		 //caso o cadastro não exista.
+		 if(aux==null)
+		 {
+			 throw new CidadaoNaoEncontradoException("");
+		 }
+		 
+		 //Caso não tenha nenhum atendente disponivel para atendimento.
+		 if(filaAtendentes.tamanho() == 0){
+			 throw new AtendenteIndisponivelException("");
+		 }
+		 
+		 o.setCidadao(aux);
+		 
+		 o.setAtendente(filaAtendentes.removeInicio());
+		 
+		 idOcorrencias++;
+		 listaOcorrencias.insereFinal(o);
+		 buscaCidadao(cpf).setQtdOcorrencias(aux.getNumOcorrenciasSolicitadas()+1);
+		 return o.getId();
+		 
+	 }
+	 
+	 //o atendente sai da ocorrencia e retorna para o final da fila de atendentes, a quantidade de atendimento desse stendente +1,o status
+	 //da ocorrencia é alterado pra em atendimento
+	 //se a pilha de ambulancia esta vazia labça QuantidadeDiferente..
+	 //se o tamanho da pilha<tamanho ocorrencia.getQtdAmbulancias lança insifucienteException e se nao encontrar a ocorrencia naoEncontradaException
+	 //caso nao entre nas exceções vc passa a ambulancia pro um for de 0 até cidadao.getQtdAmbulancias(cidadao de ocrrencia) dentro do for chama metodo de Inserção
+	/**
+	 * Método que atende as Ocorrencias.
+	 * @param idOcorrencia-inteiro
+	 * @throws OcorrenciaNaoEncontradaException
+	 * @throws AmbulanciasInsifucienteException
+	 * @throws QuantidadeDiferenteAmbulanciasException
+	 */
+	 public void atenderOcorrencia(int idOcorrencia) 
+	            throws OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException,
+	            QuantidadeDiferenteAmbulanciasException 
+	            {
+		 
+		 //declaração de variaveis.
+		 int i;
+		 Atendente aux;
+		 Ocorrencia o = consultarOcorrencia(idOcorrencia);
+		 
+		 /*
+		  * se o tamanho da pilha for menor que a quantidade de ambulancias, 
+		  * irá apresenta ambulancias insuficientes.
+		  */
+		 if(pilhaAmbulancias.tamanho()<o.getQtdAmbulancias())
+		 {
+			 throw new AmbulanciasInsifucienteException("");
+		 
+		 }
+		 
+		 /*
+		  * ListaOcorrencia recupera e busca a onde está na lista a ocorrencia,  remove de PilhaAmbulancias pois agora 
+		  * a ambulancia está em atendimento e não se encontra mais disponivel. 
+		  */
+		 for(i=0;i<o.getQtdAmbulancias();i++)
+		 {
+			 ((Ocorrencia)listaOcorrencias.recupera(idOcorrencia-1)).insereAmbulancia((Ambulancia)pilhaAmbulancias.removeTopo());
+		 }
+		
+		 //recebe o atendente que está gerando a ocorrencia.
+		 aux = o.getAtendente();
+		
+		 //modifica a quantidades de atendimentos.
+		 aux.setQtdAtendimentos(aux.getQtdAtendimentos()+1);
+		 
+		 //insere na fila
+		 filaAtendentes.insereFinal(aux);
+		 
+		 //recupera a posição a onde o id da ocorrencia se encontra e modifica o status dela.
+		 ((Ocorrencia)listaOcorrencias.recupera(idOcorrencia-1)).setStatus("Em Atendimento");
+				 
+	 }
+	 
+	 //Muda Status pra Finalizada, proucura o cidadao da lista que é igual ao cidadao de ocorrencia , muda a divida do cidadao da fila pra +10,faz um for de 0 ate ocorrencias.getQtdAmbulancias, insere na pilha de ambulancias o que for removido de dentro da lista de ambulancas em ocorrencia
+	 /**
+	  * Método que finaliza a Ocorrencia.
+	  * @param idOcorrencia-inteiro 
+	  * @throws OcorrenciaNaoEncontradaException
+	  */
+	 public void finalizarOcorrencia(int idOcorrencia) throws OcorrenciaNaoEncontradaException 
+	 {
+		 
+		 //int i;
+		 //int posicao=0;
+		 //Criando um objeto do tipo cidadao.
+		 Cidadao c;
+		// Cidadao aux=null;
+		 //boolean achou = false;
+		// Iterador it = listaCidadoes.iterador();
+		//criando um objeto do tipo cidadao que recebe IdOcorrencia.
+		 Ocorrencia o = consultarOcorrencia(idOcorrencia);
+		 
+		 c = o.getCidadao();
+		 
+	    /*
+	     * Buscando o cidadao e acrescentando uma divida de 10 reais.
+	     */
+		 buscaCidadao(c.getCpf()).setDividaSamu(c.getDividaSamu()+10);
+		 
+		 /*
+		  * Inserindo topo na Pilha já que a ocorrencia foi finalizada a ambulancia agora está disponivel,
+		  * e remove a Ambulancia da lista.
+		  */
+		 for(int i=0;i<o.getQtdAmbulancias();i++)
+		 {
+			 pilhaAmbulancias.insereTopo(((Ocorrencia)listaOcorrencias.recupera(idOcorrencia-1)).removeAmbulancia());
+		 }
+		 
+		 //alterando o Status da Ocorrencia.
+		 ((Ocorrencia)listaOcorrencias.recupera(idOcorrencia-1)).setStatus("Finalizada");
+		
+	 }
+	 //cria uma lista auxiliar e faz um for do tamanho da lista de ocorrencias, se ocorrencia.recupera(i).estaAtiva() vc adicina a ocorrencia na lista auxiliar, depois do for retorna o iterador da auxiliar
+	 /**
+	  * Método que listar as Ocorrencias que estão Ativas.
+	  * @return o iterador.
+	  */
+	 public Iterador listarOcorrenciasAtivas() 
+	 {
+		 /*
+		  * criando um objeto do tipo Ocorrencia.
+		  * Criando um objeto do tipo ListaEncadeada.
+		  * Criando um iterador de listaOcorrencias.
+		  */
+		 Ocorrencia aux;
+		 ListaEncadeada ativas= new ListaEncadeada();
+		 Iterador it= listaOcorrencias.iterador();
+		 
+		//verifica se tem um proximo na lista.
+		 while(it.temProximo())
+		 {
+			
+			//assim o objeto do tipo Ocorrencia, recebe o proximo.
+			 aux=(Ocorrencia) it.proximo();
+			 
+			 //se a Ocorrencia estiver ativa ele insere em Ativas.
+			 if(aux.estaAtiva())
+			 {
+				 ativas.insereFinal(aux);
+			 }
+			 
+		 }
+		 
+		 //retornando o iterador.
+		 return ativas.iterador();
+	 }
+	 
+	 
+	 //retorna uma ocorrencia... vc faz um for do tamanho de ocorrencias e proucura idOcorrencia == ocorrencia.recupera(i).getId
+	/**
+	 * Método que consulta Ocorrencia.
+	 * @param idOcorrencia-inteiro
+	 * @return retorna o objeto do tipo Ocorrencia.
+	 * @throws OcorrenciaNaoEncontradaException
+	 */
+	 public Ocorrencia consultarOcorrencia(int idOcorrencia) throws OcorrenciaNaoEncontradaException{
+		 
+		 /*
+		  * Criando um objeto do tipo Ocorrencia.
+		  * Criando um iterador de listaOcorrencias.
+		  */
+		 Ocorrencia aux;
+		 Iterador it=listaOcorrencias.iterador();
+		
+		//verifica se tem um proximo na lista.
+		 while(it.temProximo())
+		 {
+			//assim o objeto do tipo Ocorrencia, recebe o proximo.
+			 aux=(Ocorrencia) it.proximo();
+			 
+			 //verificando se o id é igual ao idOcorencia, pra encontrar a ocorrencia.
+			 if(aux.getId() ==idOcorrencia)
+			 {
+				 return aux;
+			 }
+		 }
+		 
+		 //caso não encontre a ocorrencia.
+		 throw new OcorrenciaNaoEncontradaException("");
+	 }
+	 
+	 /**
+	  * Método adiconado no controller para Buscar Cidadao.
+	  * @param cpf-String
+	  * @return verdade caso ache o cidadao, se não achar false.
+	  */
+	 private Cidadao buscaCidadao(String cpf)
+	 {
+		
+		 /*
+		  * Criando um objeto do tipo cidadao.
+		  * Criando um boolean para fazer a verificação.
+		  * Criando um iterador que recebe listaCidadoes.
+		  */
+		
+		 Cidadao aux=null;
+		 boolean achou=false;
+		 Iterador it=listaCidadoes.iterador();
+		 
+		//verifica se tem um proximo na lista e também se já encontrou o cidadao.
+		 while(it.temProximo() && !achou)
+		 {
+			//assim o objeto do tipo Cidadao recebe o proximo.
+			 aux=(Cidadao) it.proximo();
+			 
+			 //fazendo a busca do cidadão
+			 if(cpf.equals(aux.getCpf())){
+				 achou=true;
+			 }
+			 
+		 }
+		 
+		 return aux;
+	 }
+	 
+	
+}

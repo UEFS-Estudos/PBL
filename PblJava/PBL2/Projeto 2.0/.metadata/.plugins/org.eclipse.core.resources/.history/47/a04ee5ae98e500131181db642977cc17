@@ -1,0 +1,375 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Washington Pagotto Batista>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+
+package br.uefs.ecomp.samu.facede;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+import br.uefs.ecomp.samu.model.Ambulancia;
+import br.uefs.ecomp.samu.model.Atendente;
+import br.uefs.ecomp.samu.model.Cidadao;
+import br.uefs.ecomp.samu.model.Ocorrencia;
+import br.uefs.ecomp.samu.model.Pessoa;
+import br.uefs.ecomp.samu.model.exception.AmbulanciasInsifucienteException;
+import br.uefs.ecomp.samu.model.exception.AtendenteIndisponivelException;
+import br.uefs.ecomp.samu.model.exception.CadastroRepetidoException;
+import br.uefs.ecomp.samu.model.exception.CapacidadeMaximaException;
+import br.uefs.ecomp.samu.model.exception.CidadaoNaoEncontradoException;
+import br.uefs.ecomp.samu.model.exception.OcorrenciaNaoEncontradaException;
+import br.uefs.ecomp.samu.model.exception.QuantidadeDiferenteAmbulanciasException;
+import br.uefs.ecomp.samu.util.Console;
+import br.uefs.ecomp.samu.util.Iterador;
+
+/**
+*
+* @author Washington Pagotto Batista
+*/
+public class SamuInterface {
+
+	static SamuFacade facade;
+	static Console console;  
+
+	public static void main(String[] args) throws IOException{
+
+		//criando um objeto.
+		facade=new SamuFacade();
+		console= new Console();
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		//variavel
+		int digitado;
+		boolean repeticao=false;
+
+		//estrutura de repetição, feita atraves de um boolean
+		while(!repeticao){
+
+			//opções que o menu oferece
+			System.out.println("1-Cadastrar cidadao");
+			System.out.println("2-Listar cidadoes");
+			System.out.println("3-Consultar Divida");
+			System.out.println("4-Pagar divida");
+			System.out.println("5-Cadastrar Atendente");
+			System.out.println("6-Listar Atendentes");
+			System.out.println("7-Listar Atendentes disponiveis");
+			System.out.println("8-Cadastrar Ambulancia");
+			System.out.println("9-Listar ambulancias disponiveis");
+			System.out.println("10-Listar ambulancias");
+			System.out.println("11-Cadastrar ocorrencia");
+			System.out.println("12-Atender Ocorrencia");
+			System.out.println("13-Finalizar Ocorrencia");
+			System.out.println("14-Listar ocorrencia");
+			System.out.println("15-Consultar Ocorrencia");
+			System.out.println("16-Sair");
+
+			System.out.println("Digita a opcao que deseja");
+			digitado=console.readInt();
+
+			switch(digitado){
+
+			case 1:
+            //Cadastrar cidadão
+				try{
+					//sendo executado pra pegar cpf, nome e endereço
+					System.out.println("Digite seu cpf:");
+					String cpf=console.readString();
+
+					System.out.println("Digite o seu nome:");
+					String nome = console.readString();
+					//String cpf=console.readString();
+
+					System.out.println("Digite seu endereço:");
+					String endereco=console.readString();
+
+					facade.cadastrarCidadao(cpf,nome,endereco);
+
+				}
+				catch(CadastroRepetidoException o){
+					System.out.println("Dados já cadastrados!");
+				}
+
+				break;
+
+
+			case 2:
+				Iterador at = facade.listarCidadaos();
+				System.out.println("Lista de Cidadões!\n");
+				while (at.temProximo()) 
+				{
+		         Cidadao temp =  (Cidadao) at.proximo();
+					System.out.println("Cpf:"+temp.getCpf());
+					System.out.println("Nome:"+temp.getNome());
+					System.out.println("Endereço:"+temp.getEndereco());
+					System.out.println("\n");
+                   				
+				}
+				System.out.println("Pressione qualquer tecla para continuar!");  
+		        in.readLine(); 
+				break;
+
+			case 3:
+
+				try
+				{
+
+					System.out.println("Digite o cpf:");
+					String cpfCidadao=console.readString();
+
+					System.out.println(facade.consultarDivida(cpfCidadao));
+				}
+				catch( CidadaoNaoEncontradoException o)
+				{
+
+					System.out.println("Cidadão nao encontrado!");
+				}
+				break;
+
+			case 4:
+
+				try
+				{
+					System.out.println("Digite seu cpf:");
+					String cpfCidadao= console.readString();
+
+					System.out.println("Digite o valor a ser pago:");
+					double valor = Console.readDouble();
+
+					facade.pagarDivida(cpfCidadao, valor);
+				}
+				catch(CidadaoNaoEncontradoException o)
+				{
+					System.out.println("Dados não encotrado!");
+				}
+
+				break;
+
+			case 5:
+				try
+				{
+
+					System.out.println("Digite seu cpf:");
+					String cpf=console.readString();
+
+					System.out.println("Digite o seu nome:");
+					String nome = console.readString();
+					//String cpf=console.readString();
+
+					System.out.println("Digite seu endereço:");
+					String endereco=console.readString();
+
+					System.out.println("Digite o valor do salário:");
+					double salario=console.readDouble();
+
+					facade.cadastrarAtendente(cpf, nome, endereco, salario);
+					
+				}
+				catch(CadastroRepetidoException e)
+				{
+					System.out.println("Dados já cadastrados!");
+				}
+				catch(CapacidadeMaximaException m)
+				{
+					System.out.println("já está com o maximo possivel de atendentes!");
+				}
+				break;
+
+			case 6:
+				
+				Iterador ut = facade.listarAtendentes();
+				System.out.println("Lista de Atendentes!\n");
+				while (ut.temProximo())
+				{
+					Atendente temp = (Atendente)ut.proximo();
+					System.out.println("Cpf:"+temp.getCpf());
+					System.out.println("Nome:"+temp.getNome());
+					System.out.println("Endereço:"+temp.getEndereco());
+					System.out.println("Salário:"+((Atendente) temp).getSalario());
+					System.out.println("\n");
+				}
+				
+				System.out.println("Pressione qualquer tecla para continuar!");  
+		        in.readLine(); 
+				break;
+
+			case 7:
+
+				Iterador it = facade.listarAtendentesDisponiveis();
+				System.out.println("Lista de Atendentes Disponiveis!\n");
+				while (it.temProximo()) {
+					Atendente temp = (Atendente) it.proximo();
+					System.out.println("Cpf:"+temp.getCpf());
+					System.out.println("Nome:"+temp.getNome());
+					System.out.println("Endereço:"+temp.getEndereco());
+					System.out.println("Salário:"+((Atendente) temp).getSalario());
+					System.out.println("\n");
+				}
+                
+				System.out.println("Pressione qualquer tecla para continuar!");  
+		        in.readLine(); 
+				break;
+			case 8:
+
+				try
+				{
+					System.out.println("Digite o numero da placa da ambulância:");
+					String placa=console.readString();
+
+					facade.cadastrarAmbulancia(placa);
+				}
+				catch(CadastroRepetidoException c){
+					System.out.println("Ambulância ja cadastrada!");
+
+				}
+				catch( CapacidadeMaximaException c){
+					System.out.println("Capacidade de ambulâncias maxima antingida!");
+				}
+
+				break;
+			case 9:
+
+				Iterador rt = facade.listarAmbulanciasDisponiveis();
+				System.out.println("Lista de Ambulâncias Disponiveis!\n");
+				while (rt.temProximo()) {
+					
+					Ambulancia temp =  (Ambulancia) rt.proximo();
+					System.out.println("Placa:"+temp.getPlaca());
+					System.out.println("\n");
+
+				}
+				System.out.println("Pressione qualquer tecla para continuar!");  
+		        in.readLine(); 
+				break;
+
+			case 10:
+				Iterador mt = facade.listarAmbulancias();
+				System.out.println("Lista de ambulâncias!");
+				while (mt.temProximo()) 
+				{
+					Ambulancia temp =  (Ambulancia) mt.proximo();
+					System.out.println("Placa:"+temp.getPlaca());
+					System.out.println("\n");
+
+				}
+				System.out.println("Pressione qualquer tecla para continuar!");  
+		        in.readLine();
+
+				break;
+
+			case 11:
+
+				try{
+					System.out.println("Digite o cpf:");
+					String cpf=console.readString();
+
+					System.out.println("Digite o numero de ambulâncias:");
+					int qtdAmbulancias=console.readInt();
+					facade.cadastrarOcorrencia(cpf, qtdAmbulancias);
+				}
+				catch(CidadaoNaoEncontradoException m){
+					System.out.println("Cidadão não encontrado no cadastro!");
+				}
+
+				catch(AtendenteIndisponivelException m){
+					System.out.println("Todos atendentes ocupados!");
+				}
+				break;
+
+			case 12:
+				try{
+                    System.out.println("Digite o numero da Ocorrência:");
+					int idOcorrencia=console.readInt();
+					facade.atenderOcorrencia(idOcorrencia);
+				}
+				catch(AmbulanciasInsifucienteException o){
+					System.out.println("Ambulâncias insuficientes para atendimento!");
+				}
+				catch(OcorrenciaNaoEncontradaException a){
+					System.out.println("Ocorrencia não foi encontrada!");
+				}
+				catch(QuantidadeDiferenteAmbulanciasException q){
+					System.out.println("");
+				}
+				break;
+			case 13:
+
+				try
+				{
+					 System.out.println("Digite o numero da Ocorrência:");
+					int idOcorrencia=console.readInt();
+					facade. finalizarOcorrencia(idOcorrencia);
+				}
+
+				catch(OcorrenciaNaoEncontradaException a)
+				{
+					System.out.println("Ocorrência não foi encontrada!");
+				}
+				break;
+
+			case 14:
+
+				Iterador ot = facade.listarOcorrenciasAtivas();
+				System.out.println("Lista de Ocorrencias Ativas!\n");
+				while (ot.temProximo()) 
+				{
+					Ocorrencia temp =  (Ocorrencia) ot.proximo();
+					System.out.println("Id:"+temp.getId());
+					System.out.println("Status:"+temp.getStatus());
+					System.out.println("Quantidadade de ambulancias:"+temp.getQtdAmbulancias());
+					System.out.println("\n");
+				}
+				System.out.println("Pressione qualquer tecla para continuar!");  
+		        in.readLine(); 
+				break;
+
+			case 15:
+
+				try
+				{
+					Object aux = null;
+					System.out.println("Digite a ocorrência que deseja recuperar:");
+					int idOcorrencia=console.readInt();
+
+					System.out.println("Id:"+((Ocorrencia) aux).getId());
+					System.out.println("Status:"+((Ocorrencia) aux).getStatus());
+					System.out.println("Status:"+((Ocorrencia) aux).getQtdAmbulancias());
+					facade.consultarOcorrencia(idOcorrencia);
+				}
+
+				catch(OcorrenciaNaoEncontradaException a)
+				{
+					System.out.println("Ocorrencia não foi encontrada!");
+				}
+
+				break;
+
+			case 16:
+				repeticao=true;
+				break;
+			default:
+
+				System.out.println("Opcao só é de 1 à 16");
+				System.out.println("Pressione qualquer tecla para continuar");  
+		        in.readLine(); 
+				break;
+			}}
+	}
+
+}

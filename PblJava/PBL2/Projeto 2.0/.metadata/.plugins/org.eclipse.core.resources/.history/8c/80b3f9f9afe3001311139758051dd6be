@@ -1,0 +1,105 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Componente Curricular: Módulo Integrado de Programação Autor: <Yago Pimenta
+ * Cirino>
+ * Data: <23/05/2014>
+ *
+ * Declaro que este código foi elaborado por mim de forma individual e não
+ * contém nenhum trecho de código de outro colega ou de outro autor, tais como
+ * provindos de livros e apostilas, e páginas ou documentos eletrônicos da
+ * Internet. Qualquer trecho de código de outra autoria que uma citação para o
+ * não a minha está destacado com autor e a fonte do código, e estou ciente que
+ * estes trechos não serão considerados para fins de avaliação. Alguns trechos
+ * do código podem coincidir com de outros colegas pois estes foram discutidos
+ * em sessões tutorias.
+ */
+package br.uefs.ecomp.samu.util;
+
+/**
+*
+* @author Washington Pagotto Batista
+*/
+public class Pilha implements IPilha{
+
+	//atributos da classe
+	private ListaEncadeada pilha;
+
+	//construtor da classe
+	public Pilha()
+	{
+		pilha= new ListaEncadeada();
+	}
+
+	@Override
+	/**
+	 * Método mostra o Tamanho da pilha, utilizando o método de lista encadeada.
+	 * @return o tamanho da pilha.
+	 */
+	public int tamanho()
+	{
+		return pilha.tamanho();
+	}
+
+	@Override
+	/**
+	 * Faz a verificação se a pilha está vazia, utilizando método de lista encadeada
+	 * @return verdadeiro, se a pilha estiver vazia. Falso, case contrário.
+	 */
+	public boolean estaVazia()
+	{
+
+		return pilha.estaVazia();
+	}
+
+	@Override
+	/**
+	 * Remove o objeto do topo da pilha, utilizando o método de lista encadeada sendo que ultimo a entrar na pilha é o
+	 * primeiro a sair.
+	 * @return o objeto removido que estava no topo da pilha.
+	 */
+	public Object removeTopo()
+	{
+		return pilha.removeInicio();
+
+	}
+
+	@Override
+	/**
+	 * Insere no topo da pilha, utilizando o método de lista encadeada.
+	 * @param obj o objeto a ser inserido no topo da pilha
+	 */
+	public void insereTopo(Object obj)
+	{
+		pilha.insereInicio(obj);
+
+	}
+
+	@Override
+	/**
+	 * Faz uma busca e recupera o objeto que está no topo da pilha, sem remover ele. 
+	 * Utilizando método da lista encadeada.
+	 * @return o objeto no topo da pilha.
+	 */
+	public Object recuperaTopo()
+	{
+
+		return pilha.recupera(0);
+
+	}
+	/**
+	 * Esse método é responsavel pela criação de um iterador da Pilha. 
+	 * @return Nele é criado um novo objeto iterador e o mesmo é retornado.
+	 */
+	public Iterador iterador() 
+	{
+		// TODO Auto-generated method stub
+
+		Iterador iterador = new MeuIterador (pilha.getAtual());
+		return iterador;
+	}
+
+}

@@ -1,0 +1,45 @@
+package br.uefs.ecomp.samu.model;
+
+public class Ambulancia implements Comparable<Ambulancia>{
+
+	
+	private String placa;
+	
+	public Ambulancia(String placa){
+		this.placa=placa;
+	}
+	
+	public String getPlaca(){
+		return placa;
+	}
+	
+	public void setPlaca(String placa){
+		this.placa=placa;
+	}
+
+
+	public boolean equals(Object obj) 
+	  { 
+		
+		if(obj instanceof Ambulancia)
+		{
+			
+			Ambulancia a =(Ambulancia) obj;
+			
+			if( a.getPlaca().equals(getPlaca()))
+			{ 
+				return true; 
+			} 
+		}
+		
+		return false;
+	  }
+
+	@Override
+	public int compareTo(Ambulancia a) {
+		return placa.compareTo(a.getPlaca());
+	}
+
+}
+
+

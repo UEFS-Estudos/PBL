@@ -1,0 +1,382 @@
+package br.uefs.ecomp.samu.facade;
+
+import br.uefs.ecomp.samu.facede.SamuFacade;
+import br.uefs.ecomp.samu.model.Ambulancia;
+import br.uefs.ecomp.samu.model.Atendente;
+import br.uefs.ecomp.samu.model.Cidadao;
+import br.uefs.ecomp.samu.model.Ocorrencia;
+import br.uefs.ecomp.samu.model.exception.AmbulanciasInsifucienteException;
+import br.uefs.ecomp.samu.model.exception.AtendenteIndisponivelException;
+import br.uefs.ecomp.samu.model.exception.CadastroRepetidoException;
+import br.uefs.ecomp.samu.model.exception.CapacidadeMaximaException;
+import br.uefs.ecomp.samu.model.exception.CidadaoNaoEncontradoException;
+import br.uefs.ecomp.samu.model.exception.OcorrenciaNaoEncontradaException;
+import br.uefs.ecomp.samu.model.exception.QuantidadeDiferenteAmbulanciasException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+
+import org.junit.Test;
+
+import br.uefs.ecomp.samu.util.Iterador;
+import org.junit.Before;
+
+public class TestesAceitacao {
+
+    private SamuFacade facade;
+    private Cidadao maria, joao, pedro, marcos;
+    private Atendente suzana, tarcizio, priscila;
+    private Ambulancia a0101, a0102, a0103, a0104, a0105;
+
+    @Before
+    public void setUp() throws Exception {
+        facade = new SamuFacade();
+
+        maria = facade.cadastrarCidadao("137.588.183-51", "Maria dos Santos", "Rua Drummond, 23, Centro");
+        joao = facade.cadastrarCidadao("987.654.321-01", "Joao dos Santos", "Rua Pessoa, 12, Centro");
+        pedro = facade.cadastrarCidadao("456.789.123-01", "Pedro da Silva", "Rua Andrade, 45, Cidade Nova");
+        marcos = facade.cadastrarCidadao("123.123.123-01", "Marcos Oliveira", "Rua Quintana, 45, Santa Monica");
+
+        suzana = facade.cadastrarAtendente("111.111.111-11", "Suzana Atendente da Silva", "Rua da ladeira, 23", 724);
+        tarcizio = facade.cadastrarAtendente("222.222.222-22", "Tarcizio Atendente Lima", "Rua Pedro Suzart, 3456", 724);
+        priscila = facade.cadastrarAtendente("333.333.333-333", "Priscila Atendente da Costa", "Rua E, 27", 724);
+
+        a0105 = facade.cadastrarAmbulancia("SCA-0105");
+        a0102 = facade.cadastrarAmbulancia("SCA-0102");
+        a0101 = facade.cadastrarAmbulancia("SCA-0101");
+        a0104 = facade.cadastrarAmbulancia("SCA-0104");
+        a0103 = facade.cadastrarAmbulancia("SCA-0103");
+    }
+
+    @Test
+    public void testCadastrarCidadao() throws CadastroRepetidoException {
+        SamuFacade temp = new SamuFacade(); //Cria facade temporaria para nao modificar o atributo facade
+        Cidadao cidadao = temp.cadastrarCidadao("000.000.000-00", "Fulano de tal", "Rua da hora, 23, Centro");
+        assertEquals("000.000.000-00", cidadao.getCpf());
+        assertEquals("Fulano de tal", cidadao.getNome());
+        assertEquals("Rua da hora, 23, Centro", cidadao.getEndereco());
+    }
+
+    @Test(expected = CadastroRepetidoException.class)
+    public void testCadastrarCidadaoJaCadastrado() throws CadastroRepetidoException {
+        //deve lançar exceção
+    	//facade.cadastrarCidadao("123.123.123-01", "Marcos Oliveira", "Rua Quintana, 45, Santa Monica");
+       facade.cadastrarCidadao("137.588.183-51", "AAA", "BBB");
+    }
+
+    @Test
+    public void testListarCidadaos()throws CadastroRepetidoException {
+        Iterador cidadaos = facade.listarCidadaos();
+        
+        assertTrue(cidadaos.temProximo());        
+        assertEquals(joao, cidadaos.proximo());
+
+        assertTrue(cidadaos.temProximo());
+        assertEquals(marcos, cidadaos.proximo());
+
+        assertTrue(cidadaos.temProximo());
+        assertEquals(maria, cidadaos.proximo());
+
+        assertTrue(cidadaos.temProximo());
+        assertEquals(pedro, cidadaos.proximo());
+
+        assertFalse(cidadaos.temProximo());
+    }
+
+    @Test
+    public void testConsultarPagarDivida() throws CadastroRepetidoException,
+            CidadaoNaoEncontradoException, OcorrenciaNaoEncontradaException, 
+            AtendenteIndisponivelException {
+
+        assertTrue(facade.consultarDivida("137.588.183-51") == 0);
+        assertTrue(maria.getNumOcorrenciasSolicitadas() == 0);
+
+        int idOcorrencia = facade.cadastrarOcorrencia("137.588.183-51", 1);
+        assertTrue(maria.getNumOcorrenciasSolicitadas() == 1);
+
+        facade.finalizarOcorrencia(idOcorrencia); //gera divida
+        assertTrue(facade.consultarDivida("137.588.183-51") == 10);
+        assertTrue(maria.getNumOcorrenciasSolicitadas() == 1);
+
+        idOcorrencia = facade.cadastrarOcorrencia("137.588.183-51", 2);
+        assertTrue(maria.getNumOcorrenciasSolicitadas() == 2);
+
+        facade.finalizarOcorrencia(idOcorrencia); //gera divida        
+        assertTrue(facade.consultarDivida("137.588.183-51") == 20);
+        assertTrue(maria.getNumOcorrenciasSolicitadas() == 2);
+
+        facade.pagarDivida("137.588.183-51", 7);
+        assertTrue(facade.consultarDivida("137.588.183-51") == 13);
+    }
+
+    @Test
+    public void testCadastrarAtendente() 
+            throws CadastroRepetidoException, CapacidadeMaximaException {
+        SamuFacade temp = new SamuFacade(); //Cria facade temporaria para nao modificar o atributo facade
+        Atendente atendente = temp.cadastrarAtendente("777.777.777-77", 
+                "Fulano Atendente de tal", "Rua da boa hora, 13, Centro", 724);
+        assertEquals("777.777.777-77", atendente.getCpf());
+        assertEquals("Fulano Atendente de tal", atendente.getNome());
+        assertEquals("Rua da boa hora, 13, Centro", atendente.getEndereco());
+        assertTrue(atendente.getSalario() == 724);
+    }
+
+    @Test(expected = CadastroRepetidoException.class)
+    public void testCadastrarAtendeteJaCadastrado() 
+            throws CadastroRepetidoException, CapacidadeMaximaException {
+        //deve lançar exceção
+    	facade.cadastrarAtendente("222.222.222-22", "Tarcizio Atendente Lima", "Rua Pedro Suzart, 3456", 724);
+    	//facade.cadastrarAtendente("222.222.222-22", "AAA", "BBB", 1);
+    }
+    
+    @Test(expected = CapacidadeMaximaException.class)
+    public void testCadastrarAtendenteCapacidadeMaximaExcedida() 
+            throws CadastroRepetidoException, CapacidadeMaximaException {
+    
+        SamuFacade temp = new SamuFacade(); 
+        temp.cadastrarAtendente("1","Nome 1", "Endereco 1", 1);
+        temp.cadastrarAtendente("2","Nome 2", "Endereco 2", 1);
+        temp.cadastrarAtendente("3","Nome 3", "Endereco 3", 1);
+        temp.cadastrarAtendente("4","Nome 4", "Endereco 4", 1);
+        temp.cadastrarAtendente("5","Nome 5", "Endereco 5", 1);
+        
+        temp.cadastrarAtendente("6","Nome 6", "Endereco 6", 1); //lança exceção
+    }
+
+    @Test
+    public void testListarAtendentes() throws CadastroRepetidoException {
+        Iterador atendentes = facade.listarAtendentes();
+                
+        assertTrue(atendentes.temProximo());
+        assertEquals(priscila, atendentes.proximo());
+        assertTrue(atendentes.temProximo());
+        assertEquals(suzana, atendentes.proximo());
+        assertTrue(atendentes.temProximo());
+        assertEquals(tarcizio, atendentes.proximo());
+
+        assertFalse(atendentes.temProximo());
+    }
+
+    @Test
+    public void testListarAtendentesDisponiveis() throws CadastroRepetidoException, 
+    CidadaoNaoEncontradoException, AtendenteIndisponivelException, 
+    OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException, QuantidadeDiferenteAmbulanciasException {
+    
+        Iterador atendentes = facade.listarAtendentesDisponiveis();
+
+        assertTrue(atendentes.temProximo());
+        assertEquals(suzana, atendentes.proximo());
+
+        assertTrue(atendentes.temProximo());
+        assertEquals(tarcizio, atendentes.proximo());
+
+        assertTrue(atendentes.temProximo());
+        assertEquals(priscila, atendentes.proximo());
+
+        assertFalse(atendentes.temProximo());
+
+        facade.cadastrarOcorrencia("137.588.183-51", 1);
+        facade.cadastrarOcorrencia("987.654.321-01", 1);
+        int id3 = facade.cadastrarOcorrencia("456.789.123-01", 2);
+
+        atendentes = facade.listarAtendentesDisponiveis();
+        assertFalse(atendentes.temProximo());
+
+        facade.atenderOcorrencia(id3);
+
+        atendentes = facade.listarAtendentesDisponiveis();
+        assertTrue(atendentes.temProximo());
+        assertEquals(priscila, atendentes.proximo());
+    }
+
+    @Test
+    public void testCadastrarAmbulancia() 
+            throws CadastroRepetidoException, CapacidadeMaximaException {
+        //Cria facade temporaria para nao modificar o atributo facade
+        SamuFacade temp = new SamuFacade(); 
+        Ambulancia ambulancia = temp.cadastrarAmbulancia("XYZ-1234");
+        assertEquals("XYZ-1234", ambulancia.getPlaca());
+    }
+
+    @Test(expected = CadastroRepetidoException.class)
+    public void testCadastrarAmbulanciaJaCadastrada() 
+            throws CadastroRepetidoException, CapacidadeMaximaException {
+        //deve lançar exceção
+        facade.cadastrarAmbulancia("SCA-0102");
+    }
+    
+    @Test(expected = CapacidadeMaximaException.class)
+    public void testCadastrarAmbulanciaCapacidadeMaximaExcedida() 
+            throws CadastroRepetidoException, CapacidadeMaximaException {
+    
+        SamuFacade temp = new SamuFacade(); 
+        temp.cadastrarAmbulancia("1");
+        temp.cadastrarAmbulancia("2");
+        temp.cadastrarAmbulancia("3");
+        temp.cadastrarAmbulancia("4");
+        temp.cadastrarAmbulancia("5");
+        temp.cadastrarAmbulancia("6");
+        temp.cadastrarAmbulancia("7");
+        temp.cadastrarAmbulancia("8");
+        temp.cadastrarAmbulancia("9");
+        temp.cadastrarAmbulancia("10");        
+        
+        temp.cadastrarAmbulancia("11");  //lança exceção  
+    }
+
+    @Test
+    public void testListarAmbulanciasDisponiveis()
+            throws CadastroRepetidoException, CidadaoNaoEncontradoException,
+            AtendenteIndisponivelException, OcorrenciaNaoEncontradaException,
+            AmbulanciasInsifucienteException, QuantidadeDiferenteAmbulanciasException {
+
+        Iterador ambulancias = facade.listarAmbulanciasDisponiveis();
+
+        assertEquals(a0103, ambulancias.proximo());
+        assertEquals(a0104, ambulancias.proximo());
+        assertEquals(a0101, ambulancias.proximo());
+        assertEquals(a0102, ambulancias.proximo());
+        assertEquals(a0105, ambulancias.proximo());
+
+        int idOcorrencia = facade.cadastrarOcorrencia("137.588.183-51", 3);
+        facade.atenderOcorrencia(idOcorrencia);
+
+        idOcorrencia = facade.cadastrarOcorrencia("123.123.123-01", 1);
+        facade.atenderOcorrencia(idOcorrencia);
+
+        ambulancias = facade.listarAmbulanciasDisponiveis();
+        assertEquals(a0105, ambulancias.proximo());
+
+        facade.finalizarOcorrencia(idOcorrencia);
+
+        ambulancias = facade.listarAmbulanciasDisponiveis();
+        assertEquals(a0102, ambulancias.proximo());
+        assertEquals(a0105, ambulancias.proximo());
+    }
+
+    @Test
+    public void testListarAmbulancias() throws CadastroRepetidoException {
+        Iterador ambulancias = facade.listarAmbulancias();
+
+        assertTrue(ambulancias.temProximo());
+        assertEquals(a0101, ambulancias.proximo());
+        assertTrue(ambulancias.temProximo());
+        assertEquals(a0102, ambulancias.proximo());
+        assertTrue(ambulancias.temProximo());
+        assertEquals(a0103, ambulancias.proximo());
+        assertTrue(ambulancias.temProximo());
+        assertEquals(a0104, ambulancias.proximo());
+        assertTrue(ambulancias.temProximo());
+        assertEquals(a0105, ambulancias.proximo());
+
+        assertFalse(ambulancias.temProximo());
+    }
+
+    @Test
+    public void testCadastrarOcorrencia()
+            throws CidadaoNaoEncontradoException, AtendenteIndisponivelException,
+            OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException,
+            QuantidadeDiferenteAmbulanciasException {
+
+        int idOcorrencia = facade.cadastrarOcorrencia("123.123.123-01", 5);
+        facade.atenderOcorrencia(idOcorrencia);
+        facade.finalizarOcorrencia(idOcorrencia);
+
+    }
+
+    @Test
+    public void testAtenderFinalizarOcorrencia()
+            throws CidadaoNaoEncontradoException, AtendenteIndisponivelException,
+            OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException, 
+            QuantidadeDiferenteAmbulanciasException {
+
+        int id = facade.cadastrarOcorrencia("137.588.183-51", 5);
+        assertTrue(facade.consultarDivida("137.588.183-51") == 0);
+
+        facade.atenderOcorrencia(id);
+
+        assertTrue(facade.consultarDivida("137.588.183-51") == 0);
+
+        Iterador ambulancias = facade.listarAmbulanciasDisponiveis();
+        assertFalse(ambulancias.temProximo());
+
+
+        facade.finalizarOcorrencia(id);
+
+        assertTrue(facade.consultarDivida("137.588.183-51") == 10);
+
+        ambulancias = facade.listarAmbulanciasDisponiveis();
+        assertTrue(ambulancias.temProximo());
+    }
+
+    @Test(expected = AtendenteIndisponivelException.class)
+    public void testAtendenteIndisponivel() throws CidadaoNaoEncontradoException,
+    AtendenteIndisponivelException, OcorrenciaNaoEncontradaException, 
+    AmbulanciasInsifucienteException {
+    
+        facade.cadastrarOcorrencia("137.588.183-51", 1);
+        facade.cadastrarOcorrencia("987.654.321-01", 1);
+        facade.cadastrarOcorrencia("456.789.123-01", 2);
+        facade.cadastrarOcorrencia("123.123.123-01", 1); //lanca exceção atendente indisponível
+    }
+
+    @Test(expected = OcorrenciaNaoEncontradaException.class)
+    public void testOcorrenciaNaoEncontrada() throws CidadaoNaoEncontradoException, AtendenteIndisponivelException, OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException, QuantidadeDiferenteAmbulanciasException {
+        facade.atenderOcorrencia(100); //deve lançar exceção
+    }
+
+    @Test(expected = AmbulanciasInsifucienteException.class)
+    public void testAmbulanciaInsuficiente() throws CidadaoNaoEncontradoException, AtendenteIndisponivelException, OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException, QuantidadeDiferenteAmbulanciasException {
+        int idOcorrencia = facade.cadastrarOcorrencia("123.123.123-01", 6);
+        facade.atenderOcorrencia(idOcorrencia); //deve lançar exceção
+    }
+
+    @Test
+    public void testListarOcorrenciasAtivas() throws CidadaoNaoEncontradoException, AtendenteIndisponivelException, OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException, QuantidadeDiferenteAmbulanciasException {
+        int id1 = facade.cadastrarOcorrencia("137.588.183-51", 1);
+        int id2 = facade.cadastrarOcorrencia("987.654.321-01", 1);
+        int id3 = facade.cadastrarOcorrencia("456.789.123-01", 2);
+
+        facade.atenderOcorrencia(id2);
+
+        facade.finalizarOcorrencia(id1);
+
+        Iterador it = facade.listarOcorrenciasAtivas();
+        Ocorrencia temp = (Ocorrencia) it.proximo();
+        assertTrue(temp.equals(facade.consultarOcorrencia(id2)));
+
+        temp = (Ocorrencia) it.proximo();
+        assertTrue(temp.equals(facade.consultarOcorrencia(id3)));
+
+        facade.finalizarOcorrencia(id2);
+        facade.finalizarOcorrencia(id3);
+
+        it = facade.listarOcorrenciasAtivas();
+        assertFalse(it.temProximo());
+    }
+
+    @Test
+    public void testConsultarOcorrencia() throws CidadaoNaoEncontradoException, AtendenteIndisponivelException, OcorrenciaNaoEncontradaException, AmbulanciasInsifucienteException, QuantidadeDiferenteAmbulanciasException {
+        int id1 = facade.cadastrarOcorrencia("137.588.183-51", 2);
+
+        Ocorrencia ocorrencia = facade.consultarOcorrencia(id1);
+
+        assertTrue(ocorrencia.getId() == id1);
+        //assertTrue(ocorrencia.getStatus().equals("Aberta"));
+        assertTrue(ocorrencia.getAtendente().getCpf().equals("111.111.111-11"));
+        assertTrue(ocorrencia.getCidadao().getCpf().equals("137.588.183-51"));
+        assertTrue(ocorrencia.getStatus().equals("Aberta"));
+        
+        assertTrue(ocorrencia.estaAtiva());
+        assertTrue(ocorrencia.getQtdAmbulancias() == 2);
+
+        facade.atenderOcorrencia(id1);
+        assertTrue(ocorrencia.estaAtiva());
+        assertTrue(ocorrencia.getStatus().equals("Em Atendimento"));
+
+        facade.finalizarOcorrencia(id1);
+        assertFalse(ocorrencia.estaAtiva());
+        assertTrue(ocorrencia.getStatus().equals("Finalizada"));
+    }    
+}

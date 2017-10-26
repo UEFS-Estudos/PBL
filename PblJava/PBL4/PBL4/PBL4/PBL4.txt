@@ -1,0 +1,11 @@
+6
+Quarto1-Banheiro1-10
+Quarto1-Garagem1-3
+Quarto1-Quarto2-50
+Banheiro1-Quarto2-30
+Banheiro1-Garagem1-20
+Quarto2-Banheiro2-4
+Quarto2-Garagem1-42
+Banheiro2-Quarto3-10
+Quarto3-Garagem1-23
+Funcionario1*Quarto1
